@@ -55,8 +55,9 @@ export function AntiDarkModeGuardian() {
           el.remove();
         }
       });
+    }
 
-      // Clear dark mode storage keys
+    function clearDarkStorage() {
       try {
         const themeKeys = ["theme", "color-theme", "darkMode", "dark-mode", "color-mode", "mode", "prefers-dark"];
         themeKeys.forEach((key) => {
@@ -72,13 +73,38 @@ export function AntiDarkModeGuardian() {
       }
     }
 
-    // Run immediately
+    // Run initial one-time cleanup
+    clearDarkStorage();
     enforceLightMode();
 
-    // Set up MutationObserver to block any attempts to introduce dark mode
+    // Set up lightweight MutationObserver only targeting class or theme attributes (NOT style)
     let isHandling = false;
-    const observer = new MutationObserver(() => {
+    const observer = new MutationObserver((mutations) => {
       if (isHandling) return;
+      // Check if any mutation actually added a dark attribute or class
+      let hasDark = false;
+      for (const m of mutations) {
+        if (m.type === "attributes") {
+          const target = m.target as HTMLElement;
+          if (m.attributeName === "class") {
+            const cls = target.className || "";
+            if (typeof cls === "string" && /dark|darkreader|night/.test(cls)) {
+              hasDark = true;
+              break;
+            }
+          } else if (
+            target.getAttribute("data-theme") === "dark" ||
+            target.getAttribute("data-mode") === "dark" ||
+            target.getAttribute("data-color-mode") === "dark"
+          ) {
+            hasDark = true;
+            break;
+          }
+        }
+      }
+
+      if (!hasDark) return;
+
       isHandling = true;
       try {
         enforceLightMode();
@@ -89,13 +115,13 @@ export function AntiDarkModeGuardian() {
 
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["class", "data-theme", "data-mode", "data-color-mode", "style"],
+      attributeFilter: ["class", "data-theme", "data-mode", "data-color-mode"],
     });
 
     if (document.body) {
       observer.observe(document.body, {
         attributes: true,
-        attributeFilter: ["class", "data-theme", "data-mode", "style"],
+        attributeFilter: ["class", "data-theme", "data-mode"],
       });
     }
 

@@ -41,7 +41,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: var(--bg);
   color-scheme: light !important;
   forced-color-adjust: none !important;
@@ -542,7 +541,6 @@ p {
   top: 14px;
   z-index: 100;
   width: 100%;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .header-liquid-glass-pill {
@@ -3563,23 +3561,21 @@ p {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid var(--ink);
+  background: #ffffff;
   display: grid;
   place-items: center;
-  color: #161514;
+  color: var(--ink);
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 2.5px 2.5px 0px var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .hero-slider-arrow:hover {
   background: #ffffff;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-50%) translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--ink);
 }
 
 .hero-slider-arrow.arrow-left {
@@ -3621,9 +3617,8 @@ p {
   border-radius: 50%;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   pointer-events: none;
-  filter: blur(24px);
 }
 
 .hero-image-frame-cutout {

@@ -169,7 +169,7 @@ export function SplitHeroExperience() {
           className="hero-canvas-right"
           style={{
             backgroundColor: current.palette.accentColor,
-            transition: "background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+            transition: "background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
           {/* Subtle architectural vertical typography watermark */}
@@ -177,6 +177,13 @@ export function SplitHeroExperience() {
             <span>MAMA STORE ATELIER</span>
           </div>
         </div>
+      </div>
+
+      {/* Hidden preloads for next/prev slides so transitions are instantaneous */}
+      <div style={{ display: "none" }} aria-hidden="true">
+        {slides.map((s) => (
+          <img key={s.id} src={s.product.image} alt="" />
+        ))}
       </div>
 
       {/* Main Foreground Container */}
@@ -212,14 +219,15 @@ export function SplitHeroExperience() {
               </div>
             </div>
 
-            {/* Bold Hero Typography - Exactly like the Starbucks reference */}
+            {/* Bold Hero Typography - Fast, snappy, GPU composited */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.24, ease: [0.2, 0.8, 0.2, 1] }}
+                style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
                 className="hero-heading-group"
               >
                 <span className="hero-tagline-kicker">{current.tagline}</span>
@@ -335,10 +343,11 @@ export function SplitHeroExperience() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={current.id}
-                  initial={{ opacity: 0, scale: 0.88, y: 24 }}
+                  initial={{ opacity: 0, scale: 0.94, y: 14 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.92, y: -20 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  exit={{ opacity: 0, scale: 0.96, y: -10 }}
+                  transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
+                  style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
                   className="hero-straddle-visual-wrap"
                 >
                   {/* Subtle radial glow under product */}

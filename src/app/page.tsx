@@ -30,18 +30,21 @@ export default function HomePage() {
           <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 40px" }}>
             <motion.span
               className="editorial-kicker"
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.3 }}
+              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
             >
               DEPARTMENTS
             </motion.span>
             <motion.h2
               className="editorial-showcase-title"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.3, delay: 0.05 }}
+              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
             >
               Select your daily beauty ritual.
             </motion.h2>
@@ -50,10 +53,11 @@ export default function HomePage() {
           <div className="editorial-manifesto-grid">
             <motion.div
               className="editorial-dept-card"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.3, delay: 0.04 }}
+              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
             >
               <div>
                 <span className="dept-num">01</span>
@@ -67,10 +71,11 @@ export default function HomePage() {
 
             <motion.div
               className="editorial-dept-card"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.3, delay: 0.08 }}
+              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
             >
               <div>
                 <span className="dept-num">02</span>
@@ -84,10 +89,11 @@ export default function HomePage() {
 
             <motion.div
               className="editorial-dept-card"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.3, delay: 0.12 }}
+              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
             >
               <div>
                 <span className="dept-num">03</span>
@@ -101,10 +107,11 @@ export default function HomePage() {
 
             <motion.div
               className="editorial-dept-card"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.3, delay: 0.16 }}
+              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
             >
               <div>
                 <span className="dept-num">04</span>
