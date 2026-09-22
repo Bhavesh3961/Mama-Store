@@ -13,19 +13,9 @@ import { store } from "@/data/store";
 import type { Product as CatalogProduct } from "@/data/products";
 import type { Category as CatalogCategory } from "@/data/categories";
 
-// Transaction Helper
+// Transaction Helper (No-op for in-memory)
 export function runTransaction<T>(fn: () => T): T {
-  db.exec("BEGIN IMMEDIATE");
-  try {
-    const result = fn();
-    db.exec("COMMIT");
-    return result;
-  } catch (err) {
-    try {
-      db.exec("ROLLBACK");
-    } catch {}
-    throw err;
-  }
+  return fn();
 }
 
 // ==========================================
@@ -33,17 +23,15 @@ export function runTransaction<T>(fn: () => T): T {
 // ==========================================
 
 export function getDbCategories(): DbCategoryRow[] {
-  const rows = db
-    .prepare(`
-      SELECT c.*, COUNT(p.id) as product_count
-      FROM categories c
-      LEFT JOIN products p ON p.category_id = c.id AND p.archived = 0
-      WHERE c.archived = 0
-      GROUP BY c.id
-      ORDER BY c.name ASC
-    `)
-    .all() as unknown as DbCategoryRow[];
-  return rows;
+  return db.categories
+    .filter((c) => c.archived === 0)
+    .map((c) => {
+      const product_count = db.products.filter(
+        (p) => p.category_id === c.id && p.archived === 0
+      ).length;
+      return { ...c, product_count };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export function getAllCategoriesForCatalog(): CatalogCategory[] {
@@ -51,8 +39,7 @@ export function getAllCategoriesForCatalog(): CatalogCategory[] {
 }
 
 export function getDbCategoryById(id: string): DbCategoryRow | null {
-  const row = db.prepare("SELECT * FROM categories WHERE id = ?").get(id) as unknown as DbCategoryRow | undefined;
-  return row ?? null;
+  return db.categories.find((c) => c.id === id) || null;
 }
 
 export function createCategory(data: {
@@ -66,20 +53,19 @@ export function createCategory(data: {
   const slug = (data.slug || data.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")).trim();
   const id = data.id || `cat-${slug}`;
 
-  db.prepare(`
-    INSERT INTO categories (id, name, slug, description, tone, archived, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, 0, ?, ?)
-  `).run(
+  const newCat: DbCategoryRow = {
     id,
-    data.name.trim(),
+    name: data.name.trim(),
     slug,
-    data.description?.trim() || "",
-    data.tone?.trim() || "#f5efe6",
-    now,
-    now
-  );
+    description: data.description?.trim() || "",
+    tone: data.tone?.trim() || "#f5efe6",
+    archived: 0,
+    created_at: now,
+    updated_at: now,
+  };
 
-  return getDbCategoryById(id)!;
+  db.categories.push(newCat);
+  return newCat;
 }
 
 export function updateCategory(
@@ -91,30 +77,31 @@ export function updateCategory(
     tone?: string;
   }
 ): DbCategoryRow {
-  const existing = getDbCategoryById(id);
-  if (!existing) throw new Error("Category not found");
+  const existingIndex = db.categories.findIndex((c) => c.id === id);
+  if (existingIndex === -1) throw new Error("Category not found");
 
+  const existing = db.categories[existingIndex];
   const now = new Date().toISOString();
-  const name = data.name !== undefined ? data.name.trim() : existing.name;
-  const slug = data.slug !== undefined ? data.slug.trim() : existing.slug;
-  const description = data.description !== undefined ? data.description.trim() : existing.description;
-  const tone = data.tone !== undefined ? data.tone.trim() : existing.tone;
 
-  db.prepare(`
-    UPDATE categories
-    SET name = ?, slug = ?, description = ?, tone = ?, updated_at = ?
-    WHERE id = ?
-  `).run(name, slug, description, tone, now, id);
+  const updated: DbCategoryRow = {
+    ...existing,
+    name: data.name !== undefined ? data.name.trim() : existing.name,
+    slug: data.slug !== undefined ? data.slug.trim() : existing.slug,
+    description: data.description !== undefined ? data.description.trim() : existing.description,
+    tone: data.tone !== undefined ? data.tone.trim() : existing.tone,
+    updated_at: now,
+  };
 
-  return getDbCategoryById(id)!;
+  db.categories[existingIndex] = updated;
+  return updated;
 }
 
 export function deleteCategory(id: string): void {
-  // Soft delete / archive
-  db.prepare("UPDATE categories SET archived = 1, updated_at = ? WHERE id = ?").run(
-    new Date().toISOString(),
-    id
-  );
+  const existing = db.categories.find((c) => c.id === id);
+  if (existing) {
+    existing.archived = 1;
+    existing.updated_at = new Date().toISOString();
+  }
 }
 
 // ==========================================
@@ -127,40 +114,41 @@ export function getDbProducts(options?: {
   includeUnpublished?: boolean;
   includeArchived?: boolean;
 }): DbProductRow[] {
-  let sql = `
-    SELECT p.*, c.name as category_name
-    FROM products p
-    LEFT JOIN categories c ON p.category_id = c.id
-    WHERE 1=1
-  `;
-  type SqlParam = string | number | null;
-  const params: SqlParam[] = [];
+  let list = db.products.map((p) => {
+    const cat = db.categories.find((c) => c.id === p.category_id);
+    return { ...p, category_name: cat ? cat.name : null };
+  });
 
   if (!options?.includeArchived) {
-    sql += " AND p.archived = 0";
+    list = list.filter((p) => p.archived === 0);
   }
 
   if (!options?.includeUnpublished) {
-    sql += " AND p.published = 1";
+    list = list.filter((p) => p.published === 1);
   }
 
   if (options?.categoryId) {
-    sql += " AND (p.category_id = ? OR c.slug = ?)";
-    params.push(options.categoryId, options.categoryId);
+    list = list.filter((p) => {
+      const cat = db.categories.find((c) => c.id === p.category_id);
+      return p.category_id === options.categoryId || (cat && cat.slug === options.categoryId);
+    });
   }
 
   if (options?.query) {
-    const q = `%${options.query.trim().toLowerCase()}%`;
-    sql += " AND (LOWER(p.name) LIKE ? OR LOWER(p.description) LIKE ?)";
-    params.push(q, q);
+    const q = options.query.trim().toLowerCase();
+    list = list.filter(
+      (p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q)
+    );
   }
 
-  sql += " ORDER BY p.is_bestseller DESC, p.created_at DESC";
-
-  const rows = (params.length > 0
-    ? db.prepare(sql).all(...params)
-    : db.prepare(sql).all()) as unknown as DbProductRow[];
-  return rows;
+  return list.sort((a, b) => {
+    if (a.is_bestseller !== b.is_bestseller) {
+      return b.is_bestseller - a.is_bestseller; // 1 before 0
+    }
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+  });
 }
 
 export function getAllProductsForCatalog(): CatalogProduct[] {
@@ -168,27 +156,17 @@ export function getAllProductsForCatalog(): CatalogProduct[] {
 }
 
 export function getDbProductById(id: string): DbProductRow | null {
-  const row = db
-    .prepare(`
-      SELECT p.*, c.name as category_name
-      FROM products p
-      LEFT JOIN categories c ON p.category_id = c.id
-      WHERE p.id = ?
-    `)
-    .get(id) as unknown as DbProductRow | undefined;
-  return row ?? null;
+  const p = db.products.find((p) => p.id === id);
+  if (!p) return null;
+  const cat = db.categories.find((c) => c.id === p.category_id);
+  return { ...p, category_name: cat ? cat.name : null };
 }
 
 export function getDbProductBySlug(slug: string): DbProductRow | null {
-  const row = db
-    .prepare(`
-      SELECT p.*, c.name as category_name
-      FROM products p
-      LEFT JOIN categories c ON p.category_id = c.id
-      WHERE p.slug = ? AND p.archived = 0
-    `)
-    .get(slug) as unknown as DbProductRow | undefined;
-  return row ?? null;
+  const p = db.products.find((p) => p.slug === slug && p.archived === 0);
+  if (!p) return null;
+  const cat = db.categories.find((c) => c.id === p.category_id);
+  return { ...p, category_name: cat ? cat.name : null };
 }
 
 export function createProduct(data: {
@@ -221,42 +199,36 @@ export function createProduct(data: {
   const isNew = data.is_new ? 1 : 0;
   const isBestseller = data.is_bestseller ? 1 : 0;
 
-  db.prepare(`
-    INSERT INTO products (
-      id, slug, name, brand_id, category_id, description, details, ingredients,
-      size, image, mrp, price, stock, in_stock, is_new, is_bestseller, rating,
-      review_count, published, archived, variants_json, gallery_json,
-      offer_ids_json, related_ids_json, created_at, updated_at
-    )
-    VALUES (
-      ?, ?, ?, ?, ?, ?, ?, ?,
-      ?, ?, ?, ?, ?, ?, ?, ?, 4.9,
-      1, ?, 0, '[]', ?,
-      '[]', '[]', ?, ?
-    )
-  `).run(
+  const newProd: DbProductRow = {
     id,
     slug,
-    data.name.trim(),
-    data.brand_id || "br-mama",
-    data.category_id,
-    data.description?.trim() || "",
-    data.details?.trim() || "",
-    data.ingredients?.trim() || "",
-    data.size?.trim() || "",
-    data.image.trim(),
-    data.mrp ?? null,
-    data.price ?? null,
+    name: data.name.trim(),
+    brand_id: data.brand_id || "br-mama",
+    category_id: data.category_id,
+    description: data.description?.trim() || "",
+    details: data.details?.trim() || "",
+    ingredients: data.ingredients?.trim() || "",
+    size: data.size?.trim() || "",
+    image: data.image.trim(),
+    mrp: data.mrp ?? null,
+    price: data.price ?? null,
     stock,
-    inStock,
-    isNew,
-    isBestseller,
+    in_stock: inStock,
+    is_new: isNew,
+    is_bestseller: isBestseller,
+    rating: 4.9,
+    review_count: 1,
     published,
-    JSON.stringify(data.gallery || []),
-    now,
-    now
-  );
+    archived: 0,
+    variants_json: '[]',
+    gallery_json: JSON.stringify(data.gallery || []),
+    offer_ids_json: '[]',
+    related_ids_json: '[]',
+    created_at: now,
+    updated_at: now,
+  };
 
+  db.products.push(newProd);
   return getDbProductById(id)!;
 }
 
@@ -281,94 +253,71 @@ export function updateProduct(
     gallery: { label: string; url?: string; tone: string }[];
   }>
 ): DbProductRow {
-  const existing = getDbProductById(id);
-  if (!existing) throw new Error("Product not found");
+  const index = db.products.findIndex((p) => p.id === id);
+  if (index === -1) throw new Error("Product not found");
 
+  const existing = db.products[index];
   const now = new Date().toISOString();
-  const name = data.name !== undefined ? data.name.trim() : existing.name;
-  const slug = data.slug !== undefined ? data.slug.trim() : existing.slug;
-  const brand_id = data.brand_id !== undefined ? data.brand_id : existing.brand_id;
-  const category_id = data.category_id !== undefined ? data.category_id : existing.category_id;
-  const description = data.description !== undefined ? data.description.trim() : existing.description;
-  const details = data.details !== undefined ? data.details.trim() : existing.details;
-  const ingredients = data.ingredients !== undefined ? data.ingredients.trim() : existing.ingredients;
-  const size = data.size !== undefined ? data.size.trim() : existing.size;
-  const image = data.image !== undefined ? data.image.trim() : existing.image;
-  const mrp = data.mrp !== undefined ? data.mrp : existing.mrp;
-  const price = data.price !== undefined ? data.price : existing.price;
+
   const stock = data.stock !== undefined ? data.stock : existing.stock;
   const in_stock = stock > 0 ? 1 : 0;
-  const is_new = data.is_new !== undefined ? (data.is_new ? 1 : 0) : existing.is_new;
-  const is_bestseller = data.is_bestseller !== undefined ? (data.is_bestseller ? 1 : 0) : existing.is_bestseller;
-  const published = data.published !== undefined ? (data.published ? 1 : 0) : existing.published;
-  const gallery_json = data.gallery !== undefined ? JSON.stringify(data.gallery) : existing.gallery_json;
 
-  db.prepare(`
-    UPDATE products
-    SET name = ?, slug = ?, brand_id = ?, category_id = ?, description = ?,
-        details = ?, ingredients = ?, size = ?, image = ?, mrp = ?, price = ?,
-        stock = ?, in_stock = ?, is_new = ?, is_bestseller = ?, published = ?,
-        gallery_json = ?, updated_at = ?
-    WHERE id = ?
-  `).run(
-    name,
-    slug,
-    brand_id,
-    category_id,
-    description,
-    details,
-    ingredients,
-    size,
-    image,
-    mrp,
-    price,
+  const updated: DbProductRow = {
+    ...existing,
+    name: data.name !== undefined ? data.name.trim() : existing.name,
+    slug: data.slug !== undefined ? data.slug.trim() : existing.slug,
+    brand_id: data.brand_id !== undefined ? data.brand_id : existing.brand_id,
+    category_id: data.category_id !== undefined ? data.category_id : existing.category_id,
+    description: data.description !== undefined ? data.description.trim() : existing.description,
+    details: data.details !== undefined ? data.details.trim() : existing.details,
+    ingredients: data.ingredients !== undefined ? data.ingredients.trim() : existing.ingredients,
+    size: data.size !== undefined ? data.size.trim() : existing.size,
+    image: data.image !== undefined ? data.image.trim() : existing.image,
+    mrp: data.mrp !== undefined ? data.mrp : existing.mrp,
+    price: data.price !== undefined ? data.price : existing.price,
     stock,
     in_stock,
-    is_new,
-    is_bestseller,
-    published,
-    gallery_json,
-    now,
-    id
-  );
+    is_new: data.is_new !== undefined ? (data.is_new ? 1 : 0) : existing.is_new,
+    is_bestseller: data.is_bestseller !== undefined ? (data.is_bestseller ? 1 : 0) : existing.is_bestseller,
+    published: data.published !== undefined ? (data.published ? 1 : 0) : existing.published,
+    gallery_json: data.gallery !== undefined ? JSON.stringify(data.gallery) : existing.gallery_json,
+    updated_at: now,
+  };
 
+  db.products[index] = updated;
   return getDbProductById(id)!;
 }
 
 export function updateProductStock(id: string, stock: number): DbProductRow {
-  const existing = getDbProductById(id);
-  if (!existing) throw new Error("Product not found");
+  const index = db.products.findIndex((p) => p.id === id);
+  if (index === -1) throw new Error("Product not found");
 
-  const now = new Date().toISOString();
   const safeStock = Math.max(0, Math.floor(stock));
   const in_stock = safeStock > 0 ? 1 : 0;
-
-  db.prepare(`
-    UPDATE products
-    SET stock = ?, in_stock = ?, updated_at = ?
-    WHERE id = ?
-  `).run(safeStock, in_stock, now, id);
+  
+  db.products[index].stock = safeStock;
+  db.products[index].in_stock = in_stock;
+  db.products[index].updated_at = new Date().toISOString();
 
   return getDbProductById(id)!;
 }
 
 export function toggleProductPublished(id: string): DbProductRow {
-  const existing = getDbProductById(id);
-  if (!existing) throw new Error("Product not found");
+  const index = db.products.findIndex((p) => p.id === id);
+  if (index === -1) throw new Error("Product not found");
 
-  const now = new Date().toISOString();
-  const published = existing.published ? 0 : 1;
-
-  db.prepare("UPDATE products SET published = ?, updated_at = ? WHERE id = ?").run(published, now, id);
+  db.products[index].published = db.products[index].published ? 0 : 1;
+  db.products[index].updated_at = new Date().toISOString();
+  
   return getDbProductById(id)!;
 }
 
 export function deleteProduct(id: string): void {
-  // Soft delete / archive
-  db.prepare("UPDATE products SET archived = 1, updated_at = ? WHERE id = ?").run(
-    new Date().toISOString(),
-    id
-  );
+  const p = db.products.find((p) => p.id === id);
+  if (p) {
+    p.archived = 1;
+    p.updated_at = new Date().toISOString();
+  }
 }
 
 // ==========================================
@@ -394,7 +343,6 @@ export type CreateOrderInput = {
 };
 
 export function createOrderWithStockDeduction(input: CreateOrderInput): OrderWithItems {
-  // 1. Validation
   const name = input.customer_name?.trim();
   const phone = input.customer_phone?.trim();
   const address = input.address?.trim();
@@ -404,179 +352,94 @@ export function createOrderWithStockDeduction(input: CreateOrderInput): OrderWit
   const payment = input.payment_method === "upi" ? "upi" : "cod";
   const notes = input.notes?.trim() || null;
 
-  if (!name || name.length < 2) {
-    throw new Error("Please provide your full name.");
-  }
-  if (!phone || !/^[6-9]\d{9}$/.test(phone)) {
-    throw new Error("Please provide a valid 10-digit Indian mobile number.");
-  }
-  if (!address || address.length < 5) {
-    throw new Error("Please provide a complete delivery address.");
-  }
-  if (!city) {
-    throw new Error("City is required.");
-  }
-  if (!pincode || !/^\d{6}$/.test(pincode)) {
-    throw new Error("Please provide a valid 6-digit postal pincode.");
-  }
-  if (!input.items || input.items.length === 0) {
-    throw new Error("Your cart is empty.");
-  }
+  if (!name || name.length < 2) throw new Error("Please provide your full name.");
+  if (!phone || !/^[6-9]\d{9}$/.test(phone)) throw new Error("Please provide a valid 10-digit Indian mobile number.");
+  if (!address || address.length < 5) throw new Error("Please provide a complete delivery address.");
+  if (!city) throw new Error("City is required.");
+  if (!pincode || !/^\d{6}$/.test(pincode)) throw new Error("Please provide a valid 6-digit postal pincode.");
+  if (!input.items || input.items.length === 0) throw new Error("Your cart is empty.");
 
-  // 2. Run inside atomic SQLite transaction
-  return runTransaction(() => {
-    const orderId = `MS-${Date.now().toString(36).toUpperCase()}-${Math.floor(100 + Math.random() * 900)}`;
-    const now = new Date().toISOString();
+  const orderId = `MS-${Date.now().toString(36).toUpperCase()}-${Math.floor(100 + Math.random() * 900)}`;
+  const now = new Date().toISOString();
 
-    let subtotal = 0;
-    const validatedItems: {
-      productId: string;
-      productName: string;
-      variantId: string | null;
-      variantName: string | null;
-      quantity: number;
-      unitPrice: number;
-      totalPrice: number;
-    }[] = [];
+  let subtotal = 0;
+  const validatedItems: DbOrderItemRow[] = [];
+  let nextItemId = db.orderItems.length > 0 ? Math.max(...db.orderItems.map((i) => i.id)) + 1 : 1;
 
-    const getProductStmt = db.prepare(`
-      SELECT id, name, price, stock, in_stock, published, archived
-      FROM products
-      WHERE id = ?
-    `);
+  for (const item of input.items) {
+    const qty = Math.floor(item.quantity);
+    if (qty <= 0) throw new Error("Item quantity must be at least 1.");
 
-    const updateStockStmt = db.prepare(`
-      UPDATE products
-      SET stock = stock - ?,
-          in_stock = CASE WHEN (stock - ?) <= 0 THEN 0 ELSE 1 END,
-          updated_at = ?
-      WHERE id = ?
-    `);
+    const productIndex = db.products.findIndex((p) => p.id === item.productId);
+    const product = db.products[productIndex];
 
-    for (const item of input.items) {
-      const qty = Math.floor(item.quantity);
-      if (qty <= 0) {
-        throw new Error("Item quantity must be at least 1.");
-      }
-
-      const product = getProductStmt.get(item.productId) as unknown as
-        | {
-            id: string;
-            name: string;
-            price: number | null;
-            stock: number;
-            in_stock: number;
-            published: number;
-            archived: number;
-          }
-        | undefined;
-
-      if (!product || product.archived === 1 || product.published === 0) {
-        throw new Error(`Product "${item.productId}" is no longer available.`);
-      }
-
-      if (product.price == null) {
-        throw new Error(
-          `"${product.name}" is marked for price enquiry only and cannot be ordered online.`
-        );
-      }
-
-      if (product.stock < qty) {
-        throw new Error(
-          `Insufficient stock for "${product.name}". Only ${product.stock} available.`
-        );
-      }
-
-      const itemTotal = product.price * qty;
-      subtotal += itemTotal;
-
-      const fullProductName = item.variantName
-        ? `${product.name} · ${item.variantName}`
-        : product.name;
-
-      validatedItems.push({
-        productId: product.id,
-        productName: fullProductName,
-        variantId: item.variantId || null,
-        variantName: item.variantName || null,
-        quantity: qty,
-        unitPrice: product.price,
-        totalPrice: itemTotal,
-      });
-
-      // Deduct stock immediately in transaction
-      updateStockStmt.run(qty, qty, now, product.id);
+    if (!product || product.archived === 1 || product.published === 0) {
+      throw new Error(`Product "${item.productId}" is no longer available.`);
+    }
+    if (product.price == null) {
+      throw new Error(`"${product.name}" is marked for price enquiry only and cannot be ordered online.`);
+    }
+    if (product.stock < qty) {
+      throw new Error(`Insufficient stock for "${product.name}". Only ${product.stock} available.`);
     }
 
-    const deliveryFee = subtotal >= store.freeDeliveryOver ? 0 : store.deliveryFee;
-    const total = subtotal + deliveryFee;
+    const itemTotal = product.price * qty;
+    subtotal += itemTotal;
 
-    // Insert Order
-    db.prepare(`
-      INSERT INTO orders (
-        id, customer_name, customer_phone, customer_email, address,
-        city, state, pincode, payment_method, notes, subtotal,
-        delivery_fee, total, status, created_at, updated_at
-      )
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', ?, ?)
-    `).run(
-      orderId,
-      name,
-      phone,
-      input.customer_email?.trim() || null,
-      address,
-      city,
-      state,
-      pincode,
-      payment,
-      notes,
-      subtotal,
-      deliveryFee,
-      total,
-      now,
-      now
-    );
+    const fullProductName = item.variantName ? `${product.name} · ${item.variantName}` : product.name;
 
-    // Insert Order Items
-    const insertItemStmt = db.prepare(`
-      INSERT INTO order_items (
-        order_id, product_id, product_name, variant_id, variant_name,
-        quantity, unit_price, total_price
-      )
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `);
+    validatedItems.push({
+      id: nextItemId++,
+      order_id: orderId,
+      product_id: product.id,
+      product_name: fullProductName,
+      variant_id: item.variantId || null,
+      variant_name: item.variantName || null,
+      quantity: qty,
+      unit_price: product.price,
+      total_price: itemTotal,
+    });
 
-    for (const item of validatedItems) {
-      insertItemStmt.run(
-        orderId,
-        item.productId,
-        item.productName,
-        item.variantId,
-        item.variantName,
-        item.quantity,
-        item.unitPrice,
-        item.totalPrice
-      );
-    }
+    // Deduct stock in memory
+    db.products[productIndex].stock -= qty;
+    db.products[productIndex].in_stock = db.products[productIndex].stock > 0 ? 1 : 0;
+    db.products[productIndex].updated_at = now;
+  }
 
-    return getOrderById(orderId)!;
-  });
+  const deliveryFee = subtotal >= store.freeDeliveryOver ? 0 : store.deliveryFee;
+  const total = subtotal + deliveryFee;
+
+  const newOrder: DbOrderRow = {
+    id: orderId,
+    customer_name: name,
+    customer_phone: phone,
+    customer_email: input.customer_email?.trim() || null,
+    address,
+    city,
+    state,
+    pincode,
+    payment_method: payment,
+    notes,
+    subtotal,
+    delivery_fee: deliveryFee,
+    total,
+    status: "Pending",
+    created_at: now,
+    updated_at: now,
+  };
+
+  db.orders.push(newOrder);
+  db.orderItems.push(...validatedItems);
+
+  return getOrderById(orderId)!;
 }
 
 export function getOrderById(id: string): OrderWithItems | null {
-  const order = db.prepare("SELECT * FROM orders WHERE id = ?").get(id) as unknown as
-    | DbOrderRow
-    | undefined;
+  const order = db.orders.find((o) => o.id === id);
   if (!order) return null;
 
-  const items = db
-    .prepare("SELECT * FROM order_items WHERE order_id = ? ORDER BY id ASC")
-    .all(id) as unknown as DbOrderItemRow[];
-
-  return {
-    ...order,
-    items,
-  };
+  const items = db.orderItems.filter((i) => i.order_id === id).sort((a, b) => a.id - b.id);
+  return { ...order, items };
 }
 
 export function getAllOrders(options?: {
@@ -585,63 +448,47 @@ export function getAllOrders(options?: {
   limit?: number;
   offset?: number;
 }): OrderWithItems[] {
-  let sql = "SELECT * FROM orders WHERE 1=1";
-  type SqlParam = string | number;
-  const params: SqlParam[] = [];
+  let list = db.orders;
 
   if (options?.status && options.status !== "All") {
-    sql += " AND status = ?";
-    params.push(options.status);
+    list = list.filter((o) => o.status === options.status);
   }
 
   if (options?.query) {
-    const q = `%${options.query.trim().toLowerCase()}%`;
-    sql += " AND (LOWER(id) LIKE ? OR LOWER(customer_name) LIKE ? OR customer_phone LIKE ?)";
-    params.push(q, q, q);
+    const q = options.query.trim().toLowerCase();
+    list = list.filter(
+      (o) =>
+        o.id.toLowerCase().includes(q) ||
+        o.customer_name.toLowerCase().includes(q) ||
+        o.customer_phone.includes(q)
+    );
   }
 
-  sql += " ORDER BY created_at DESC";
+  list = [...list].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-  if (options?.limit) {
-    sql += " LIMIT ?";
-    params.push(options.limit);
-  }
-  if (options?.offset) {
-    sql += " OFFSET ?";
-    params.push(options.offset);
+  if (options?.offset !== undefined || options?.limit !== undefined) {
+    const offset = options.offset || 0;
+    const limit = options.limit || list.length;
+    list = list.slice(offset, offset + limit);
   }
 
-  const orders = (params.length > 0
-    ? db.prepare(sql).all(...params)
-    : db.prepare(sql).all()) as unknown as DbOrderRow[];
-
-  return orders.map((o) => {
-    const items = db
-      .prepare("SELECT * FROM order_items WHERE order_id = ? ORDER BY id ASC")
-      .all(o.id) as unknown as DbOrderItemRow[];
+  return list.map((o) => {
+    const items = db.orderItems.filter((i) => i.order_id === o.id).sort((a, b) => a.id - b.id);
     return { ...o, items };
   });
 }
 
 export function updateOrderStatus(id: string, status: OrderStatus): OrderWithItems {
-  const validStatuses: OrderStatus[] = [
-    "Pending",
-    "Confirmed",
-    "Packed",
-    "Shipped",
-    "Delivered",
-    "Cancelled",
-  ];
-  if (!validStatuses.includes(status)) {
-    throw new Error(`Invalid status: ${status}`);
-  }
+  const validStatuses: OrderStatus[] = ["Pending", "Confirmed", "Packed", "Shipped", "Delivered", "Cancelled"];
+  if (!validStatuses.includes(status)) throw new Error(`Invalid status: ${status}`);
 
-  const now = new Date().toISOString();
-  db.prepare("UPDATE orders SET status = ?, updated_at = ? WHERE id = ?").run(status, now, id);
+  const index = db.orders.findIndex((o) => o.id === id);
+  if (index === -1) throw new Error("Order not found");
 
-  const updated = getOrderById(id);
-  if (!updated) throw new Error("Order not found");
-  return updated;
+  db.orders[index].status = status;
+  db.orders[index].updated_at = new Date().toISOString();
+
+  return getOrderById(id)!;
 }
 
 // ==========================================
@@ -656,35 +503,30 @@ export function getDashboardStats(): {
   recentOrders: OrderWithItems[];
   lowStockProducts: DbProductRow[];
 } {
-  const prodRow = db
-    .prepare("SELECT COUNT(*) as count FROM products WHERE archived = 0")
-    .get() as { count: number };
-  const orderRow = db.prepare("SELECT COUNT(*) as count FROM orders").get() as { count: number };
-  const pendingRow = db
-    .prepare("SELECT COUNT(*) as count FROM orders WHERE status = 'Pending'")
-    .get() as { count: number };
-  const revenueRow = db
-    .prepare("SELECT SUM(total) as revenue FROM orders WHERE status != 'Cancelled'")
-    .get() as { revenue: number | null };
+  const totalProducts = db.products.filter((p) => p.archived === 0).length;
+  const totalOrders = db.orders.length;
+  const pendingOrders = db.orders.filter((o) => o.status === "Pending").length;
+  
+  const totalRevenue = db.orders
+    .filter((o) => o.status !== "Cancelled")
+    .reduce((sum, o) => sum + o.total, 0);
 
   const recentOrders = getAllOrders({ limit: 5 });
 
-  const lowStockProducts = db
-    .prepare(`
-      SELECT p.*, c.name as category_name
-      FROM products p
-      LEFT JOIN categories c ON p.category_id = c.id
-      WHERE p.archived = 0 AND p.stock <= 5
-      ORDER BY p.stock ASC
-      LIMIT 10
-    `)
-    .all() as unknown as DbProductRow[];
+  const lowStockProducts = db.products
+    .filter((p) => p.archived === 0 && p.stock <= 5)
+    .sort((a, b) => a.stock - b.stock)
+    .slice(0, 10)
+    .map((p) => {
+      const cat = db.categories.find((c) => c.id === p.category_id);
+      return { ...p, category_name: cat ? cat.name : null };
+    });
 
   return {
-    totalProducts: prodRow.count,
-    totalOrders: orderRow.count,
-    pendingOrders: pendingRow.count,
-    totalRevenue: revenueRow.revenue || 0,
+    totalProducts,
+    totalOrders,
+    pendingOrders,
+    totalRevenue,
     recentOrders,
     lowStockProducts,
   };
