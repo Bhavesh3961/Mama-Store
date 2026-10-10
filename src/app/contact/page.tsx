@@ -15,7 +15,7 @@ export default function ContactPage() {
           {store.hours}
         </p>
         <p className="muted" style={{ marginTop: 12 }}>
-          For instant shade recommendations, ingredient advice, or city delivery in Pali, message our beauty consultants directly on WhatsApp.
+          For product availability, pricing, or city delivery in Pali, message our store directly on WhatsApp.
         </p>
         <div className="actions-stack" style={{ marginTop: 18 }}>
           <a className="btn" href={whatsappHref(`Hello ${store.name}, I would like to enquire about a product.`)} target="_blank" rel="noreferrer">

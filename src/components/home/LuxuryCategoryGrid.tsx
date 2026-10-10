@@ -15,8 +15,8 @@ const CATEGORY_GRAPHICS: Record<
   { icon: React.ReactNode; tag: string; image: string; accentColor: string }
 > = {
   skincare: {
-    tag: "HYDRATION & GLOW",
-    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1000&q=85",
+    tag: "CLINICAL & DEWY",
+    image: "/mamaearth-rice-dew-facewash.jpg",
     accentColor: "#dfb56c",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -27,7 +27,7 @@ const CATEGORY_GRAPHICS: Record<
   },
   makeup: {
     tag: "COUTURE COLOUR",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85",
+    image: "/products/maybelline-superstay-matte-ink.jpg",
     accentColor: "#f472b6",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -38,8 +38,8 @@ const CATEGORY_GRAPHICS: Record<
     ),
   },
   hair: {
-    tag: "SILK & NOURISHMENT",
-    image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=1000&q=85",
+    tag: "SALON RESTORATIVE",
+    image: "/products/loreal-absolut-repair.png",
     accentColor: "#fbbf24",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -49,8 +49,8 @@ const CATEGORY_GRAPHICS: Record<
     ),
   },
   "bath-body": {
-    tag: "SPA & PAMPERING",
-    image: "https://images.unsplash.com/photo-1607006482602-76ca97ac8f69?auto=format&fit=crop&w=1000&q=85",
+    tag: "SPA SCRUB & 24K GOLD",
+    image: "/products/milau-24k-gold-wash.webp",
     accentColor: "#34d399",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -60,8 +60,8 @@ const CATEGORY_GRAPHICS: Record<
     ),
   },
   fragrance: {
-    tag: "LUXURY ESSENCE",
-    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1000&q=85",
+    tag: "HAUTE PARFUM & OUD",
+    image: "/products/bellavita-honey-oud.jpg",
     accentColor: "#c084fc",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -71,8 +71,8 @@ const CATEGORY_GRAPHICS: Record<
     ),
   },
   "mens-grooming": {
-    tag: "FRESH GROOMING",
-    image: "https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=1000&q=85",
+    tag: "RE-ENERGIZING CARE",
+    image: "/products/milau-mens-face-body-wash.webp",
     accentColor: "#38bdf8",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -81,8 +81,8 @@ const CATEGORY_GRAPHICS: Record<
     ),
   },
   combos: {
-    tag: "FESTIVE HAMPERS",
-    image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=1000&q=85",
+    tag: "CURATED VANITY SETS",
+    image: "/mamaearth-rice-dewy-bright.jpg",
     accentColor: "#f43f5e",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">

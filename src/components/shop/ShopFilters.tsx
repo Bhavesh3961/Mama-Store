@@ -2,9 +2,8 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useMemo, useState } from "react";
-import { brands } from "@/data/brands";
+import { brands, topBrands } from "@/data/brands";
 import { categories } from "@/data/categories";
-import { offers } from "@/data/offers";
 import type { SortKey } from "@/data/catalog";
 
 const sorts: { value: SortKey; label: string }[] = [
@@ -196,7 +195,7 @@ export function FilterFields({
             />
             <span className="filter-pill-span">All Brands</span>
           </label>
-          {brands.map((b) => (
+          {topBrands.map((b) => (
             <label className="filter-pill-label" key={b.id}>
               <input
                 type="radio"
@@ -294,34 +293,7 @@ export function FilterFields({
         </div>
       </div>
 
-      {/* Special Offers */}
-      <div className="filter-group-lux">
-        <h3>Offers & Deals</h3>
-        <div className="filter-options-grid">
-          <label className="filter-pill-label">
-            <input
-              type="radio"
-              name={`${idPrefix}offer`}
-              value=""
-              checked={!currentOffer}
-              onChange={() => handleInstantSelect("offer", "")}
-            />
-            <span className="filter-pill-span">All Products</span>
-          </label>
-          {offers.map((o) => (
-            <label className="filter-pill-label" key={o.id}>
-              <input
-                type="radio"
-                name={`${idPrefix}offer`}
-                value={o.slug}
-                checked={currentOffer === o.slug}
-                onChange={() => handleInstantSelect("offer", o.slug)}
-              />
-              <span className="filter-pill-span">🔥 {o.title}</span>
-            </label>
-          ))}
-        </div>
-      </div>
+
 
       {/* Availability */}
       <div className="filter-group-lux">
@@ -437,12 +409,11 @@ export function ShopToolbar({ count }: { count: number }) {
     let c = 0;
     if (category) c++;
     if (brand) c++;
-    if (offer) c++;
     if (avail && avail !== "all") c++;
     if (min || max) c++;
     if (sort && sort !== "featured") c++;
     return c;
-  }, [category, brand, offer, avail, min, max, sort]);
+  }, [category, brand, avail, min, max, sort]);
 
   function setSort(value: SortKey) {
     const next = new URLSearchParams(query);
@@ -496,7 +467,7 @@ export function ShopToolbar({ count }: { count: number }) {
         >
           All
         </button>
-        {brands.map((b) => (
+        {topBrands.map((b) => (
           <button
             key={b.id}
             type="button"
@@ -608,17 +579,7 @@ export function ShopToolbar({ count }: { count: number }) {
               <span className="tag-remove-x">✕</span>
             </button>
           )}
-          {offer && (
-            <button
-              type="button"
-              className="active-filter-tag"
-              onClick={() => removeFilter("offer")}
-              title="Remove offer filter"
-            >
-              <span>Offer Active</span>
-              <span className="tag-remove-x">✕</span>
-            </button>
-          )}
+
           {activeCount > 1 && (
             <button
               type="button"

@@ -82,9 +82,9 @@ export function GiftUnlockMeter() {
 
       <div className="gift-meter-footer">
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
-          <span className="gift-tag-pill">🔥 Wholesale & Retail Deals</span>
-          <span className="gift-tag-pill">🚚 Free Pali City Delivery over ₹799</span>
-          <span className="gift-tag-pill">🏷️ High Discount on Every Item</span>
+          <span className="gift-tag-pill">✨ Complimentary Atelier Samples</span>
+          <span className="gift-tag-pill">🚚 Prompt Pali Local Delivery</span>
+          <span className="gift-tag-pill">✦ 100% Guaranteed Authentic</span>
         </div>
         <span className="cart-current-badge">
           Bag Total: <strong>{formatInr(currentTotal)}</strong>

@@ -1,7 +1,3 @@
 export default function Loading() {
-  return (
-    <div className="page">
-      <div className="shell muted">Loading…</div>
-    </div>
-  );
+  return null;
 }

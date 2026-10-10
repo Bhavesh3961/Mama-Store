@@ -6,8 +6,6 @@ import { DesktopFilters, ShopToolbar, ShopCategoryStrip } from "@/components/sho
 import { ProductGrid } from "@/components/product/ProductCard";
 import { SearchForm } from "@/components/search/SearchForm";
 
-export const dynamic = "force-dynamic";
-
 type Props = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
@@ -53,12 +51,12 @@ export default async function ShopPage({ searchParams }: Props) {
         </div>
 
         {/* 1. ALL DIFFERENT CATEGORIES COME FIRST */}
-        <Suspense fallback={<div className="category-strip-loading" />}>
+        <Suspense fallback={null}>
           <ShopCategoryStrip />
         </Suspense>
 
         {/* 2. FILTERS, BRANDS & SORT TOOLBAR COME SECOND */}
-        <Suspense fallback={<p className="muted small">Loading filters…</p>}>
+        <Suspense fallback={null}>
           <ShopToolbar count={list.length} />
         </Suspense>
 

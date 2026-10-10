@@ -6,6 +6,8 @@ import { FormEvent, useState, useEffect } from "react";
 import { store } from "@/data/store";
 import { useCart } from "@/components/cart/CartProvider";
 import { MamaLogo } from "@/components/brand/MamaLogo";
+import { TrendingPaliTicker } from "@/components/home/TrendingPaliTicker";
+import { whatsappHref } from "@/lib/format";
 
 export function SiteHeader() {
   const { count } = useCart();
@@ -31,45 +33,47 @@ export function SiteHeader() {
   const navLinks = [
     { href: "/shop", label: "All Products" },
     { href: "/categories", label: "Categories" },
-    { href: "/offers", label: "Offers & Deals" },
     { href: "/brands", label: "Top Brands" },
   ];
 
   return (
-    <header className={`site-header-wrapper ${scrolled ? "scrolled" : ""}`}>
-      <div className="shell header-liquid-glass-pill">
-        {/* Left: Brand Logo in Glass Pill */}
-        <Link href="/" className="glass-logo-pill" aria-label={`${store.name} home`}>
-          <MamaLogo />
-        </Link>
+    <div className="site-header-container">
+      <TrendingPaliTicker />
+      <header className={`site-header-wrapper ${scrolled ? "scrolled" : ""}`}>
+        <div className="shell header-liquid-glass-pill">
+          {/* Left: Brand Logo in Glass Pill */}
+          <Link href="/" className="glass-logo-pill" aria-label={`${store.name} home`}>
+            <MamaLogo />
+          </Link>
 
-        {/* Center: Navigation Glass Pills */}
-        <nav className="glass-nav-pills" aria-label="Main Navigation">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`glass-nav-item ${isActive ? "active" : ""}`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+          {/* Center: Navigation Glass Pills */}
+          <nav className="glass-nav-pills" aria-label="Main Navigation">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  prefetch={true}
+                  className={`glass-nav-item ${isActive ? "active" : ""}`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
 
-          {/* WhatsApp Direct Action Pill */}
-          <a
-            href="https://wa.me/?text=Hello%20Mama%20Store%2C%20I%20want%20to%20place%20an%20order%20or%20inquire%20about%20cosmetics."
-            target="_blank"
-            rel="noreferrer"
-            className="glass-wa-circle-btn"
-            title="Order directly on WhatsApp"
-            aria-label="Order on WhatsApp"
-          >
-            <WhatsAppIcon />
-          </a>
-        </nav>
+            {/* WhatsApp Direct Action Pill */}
+            <a
+              href={whatsappHref("Hello Mama Store, I would like to place an order.")}
+              target="_blank"
+              rel="noreferrer"
+              className="glass-wa-circle-btn"
+              title="Order directly on WhatsApp (+91 76899 56116)"
+              aria-label="Order on WhatsApp"
+            >
+              <WhatsAppIcon />
+            </a>
+          </nav>
 
         {/* Right Center: Embedded Pill Search */}
         <form className="glass-search-form" onSubmit={onSearch} role="search">
@@ -127,6 +131,7 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
+  </div>
   );
 }
 

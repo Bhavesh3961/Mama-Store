@@ -128,8 +128,8 @@ export default function OrderPage() {
           </span>
         </div>
 
-        <p className="notice" style={{ marginTop: 12 }}>
-          Your order has been recorded in the Mama Store Pali order book. The store will verify and dispatch your items.
+        <p className="notice" style={{ marginTop: 12, background: "rgba(34, 197, 94, 0.08)", borderColor: "rgba(34, 197, 94, 0.3)", color: "#166534" }}>
+          ✓ Your order has been placed and forwarded to store owner on WhatsApp (+91 76899 56116). We will confirm your delivery slot shortly.
         </p>
 
         <div className="summary" style={{ marginTop: 16 }}>
@@ -170,8 +170,8 @@ export default function OrderPage() {
           </p>
         </div>
         <div className="actions-stack" style={{ marginTop: 16, maxWidth: 360 }}>
-          <a className="btn" href={whatsappHref(wa)} target="_blank" rel="noreferrer">
-            Share on WhatsApp
+          <a className="btn" href={whatsappHref(wa)} target="_blank" rel="noreferrer" style={{ background: "#25D366", borderColor: "#25D366", color: "#FFFFFF" }}>
+            💬 Message Store on WhatsApp (+91 76899 56116)
           </a>
           <Link className="btn secondary" href="/shop">
             Continue shopping

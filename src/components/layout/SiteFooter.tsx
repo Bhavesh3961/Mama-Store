@@ -25,10 +25,7 @@ export function SiteFooter() {
             <Link href="/categories">Categories</Link>
           </p>
           <p>
-            <Link href="/brands">Brands</Link>
-          </p>
-          <p>
-            <Link href="/offers">Offers</Link>
+            <Link href="/brands">Top Brands</Link>
           </p>
         </nav>
         <nav aria-label="Store">

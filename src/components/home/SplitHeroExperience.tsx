@@ -29,84 +29,136 @@ interface HeroSlide {
   details: { label: string; value: string }[];
 }
 
-// Find the 3 featured products
-const drRashelSerum = products.find((p) => p.id === "p-drrashel-vitc-serum") ?? products[0];
-const mamaRiceFacewash = products.find((p) => p.id === "p-mamaearth-rice-facewash") ?? products[1];
-const dermacoSalicylic = products.find((p) => p.id === "p-dermaco-salicylic-facewash") ?? products[2];
+// Featured luxury products
+const mamaRiceFacewash = products.find((p) => p.id === "p-mamaearth-rice-facewash") ?? products[0];
+const lorealAbsolut = products.find((p) => p.id === "p-loreal-absolut-repair") ?? products[1];
+const milauGold = products.find((p) => p.id === "p-milau-24k-gold-wash") ?? products[2];
+const minimalistVitC = products.find((p) => p.id === "p-minimalist-vitc") ?? products[3];
+const mamaVitCFacewash = products.find((p) => p.id === "p-mamaearth-vitc-facewash") ?? products[4];
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    id: "dr-rashel-vitc-serum",
-    badge: "BESTSELLER · GLOW PICK 01",
-    tagline: "Vitamin C + Hyaluronic Acid · 50ml",
-    titlePrimary: "DR. RASHEL",
-    titleSecondary: "VITAMIN C",
-    accentWord: "VITAMIN C",
-    description:
-      "Brightens dark spots, fades uneven tone, and gives your skin a natural healthy glow. Packed with Vitamin C and Hyaluronic Acid for deep hydration and a glass-skin finish.",
-    price: 299,
-    originalPrice: 399,
-    product: drRashelSerum,
-    palette: {
-      accentColor: "#C98E2A",       // Warm golden amber — Dr. Rashel signature yellow
-      accentLight: "#FFF8EC",
-      pillBg: "#C98E2A",
-      pillHover: "#A87220",
-      haloBg: "radial-gradient(circle at 65% 50%, rgba(201, 142, 42, 0.15) 0%, rgba(255, 248, 236, 0) 70%)",
-    },
-    details: [
-      { label: "Key Ingredient", value: "Vitamin C" },
-      { label: "Benefit", value: "Skin Brightening" },
-      { label: "Size", value: "50 ml" },
-    ],
-  },
-  {
     id: "mamaearth-rice-dew",
-    badge: "CUSTOMER FAVOURITE · PICK 02",
-    tagline: "Korean Rice Water + Niacinamide · 100ml",
+    badge: "KOREAN GLASS SKIN · PICK 01",
+    tagline: "Korean Rice Water + Niacinamide B3+ · 100ml",
     titlePrimary: "MAMAEARTH",
     titleSecondary: "RICE DEW",
     accentWord: "DEW",
     description:
-      "Gentle daily face wash with Korean Rice Water and Niacinamide. Cleanses your skin deeply while keeping it soft, bright, and naturally dewy without over-drying.",
+      "Formulated with authentic Korean Fermented Rice Water & Niacinamide. Cleanses deeply while imparting natural glass skin radiance, dewy hydration, and even texture.",
     price: 219,
     originalPrice: 269,
     product: mamaRiceFacewash,
     palette: {
-      accentColor: "#7B5A9E",       // Soft violet-purple — Mamaearth Rice Dew packaging
-      accentLight: "#F4F0FA",
-      pillBg: "#7B5A9E",
-      pillHover: "#5E4180",
-      haloBg: "radial-gradient(circle at 65% 50%, rgba(123, 90, 158, 0.12) 0%, rgba(244, 240, 250, 0) 70%)",
+      accentColor: "#A66E38",
+      accentLight: "#FBF5EE",
+      pillBg: "#A66E38",
+      pillHover: "#8C5826",
+      haloBg: "radial-gradient(circle at 65% 50%, rgba(166, 110, 56, 0.18) 0%, rgba(251, 245, 238, 0) 70%)",
     },
     details: [
-      { label: "Key Ingredient", value: "Rice Water" },
-      { label: "Benefit", value: "Glass Skin Glow" },
+      { label: "Key Ingredient", value: "Rice Water + B3+" },
+      { label: "Benefit", value: "Glass Skin Dew" },
       { label: "Size", value: "100 ml" },
     ],
   },
   {
-    id: "dermaco-salicylic",
-    badge: "DERMA-RECOMMENDED · PICK 03",
-    tagline: "2% Salicylic Acid + Witch Hazel · 100ml",
-    titlePrimary: "THE DERMA CO",
-    titleSecondary: "CLEAR SKIN",
-    accentWord: "CLEAR",
+    id: "loreal-absolut-repair",
+    badge: "SALON EXPERT · PICK 02",
+    tagline: "Gold Quinoa + Wheat Protein · 300ml",
+    titlePrimary: "L'ORÉAL PARIS",
+    titleSecondary: "ABSOLUT REPAIR",
+    accentWord: "REPAIR",
     description:
-      "Deep pore cleanser that fights active acne, removes blackheads, and controls oil. Formulated by dermatologists with 2% Salicylic Acid for visibly clear skin.",
-    price: 249,
-    originalPrice: 299,
-    product: dermacoSalicylic,
+      "Iconic salon professional shampoo. Deeply repairs distressed damaged hair with Gold Quinoa & Protein, reducing surface damage by 77% with 7x radiant shine.",
+    price: 790,
+    originalPrice: 890,
+    product: lorealAbsolut,
     palette: {
-      accentColor: "#1B7A4A",       // Deep clinical green — The Derma Co brand color
-      accentLight: "#EDFAF3",
-      pillBg: "#1B7A4A",
-      pillHover: "#155E39",
-      haloBg: "radial-gradient(circle at 65% 50%, rgba(27, 122, 74, 0.12) 0%, rgba(237, 250, 243, 0) 70%)",
+      accentColor: "#C69636",
+      accentLight: "#FCF7EB",
+      pillBg: "#C69636",
+      pillHover: "#A87A22",
+      haloBg: "radial-gradient(circle at 65% 50%, rgba(198, 150, 54, 0.18) 0%, rgba(252, 247, 235, 0) 70%)",
     },
     details: [
-      { label: "Key Ingredient", value: "Salicylic Acid 2%" },
-      { label: "Benefit", value: "Acne Control" },
+      { label: "Formulation", value: "Gold Quinoa + Protein" },
+      { label: "Result", value: "-77% Surface Damage" },
+      { label: "Size", value: "300 ml" },
+    ],
+  },
+  {
+    id: "milau-24k-gold",
+    badge: "SALON RITUAL · PICK 03",
+    tagline: "24K Gold Particles + Tan Removal Scrub · 200ml",
+    titlePrimary: "MILAU PRO",
+    titleSecondary: "24K GOLD GLOW",
+    accentWord: "GLOW",
+    description:
+      "Luxury salon scrub wash with micro-bead exfoliation and 24K Gold shimmer particles to lift stubborn tan, boost collagen, and restore silky luminous skin clarity.",
+    price: 299,
+    originalPrice: 349,
+    product: milauGold,
+    palette: {
+      accentColor: "#D19922",
+      accentLight: "#FDF8ED",
+      pillBg: "#D19922",
+      pillHover: "#B07E13",
+      haloBg: "radial-gradient(circle at 65% 50%, rgba(209, 153, 34, 0.18) 0%, rgba(253, 248, 237, 0) 70%)",
+    },
+    details: [
+      { label: "Key Active", value: "24K Gold Shimmer" },
+      { label: "Benefit", value: "Tan Removal & Glow" },
+      { label: "Size", value: "200 ml" },
+    ],
+  },
+  {
+    id: "minimalist-vitc",
+    badge: "CLEAN SCIENCE · PICK 04",
+    tagline: "Pure Ethyl Ascorbic Acid 10% · 30ml",
+    titlePrimary: "MINIMALIST",
+    titleSecondary: "VITAMIN C 10%",
+    accentWord: "VITAMIN C",
+    description:
+      "Clinical-grade 10% Vitamin C face serum with Centella Water & Acetyl Glucosamine to brighten dark spots, even tone, and stimulate youthful collagen production.",
+    price: 599,
+    originalPrice: 699,
+    product: minimalistVitC,
+    palette: {
+      accentColor: "#3D3835",
+      accentLight: "#F5F2EF",
+      pillBg: "#3D3835",
+      pillHover: "#24201E",
+      haloBg: "radial-gradient(circle at 65% 50%, rgba(61, 56, 53, 0.14) 0%, rgba(245, 242, 239, 0) 70%)",
+    },
+    details: [
+      { label: "Clinical Active", value: "10% Ethyl Ascorbic" },
+      { label: "Target", value: "Dark Spots & Glow" },
+      { label: "Size", value: "30 ml" },
+    ],
+  },
+  {
+    id: "mamaearth-vitc-glow",
+    badge: "NATURAL RADIANCE · PICK 05",
+    tagline: "Natural Vitamin C + Turmeric · 100ml",
+    titlePrimary: "MAMAEARTH",
+    titleSecondary: "VITAMIN C GLOW",
+    accentWord: "GLOW",
+    description:
+      "Enriched with natural Vitamin C & Turmeric for daily skin brightening, gentle pore cleansing, and glowing radiant glass skin without stripping moisture.",
+    price: 199,
+    originalPrice: 249,
+    product: mamaVitCFacewash,
+    palette: {
+      accentColor: "#D97706",
+      accentLight: "#FFFBEB",
+      pillBg: "#D97706",
+      pillHover: "#B45309",
+      haloBg: "radial-gradient(circle at 65% 50%, rgba(217, 119, 6, 0.16) 0%, rgba(255, 251, 235, 0) 70%)",
+    },
+    details: [
+      { label: "Key Ingredient", value: "Vitamin C + Turmeric" },
+      { label: "Benefit", value: "Daily Radiance" },
       { label: "Size", value: "100 ml" },
     ],
   },

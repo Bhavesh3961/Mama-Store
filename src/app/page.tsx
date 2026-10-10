@@ -5,174 +5,111 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { MamaLogo } from "@/components/brand/MamaLogo";
 import { store } from "@/data/store";
+import { categories } from "@/data/categories";
 import { whatsappHref } from "@/lib/format";
 
-import { SplitHeroExperience } from "@/components/home/SplitHeroExperience";
-
-
-const heroWhatsappMessage = `Hello ${store.name}, I would like a personalized beauty consultation.`;
+// Streamlined, Fast Luxury Homepage Components
+import { CinematicHero } from "@/components/home/CinematicHero";
+import { BoutiqueTrustBar } from "@/components/home/BoutiqueTrustBar";
+import { LuxuryBrandShowcase } from "@/components/home/LuxuryBrandShowcase";
 
 export default function HomePage() {
   return (
     <div className="editorial-home-page">
-      {/* ==========================================================================
-         ACT I: THE STARBUCKS-STYLE SPLIT HERO EXPERIENCE
-         Clean light background left, rich signature colored block right,
-         large editorial typography, and centered straddling hero product cutout!
-         ========================================================================== */}
-      <SplitHeroExperience />
+      {/* 1. CINEMATIC SHOWSTOPPING HERO EXPERIENCE */}
+      <CinematicHero />
 
-      {/* ==========================================================================
-         ACT II: THE DEPARTMENT MANIFESTO
-         ========================================================================== */}
-      <section className="editorial-manifesto-section" aria-label="Curated Departments">
-        <div className="shell">
-          <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 40px" }}>
-            <motion.span
-              className="editorial-kicker"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.3 }}
-              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
-            >
-              DEPARTMENTS
-            </motion.span>
-            <motion.h2
-              className="editorial-showcase-title"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.3, delay: 0.05 }}
-              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
-            >
-              Select your daily beauty ritual.
-            </motion.h2>
-          </div>
+      {/* 2. BOUTIQUE TRUST PILLARS (PALI SAME-DAY DELIVERY, 100% AUTHENTIC) */}
+      <BoutiqueTrustBar />
 
-          <div className="editorial-manifesto-grid">
-            <motion.div
-              className="editorial-dept-card"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.3, delay: 0.04 }}
-              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
+      {/* 8. HIGH-FASHION DEPARTMENT EDITORIAL GRID */}
+      <section className="editorial-departments-section shell" aria-label="Curated Beauty Rituals">
+        <div className="section-head-center">
+          <span className="editorial-kicker">✦ ATELIER DEPARTMENTS</span>
+          <h2 className="editorial-showcase-title">Select your daily beauty ritual.</h2>
+          <p className="editorial-showcase-desc">
+            Explore world-renowned formulations categorized by hair, skin, body, fragrance, and couture color.
+          </p>
+        </div>
+
+        <div className="editorial-cat-mini-grid">
+          {categories.slice(0, 6).map((c, idx) => (
+            <Link
+              key={c.id}
+              href={`/shop?category=${c.slug}`}
+              prefetch={true}
+              className="editorial-cat-mini-card"
             >
-              <div>
-                <span className="dept-num">01</span>
-                <h3 className="dept-name">Skincare</h3>
-                <p className="dept-desc">Serums, moisturizers, face washes, and more for healthy glowing skin.</p>
+              <div
+                className="mini-card-photo"
+                style={{ backgroundImage: `url(${c.image})` }}
+              >
+                <div className="mini-card-overlay" />
               </div>
-              <Link href="/shop?category=skincare" className="dept-link">
-                Explore Skincare →
-              </Link>
-            </motion.div>
-
-            <motion.div
-              className="editorial-dept-card"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.3, delay: 0.08 }}
-              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
-            >
-              <div>
-                <span className="dept-num">02</span>
-                <h3 className="dept-name">Makeup</h3>
-                <p className="dept-desc">Lipsticks, foundations, kajal, and everything for your daily look.</p>
+              <div className="mini-card-info">
+                <span className="mini-card-tag">{c.tagline}</span>
+                <h3 className="mini-card-title">{c.name}</h3>
+                <span className="mini-card-explore">Explore Collection →</span>
               </div>
-              <Link href="/shop?category=makeup" className="dept-link">
-                Explore Makeup →
-              </Link>
-            </motion.div>
-
-            <motion.div
-              className="editorial-dept-card"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.3, delay: 0.12 }}
-              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
-            >
-              <div>
-                <span className="dept-num">03</span>
-                <h3 className="dept-name">Perfumes</h3>
-                <p className="dept-desc">Fresh, floral, and long-lasting fragrances for everyday wear.</p>
-              </div>
-              <Link href="/shop?category=fragrance" className="dept-link">
-                Explore Fragrance →
-              </Link>
-            </motion.div>
-
-            <motion.div
-              className="editorial-dept-card"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.3, delay: 0.16 }}
-              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
-            >
-              <div>
-                <span className="dept-num">04</span>
-                <h3 className="dept-name">Hair Care</h3>
-                <p className="dept-desc">Shampoos, serums, and oils for strong, shiny, and healthy hair.</p>
-              </div>
-              <Link href="/shop?category=haircare" className="dept-link">
-                Explore Haircare →
-              </Link>
-            </motion.div>
-          </div>
+            </Link>
+          ))}
         </div>
       </section>
 
+      {/* 9. OFFICIAL PARTNER ATELIERS & BRAND MAISONS (WATERMARK LOGOS) */}
+      <LuxuryBrandShowcase />
 
-      {/* ==========================================================================
-         ACT VI: BRAND EMBLEM & ATELIER PHILOSOPHY
-         ========================================================================== */}
-      <section className="editorial-philosophy-section shell" style={{ padding: "80px 0", textAlign: "center" }}>
+      {/* 10. MAMA STORE PHILOSOPHY & MANIFESTO */}
+      <section className="editorial-philosophy-section shell" style={{ padding: "80px 0 60px", textAlign: "center" }}>
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
         >
-          <MamaLogo fullBadge size={220} />
+          <MamaLogo fullBadge size={200} />
           <h2
             style={{
-              fontFamily: "var(--display)",
-              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              fontFamily: "var(--font-serif, 'Playfair Display', Georgia, serif)",
+              fontSize: "clamp(1.8rem, 3.5vw, 2.9rem)",
               color: "var(--ink)",
-              maxWidth: 720,
+              maxWidth: 740,
               margin: "32px auto 16px",
-              lineHeight: 1.15,
+              lineHeight: 1.25,
+              letterSpacing: "-0.02em",
             }}
           >
             “True radiance is not an illusion applied onto skin, but a quiet ritual awakened from within.”
           </h2>
-          <p style={{ color: "var(--muted)", fontSize: "0.95rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 700 }}>
-            THE MAMA STORE MANIFESTO
+          <p
+            style={{
+              color: "#c5a880",
+              fontSize: "0.82rem",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              fontWeight: 800,
+            }}
+          >
+            THE MAMA STORE MANIFESTO · PALI ATELIER
           </p>
         </motion.div>
       </section>
 
-      {/* ==========================================================================
-         ACT VII: SIGNATURE FINALE
-         ========================================================================== */}
+      {/* 11. BOUTIQUE FINALE & VIP WHATSAPP ACTION */}
       <footer className="editorial-finale-section">
         <div className="shell editorial-finale-container">
-          <span className="finale-tag">VISIT OUR BEAUTY ATELIER</span>
+          <span className="finale-tag">✦ PALI COSMETIC BOUTIQUE</span>
           <h2 className="finale-title">Elevate your daily ritual today.</h2>
           <p className="finale-desc">
-            Experience our full collection online or visit our boutique store at {store.address}. Direct WhatsApp orders include signature luxury gifts with every parcel.
+            Experience our complete curated collection online or visit our boutique at {store.address}. Direct WhatsApp orders include complimentary formulation samples and priority same-day delivery in Pali.
           </p>
 
           <div className="finale-actions">
-            <Link href="/shop" className="btn-finale-primary">
+            <Link href="/shop" prefetch={true} className="btn-finale-primary">
               Shop The Collection
             </Link>
             <a
-              href={whatsappHref("Hello MAMA STORE, I would like to place an order.")}
+              href={whatsappHref("Hello Mama Store, I would like to place an order.")}
               target="_blank"
               rel="noreferrer"
               className="btn-finale-wa"
@@ -185,4 +122,3 @@ export default function HomePage() {
     </div>
   );
 }
-

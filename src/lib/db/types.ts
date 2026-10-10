@@ -1,5 +1,5 @@
 import type { Product as CatalogProduct, ProductVariant } from "@/data/products";
-import type { Category as CatalogCategory } from "@/data/categories";
+import { getCategory, type Category as CatalogCategory } from "@/data/categories";
 
 export type OrderStatus =
   | "Pending"
@@ -133,11 +133,15 @@ export function mapDbProductToCatalog(row: DbProductRow): CatalogProduct {
 }
 
 export function mapDbCategoryToCatalog(row: DbCategoryRow): CatalogCategory {
+  const cat = getCategory(row.slug) || getCategory(row.id);
   return {
     id: row.id,
     name: row.name,
     slug: row.slug,
     description: row.description || "",
     tone: row.tone || "#f5efe6",
+    image: cat?.image || "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85",
+    popularProducts: cat?.popularProducts || "Curated formulations",
+    tagline: cat?.tagline || "Luxury Atelier",
   };
 }

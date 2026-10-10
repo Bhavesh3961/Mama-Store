@@ -20,7 +20,7 @@ export const store = {
    * Store WhatsApp in international format without +.
    * Leave empty until the real number is provided — buttons still open WhatsApp with a prefilled message.
    */
-  whatsappNumber: "",
+  whatsappNumber: "917689956116",
   catalogueNotice:
     "100% authentic cosmetics, verified salon brands, and city delivery in Pali.",
 } as const;

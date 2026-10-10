@@ -84,7 +84,7 @@ export function SkinDiagnosticModal({ isOpen, onClose }: SkinDiagnosticProps) {
       >
         <button
           onClick={onClose}
-          aria-label="Close consultation"
+          aria-label="Close modal"
           style={{
             position: "absolute",
             top: 18,

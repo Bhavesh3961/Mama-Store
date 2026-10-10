@@ -8,10 +8,11 @@ import { useCart } from "@/components/cart/CartProvider";
 import { products, Product } from "@/data/products";
 import { categoryOf } from "@/data/catalog";
 
-// Find the 3 specific products requested
-const drRashelSerum = products.find((p) => p.id === "p-drrashel-vitc-serum")!;
-const mamaRiceFacewash = products.find((p) => p.id === "p-mamaearth-rice-facewash")!;
-const dermacoSalicylic = products.find((p) => p.id === "p-dermaco-salicylic-facewash")!;
+// Find the luxury featured products
+const lorealAbsolut = products.find((p) => p.id === "p-loreal-absolut-repair") ?? products[0];
+const mamaRiceFacewash = products.find((p) => p.id === "p-mamaearth-rice-facewash") ?? products[1];
+const milauGold = products.find((p) => p.id === "p-milau-24k-gold-wash") ?? products[2];
+const minimalistVitC = products.find((p) => p.id === "p-minimalist-vitc") ?? products[3];
 
 const EDITORIAL_SELECTIONS: {
   product: Product;
@@ -22,31 +23,36 @@ const EDITORIAL_SELECTIONS: {
   layoutAlignment: "left" | "right";
 }[] = [
   {
-    product: drRashelSerum,
-    subtitle: "GLOW SERUM · PICK 01",
-    benefit: "Brightens dark spots and gives your skin a healthy, glowing look. With Vitamin C + Hyaluronic Acid for deep hydration.",
-    // Warm golden amber palette — matches Dr. Rashel yellow/orange serum packaging
-    accentBg: "linear-gradient(145deg, #FFF8EC 0%, #FDECC8 50%, #FAD98A 100%)",
-    accentColor: "#C98E2A",
+    product: lorealAbsolut,
+    subtitle: "PARIS SALON · ICON 01",
+    benefit: "Gold Quinoa & Protein repair technology that instantly resurfaces damaged hair, cutting damage by 77% with salon-grade silkiness.",
+    accentBg: "linear-gradient(145deg, #FCF8EE 0%, #F8ECCD 50%, #F2DE9E 100%)",
+    accentColor: "#B58428",
     layoutAlignment: "left",
   },
   {
     product: mamaRiceFacewash,
-    subtitle: "FACE WASH · PICK 02",
-    benefit: "Cleanses gently with Korean Rice Water and Niacinamide. Makes skin bright, smooth, and naturally dewy.",
-    // Soft pearl-white and pale peach — matches Mamaearth Rice Dew clean minimal aesthetic
-    accentBg: "linear-gradient(145deg, #F7F2F9 0%, #EDE4F4 50%, #DDD0ED 100%)",
-    accentColor: "#7B5A9E",
+    subtitle: "GLASS SKIN · PICK 02",
+    benefit: "Korean Fermented Rice Water & Niacinamide formula cleanses without drying, awakening instant dewy glass skin brilliance.",
+    accentBg: "linear-gradient(145deg, #FAF5EE 0%, #F2E8DC 50%, #E8DAC8 100%)",
+    accentColor: "#9C6A37",
     layoutAlignment: "right",
   },
   {
-    product: dermacoSalicylic,
-    subtitle: "CLEAR WASH · PICK 03",
-    benefit: "Unclogs pores and clears acne with 2% Salicylic Acid. Controls oiliness and stops blackheads from forming.",
-    // Fresh cool mint-green — matches The Derma Co clinical green bottle
-    accentBg: "linear-gradient(145deg, #EDFAF3 0%, #CDEFDF 50%, #A6DFC5 100%)",
-    accentColor: "#1B7A4A",
+    product: milauGold,
+    subtitle: "SALON SCRUB · PICK 03",
+    benefit: "24K Gold shimmer particles and natural scrub beads buff away sun tan, stimulate collagen, and leave an illuminated full-body glow.",
+    accentBg: "linear-gradient(145deg, #FDF9EE 0%, #F8EBCE 50%, #F2DC9E 100%)",
+    accentColor: "#C9911C",
     layoutAlignment: "left",
+  },
+  {
+    product: minimalistVitC,
+    subtitle: "ACTIVE SCIENCE · PICK 04",
+    benefit: "Stable 10% Ethyl Ascorbic Acid with Centella Water & Acetyl Glucosamine fades dark spots and evens skin tone with clinical precision.",
+    accentBg: "linear-gradient(145deg, #F8F6F4 0%, #EDE8E3 50%, #DDD5CD 100%)",
+    accentColor: "#3B3532",
+    layoutAlignment: "right",
   },
 ];
 
@@ -75,7 +81,7 @@ export function EditorialProductShowcase() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          TOP PICKS FOR YOU
+          CURATED ATELIER EDIT
         </motion.span>
         <motion.h2
           className="editorial-showcase-title"
@@ -84,7 +90,7 @@ export function EditorialProductShowcase() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          Best sellers our customers love.
+          Signature formulations our clients adore.
         </motion.h2>
       </div>
 
@@ -116,7 +122,13 @@ export function EditorialProductShowcase() {
                       width={300}
                       height={360}
                       className="editorial-showcase-photo"
-                      style={{ objectFit: "cover", borderRadius: 20 }}
+                      style={{
+                        objectFit: "contain",
+                        padding: "20px",
+                        borderRadius: 24,
+                        background: "rgba(255, 255, 255, 0.72)",
+                        backdropFilter: "blur(14px)",
+                      }}
                     />
                     <div className="editorial-photo-glass-overlay">
                       <span className="photo-brand-tag">MAMA STORE</span>

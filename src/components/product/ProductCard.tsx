@@ -89,21 +89,44 @@ export function ProductMedia({
   tone?: string;
   customImageUrl?: string;
 }) {
-  const tone = toneOverride ?? product.gallery[0]?.tone ?? "#f5ece6";
   const imageUrl = customImageUrl || product.image || product.gallery[0]?.url;
   const [imgError, setImgError] = useState(false);
 
   return (
     <div
-      className="product-media-lux"
+      className="product-media-lux product-media-studio"
       style={{
-        background: `linear-gradient(145deg, ${tone}, #faf7f2)`,
-        ["--tone" as string]: tone,
+        background: "radial-gradient(circle at 50% 38%, #FFFFFF 0%, #FAF8F5 65%, #F3EFEA 100%)",
         position: "relative",
         overflow: "hidden",
       }}
       aria-hidden
     >
+      {/* Ambient Pedestal Lighting */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "radial-gradient(circle at 50% 35%, rgba(255,255,255,1) 0%, rgba(250,248,245,0.4) 60%, transparent 80%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* 3D Contact Shadow Pedestal */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "7%",
+          left: "15%",
+          right: "15%",
+          height: "14px",
+          borderRadius: "50%",
+          background: "radial-gradient(ellipse at center, rgba(20, 25, 22, 0.12) 0%, transparent 70%)",
+          pointerEvents: "none",
+          filter: "blur(3px)",
+        }}
+      />
+
       {imageUrl && !imgError ? (
         <img
           src={imageUrl}
@@ -114,15 +137,18 @@ export function ProductMedia({
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            objectFit: "contain",
+            padding: "16px",
             position: "absolute",
             inset: 0,
-            transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+            mixBlendMode: "normal",
+            transition: "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         />
       ) : (
-        <CosmeticIconArt categoryId={product.categoryId} tone={tone} />
+        <CosmeticIconArt categoryId={product.categoryId} />
       )}
+
       {label ? (
         <span className="badge-luxury" style={{ position: "absolute", top: 12, left: 12, zIndex: 2 }}>
           {label}
@@ -135,14 +161,13 @@ export function ProductMedia({
 
 export function PriceLabel({ product }: { product: Product }) {
   if (isEnquiryPrice(product)) {
-    return <span className="price">Consultation Pricing</span>;
+    return <span className="price">Contact for Price</span>;
   }
-  const off = discountPercent(product);
+  const hasDiscount = product.mrp != null && product.mrp > (product.price as number);
   return (
     <span className="price-lux">
-      {off > 0 && product.mrp != null ? <s className="old-mrp">{formatInr(product.mrp)}</s> : null}
+      {hasDiscount ? <s className="old-mrp">{formatInr(product.mrp as number)}</s> : null}
       <span className="current-price">{formatInr(product.price as number)}</span>
-      {off > 0 ? <span className="badge-off">{off}% off</span> : null}
     </span>
   );
 }
@@ -151,8 +176,7 @@ export function ProductCard({ product }: { product: Product }) {
   const { add } = useCart();
   const [added, setAdded] = useState(false);
   const brand = brandOf(product);
-  const offer = offersOf(product)[0];
-  const label = !product.inStock ? "Sold out" : offer?.badge;
+  const label = !product.inStock ? "Sold out" : undefined;
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
