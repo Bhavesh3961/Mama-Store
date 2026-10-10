@@ -4,8 +4,8 @@ import { topBrands } from "@/data/brands";
 import { whatsappHref } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "Top Cosmetic Maisons & Brands · Mama Store Pali",
-  description: "Explore world-renowned cosmetic houses: L'Oréal Professionnel, Minimalist, Milau Professional, Mamaearth, M·A·C, and Bella Vita at Mama Store Pali.",
+  title: "Top Brands · 100% Authentic Cosmetics · Mama Store Pali",
+  description: "Explore world-renowned cosmetic brands: Plix, Dot & Key, Nykaa, Chemist at Play, Mamaearth, Bella Vita, Plum, Nivea, and Lakmé at Mama Store Pali.",
 };
 
 export default function BrandsPage() {
@@ -18,10 +18,10 @@ export default function BrandsPage() {
             ✦ 100% DIRECT ATELIER STOCK
           </span>
           <h1 style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.2rem)", marginTop: 10, letterSpacing: "-0.03em" }}>
-            Top Beauty Maisons
+            Top Beauty Brands
           </h1>
           <p className="muted" style={{ maxWidth: 640, marginTop: 8, fontSize: "1.08rem", lineHeight: 1.6 }}>
-            Curated world-class beauty houses, professional salon formulas, and active clinical skincare sourced directly from authorized distributors.
+            Curated world-class beauty houses, professional salon formulas, and active clinical skincare sourced directly from authorized brand distributors.
           </p>
         </div>
 
@@ -44,19 +44,28 @@ export default function BrandsPage() {
                 {b.badge ? <span className="brand-curation-pill">{b.badge}</span> : null}
               </div>
 
-              {/* Brand Logo Focal Showcase */}
-              <div className="brand-logo-stage" style={{ background: b.logoBg || "rgba(255, 255, 255, 0.85)" }}>
+              {/* Clickable Brand Logo Stage */}
+              <Link
+                href={`/shop?brand=${b.slug}`}
+                className="brand-logo-stage"
+                style={{ background: b.logoBg || "rgba(255, 255, 255, 0.85)", display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}
+                aria-label={`Explore ${b.name} collection`}
+              >
                 <img
                   src={b.logoUrl}
                   alt={`${b.name} logo`}
                   className="brand-logo-vector"
                   loading="lazy"
                 />
-              </div>
+              </Link>
 
               {/* Brand Details */}
               <div className="brand-card-content">
-                <h2 className="brand-card-name">{b.name}</h2>
+                <h2 className="brand-card-name">
+                  <Link href={`/shop?brand=${b.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
+                    {b.name}
+                  </Link>
+                </h2>
                 <p className="brand-card-blurb">{b.blurb}</p>
                 <div className="brand-card-action-row">
                   <Link
@@ -64,7 +73,7 @@ export default function BrandsPage() {
                     className="btn-explore-brand"
                     aria-label={`Explore ${b.name} collection`}
                   >
-                    <span>Explore Maison</span>
+                    <span>Explore Collection</span>
                     <span className="brand-arrow">→</span>
                   </Link>
                 </div>
@@ -80,7 +89,7 @@ export default function BrandsPage() {
               ✦ SALON & ARTIST CONCIERGE
             </span>
             <h3 style={{ fontSize: "1.45rem", marginTop: 8, letterSpacing: "-0.02em" }}>
-              Are you looking for complete salon ranges or bridal cosmetic kits?
+              Are you looking for complete salon ranges or cosmetic kits?
             </h3>
             <p className="small muted" style={{ marginTop: 6, maxWidth: 580, lineHeight: 1.6 }}>
               Mama Store Pali supplies salon professionals, makeup artists, and clients with 100% authentic cosmetic brands and bulk assortments.

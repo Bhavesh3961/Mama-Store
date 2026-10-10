@@ -326,7 +326,7 @@ export const products: Product[] = [
     details: "Soap-free, non-drying lather that leaves skin lightly scented and soft.",
     ingredients: "Aloe Barbadensis Leaf Extract, Vitamin E, Cherry Blossom Floral Notes.",
     size: "300 ml",
-    image: "/products/nykaa-wanderlust-body-wash.jpg",
+    image: "/products/nykaa-wanderlust-cherry.jpg",
     mrp: 399,
     price: 349,
     inStock: true,
@@ -339,7 +339,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Nykaa Wanderlust Cherry Blossom",
-            "url": "/products/nykaa-wanderlust-body-wash.jpg",
+            "url": "/products/nykaa-wanderlust-cherry.jpg",
             "tone": "#fdf1f4"
       }
 ],
@@ -354,7 +354,7 @@ export const products: Product[] = [
     details: "Energizing morning shower gel with fresh Mediterranean breeze notes.",
     ingredients: "Sea Minerals, Aloe Vera, Vitamin E, Crisp Aquatic Notes.",
     size: "300 ml",
-    image: "/products/nykaa-wanderlust-body-wash.jpg",
+    image: "/products/nykaa-wanderlust-sea-salt.jpg",
     mrp: 399,
     price: 349,
     inStock: true,
@@ -367,7 +367,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Nykaa Wanderlust Sea Salt",
-            "url": "/products/nykaa-wanderlust-body-wash.jpg",
+            "url": "/products/nykaa-wanderlust-sea-salt.jpg",
             "tone": "#eef6f9"
       }
 ],
@@ -382,7 +382,7 @@ export const products: Product[] = [
     details: "Deeply moisturizing creamy lather for dry skin.",
     ingredients: "Macadamia Oil, Aloe Vera, Botanical Glycerin.",
     size: "300 ml",
-    image: "/products/nykaa-wanderlust-body-wash.jpg",
+    image: "/products/nykaa-wanderlust-macadamia.jpg",
     mrp: 399,
     price: 349,
     inStock: true,
@@ -395,7 +395,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Nykaa Wanderlust Macadamia",
-            "url": "/products/nykaa-wanderlust-body-wash.jpg",
+            "url": "/products/nykaa-wanderlust-macadamia.jpg",
             "tone": "#f8f3ed"
       }
 ],
@@ -410,7 +410,7 @@ export const products: Product[] = [
     details: "Bright and invigorating daily lather.",
     ingredients: "Green Apple Extract, Aloe Vera, Vitamin E.",
     size: "300 ml",
-    image: "/products/nykaa-wanderlust-body-wash.jpg",
+    image: "/products/nykaa-wanderlust-green-apple.jpg",
     mrp: 399,
     price: 349,
     inStock: true,
@@ -423,7 +423,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Nykaa Wanderlust Green Apple",
-            "url": "/products/nykaa-wanderlust-body-wash.jpg",
+            "url": "/products/nykaa-wanderlust-green-apple.jpg",
             "tone": "#f2f9f1"
       }
 ],
@@ -634,7 +634,7 @@ export const products: Product[] = [
     details: "Fast-absorbing dewy formula for luminous morning brightness.",
     ingredients: "Guava Extract, Ethyl Ascorbic Acid, Sodium Hyaluronate.",
     size: "30 ml",
-    image: "/products/plix-pineapple-depigmentation-serum.jpg",
+    image: "/products/plix-guava-glow-serum.jpg",
     mrp: 549,
     price: 475,
     inStock: true,
@@ -647,7 +647,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Guava Glow Serum 30ml",
-            "url": "/products/plix-pineapple-depigmentation-serum.jpg",
+            "url": "/products/plix-guava-glow-serum.jpg",
             "tone": "#fef9e8"
       }
 ],
@@ -662,7 +662,7 @@ export const products: Product[] = [
     details: "Restores dull, sun-tired skin to full dewy bounce.",
     ingredients: "Guava Extract, Vitamin C, Hyaluronic Acid.",
     size: "50 ml",
-    image: "/products/plix-pineapple-depigmentation-serum.jpg",
+    image: "/products/plix-guava-glow-serum.jpg",
     mrp: 650,
     price: 550,
     inStock: true,
@@ -675,7 +675,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Guava Glow Serum 50ml",
-            "url": "/products/plix-pineapple-depigmentation-serum.jpg",
+            "url": "/products/plix-guava-glow-serum.jpg",
             "tone": "#fef9e8"
       }
 ],
@@ -690,7 +690,7 @@ export const products: Product[] = [
     details: "Anti-aging botanical serum that rebuilds collagen elasticity.",
     ingredients: "Pomegranate Extract, Copper Peptide, Multi-Peptides, Hyaluronic Acid.",
     size: "30 ml",
-    image: "/products/plix-pineapple-depigmentation-serum.jpg",
+    image: "/products/plix-pomegranate-serum.jpg",
     mrp: 650,
     price: 550,
     inStock: true,
@@ -703,7 +703,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Pomegranate Serum",
-            "url": "/products/plix-pineapple-depigmentation-serum.jpg",
+            "url": "/products/plix-pomegranate-serum.jpg",
             "tone": "#fef9e8"
       }
 ],
@@ -718,7 +718,7 @@ export const products: Product[] = [
     details: "Soothing clarifying serum for blemish-free skin.",
     ingredients: "Jamun Extract, 2% Salicylic Acid, Zinc PCA, Centella Asiatica.",
     size: "30 ml",
-    image: "/products/plix-pineapple-depigmentation-serum.jpg",
+    image: "/products/plix-jamun-serum.jpg",
     mrp: 599,
     price: 525,
     inStock: true,
@@ -731,7 +731,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Jamun Acne Serum",
-            "url": "/products/plix-pineapple-depigmentation-serum.jpg",
+            "url": "/products/plix-jamun-serum.jpg",
             "tone": "#fef9e8"
       }
 ],
@@ -746,7 +746,7 @@ export const products: Product[] = [
     details: "Non-drying daily face cleanser for dewy brightness.",
     ingredients: "Pineapple Extract, Alpha Arbutin, Betaine.",
     size: "100 ml",
-    image: "/products/plix-juicy-facewash.jpg",
+    image: "/products/plix-pineapple-cleanser.jpg",
     mrp: 375,
     price: 349,
     inStock: true,
@@ -759,7 +759,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Pineapple Cleanser",
-            "url": "/products/plix-juicy-facewash.jpg",
+            "url": "/products/plix-pineapple-cleanser.jpg",
             "tone": "#fef8ea"
       }
 ],
@@ -774,7 +774,7 @@ export const products: Product[] = [
     details: "Rich lather with nourishing pomegranate nectars.",
     ingredients: "Pomegranate Extract, Peptides, Vitamin E.",
     size: "100 ml",
-    image: "/products/plix-juicy-facewash.jpg",
+    image: "/products/plix-pomegranate-cleanser.jpg",
     mrp: 375,
     price: 349,
     inStock: true,
@@ -787,7 +787,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Pomegranate Cleanser",
-            "url": "/products/plix-juicy-facewash.jpg",
+            "url": "/products/plix-pomegranate-cleanser.jpg",
             "tone": "#fef8ea"
       }
 ],
@@ -802,7 +802,7 @@ export const products: Product[] = [
     details: "Reduces breakouts and keeps skin calm without flaking.",
     ingredients: "Jamun Fruit Extract, Salicylic Acid, Zinc.",
     size: "100 ml",
-    image: "/products/plix-juicy-facewash.jpg",
+    image: "/products/plix-jamun-cleanser.jpg",
     mrp: 375,
     price: 349,
     inStock: true,
@@ -815,7 +815,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Jamun Face Wash",
-            "url": "/products/plix-juicy-facewash.jpg",
+            "url": "/products/plix-jamun-cleanser.jpg",
             "tone": "#fef8ea"
       }
 ],
@@ -830,7 +830,7 @@ export const products: Product[] = [
     details: "Soft foaming face wash with fresh natural guava scent.",
     ingredients: "Guava Extract, Vitamin C, Glycerin.",
     size: "100 ml",
-    image: "/products/plix-juicy-facewash.jpg",
+    image: "/products/plix-guava-cleanser.jpg",
     mrp: 375,
     price: 349,
     inStock: true,
@@ -843,7 +843,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Guava Glow Cleanser",
-            "url": "/products/plix-juicy-facewash.jpg",
+            "url": "/products/plix-guava-cleanser.jpg",
             "tone": "#fef8ea"
       }
 ],
@@ -914,7 +914,7 @@ export const products: Product[] = [
     details: "Soap-free, gentle daily cleanser that purifies skin and restores clarity.",
     ingredients: "Fermented Rice Water, Glycolic Acid, Glycerin.",
     size: "100 ml",
-    image: "/products/nykaa-naturals-facewash.jpg",
+    image: "/products/nykaa-fw-ricewater.jpg",
     mrp: 249,
     price: 199,
     inStock: true,
@@ -927,7 +927,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Rice Water Face Wash",
-            "url": "/products/nykaa-naturals-facewash.jpg",
+            "url": "/products/nykaa-fw-ricewater.jpg",
             "tone": "#fcf3f5"
       }
 ],
@@ -942,7 +942,7 @@ export const products: Product[] = [
     details: "Imparts golden radiance while keeping skin soft.",
     ingredients: "Pure Saffron, Wild Forest Honey, Aloe Vera.",
     size: "100 ml",
-    image: "/products/nykaa-naturals-facewash.jpg",
+    image: "/products/nykaa-fw-saffron.jpg",
     mrp: 249,
     price: 199,
     inStock: true,
@@ -955,7 +955,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Saffron & Honey Face Wash",
-            "url": "/products/nykaa-naturals-facewash.jpg",
+            "url": "/products/nykaa-fw-saffron.jpg",
             "tone": "#fcf3f5"
       }
 ],
@@ -970,7 +970,7 @@ export const products: Product[] = [
     details: "Nourishing daily wash for youthful skin resilience.",
     ingredients: "Acai Berry, Blueberry Extract, Peptides.",
     size: "100 ml",
-    image: "/products/nykaa-naturals-facewash.jpg",
+    image: "/products/nykaa-fw-berries.jpg",
     mrp: 249,
     price: 199,
     inStock: true,
@@ -983,7 +983,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Superberries Face Wash",
-            "url": "/products/nykaa-naturals-facewash.jpg",
+            "url": "/products/nykaa-fw-berries.jpg",
             "tone": "#fcf3f5"
       }
 ],
@@ -998,7 +998,7 @@ export const products: Product[] = [
     details: "Free from harsh sulfates, parabens, or artificial fragrance.",
     ingredients: "Ceramides, Hyaluronic Acid, Probiotics.",
     size: "100 ml",
-    image: "/products/dotkey-facewash.jpg",
+    image: "/products/dotkey-facewash-barrier.jpg",
     mrp: 295,
     price: 249,
     inStock: true,
@@ -1011,7 +1011,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Hydrating Gentle Face Wash",
-            "url": "/products/dotkey-facewash.jpg",
+            "url": "/products/dotkey-facewash-barrier.jpg",
             "tone": "#fcf1f4"
       }
 ],
@@ -1054,7 +1054,7 @@ export const products: Product[] = [
     details: "Instant cooling burst for hot sunny days.",
     ingredients: "Watermelon Extract, Hyaluronic Acid, Menthol Crystals.",
     size: "100 ml",
-    image: "/products/dotkey-facewash.jpg",
+    image: "/products/dotkey-facewash-watermelon.jpg",
     mrp: 295,
     price: 249,
     inStock: true,
@@ -1067,7 +1067,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Cooling Gel Face Wash",
-            "url": "/products/dotkey-facewash.jpg",
+            "url": "/products/dotkey-facewash-watermelon.jpg",
             "tone": "#fcf1f4"
       }
 ],
@@ -1082,7 +1082,7 @@ export const products: Product[] = [
     details: "Gentle cellulose beads sweep away sebum without micro-tears.",
     ingredients: "Green Tea Extracts, Glycolic Acid, Cellulose Beads.",
     size: "100 ml",
-    image: "/products/plum-green-tea-facewash.jpg",
+    image: "/products/plum-greentea-facewash.jpg",
     mrp: 345,
     price: 299,
     inStock: true,
@@ -1095,7 +1095,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Plum Green Tea Face Wash",
-            "url": "/products/plum-green-tea-facewash.jpg",
+            "url": "/products/plum-greentea-facewash.jpg",
             "tone": "#eef6f0"
       }
 ],
@@ -1110,7 +1110,7 @@ export const products: Product[] = [
     details: "Promotes an even, luminous complexion.",
     ingredients: "Saffron Extract, Papaya Enzyme (Papain), Vitamin B5.",
     size: "100 ml",
-    image: "/products/plum-green-tea-facewash.jpg",
+    image: "/products/plum-saffron-facewash.jpg",
     mrp: 345,
     price: 299,
     inStock: true,
@@ -1123,7 +1123,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Plum Saffron Face Wash",
-            "url": "/products/plum-green-tea-facewash.jpg",
+            "url": "/products/plum-saffron-facewash.jpg",
             "tone": "#eef6f0"
       }
 ],
@@ -1138,7 +1138,7 @@ export const products: Product[] = [
     details: "Gentle daily brightening cleanser.",
     ingredients: "Niacinamide, Fermented Rice Water, Oat Extract.",
     size: "100 ml",
-    image: "/products/plum-green-tea-facewash.jpg",
+    image: "/products/plum-niacinamide-facewash.jpg",
     mrp: 345,
     price: 299,
     inStock: true,
@@ -1151,7 +1151,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Plum Niacinamide Face Wash",
-            "url": "/products/plum-green-tea-facewash.jpg",
+            "url": "/products/plum-niacinamide-facewash.jpg",
             "tone": "#eef6f0"
       }
 ],
@@ -1166,7 +1166,7 @@ export const products: Product[] = [
     details: "Maintains skin barrier health while clarifying pores.",
     ingredients: "Ceramide NP, Ethyl Ascorbic Acid, Glycerin.",
     size: "100 ml",
-    image: "/products/chemistatplay-facewash.jpg",
+    image: "/products/chemistatplay-salicylic-facewash.jpg",
     mrp: 399,
     price: 349,
     inStock: true,
@@ -1179,7 +1179,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Vitamin C Face Wash",
-            "url": "/products/chemistatplay-facewash.jpg",
+            "url": "/products/chemistatplay-salicylic-facewash.jpg",
             "tone": "#f0f6f2"
       }
 ],
@@ -1194,7 +1194,7 @@ export const products: Product[] = [
     details: "Does not strip moisture; ideal for dry, sensitive, or combination skin.",
     ingredients: "Hyaluronic Acid, Ceramide NP, Ceramide AP, Phytosphingosine.",
     size: "100 ml",
-    image: "/products/chemistatplay-facewash.jpg",
+    image: "/products/chemistatplay-hydrating-facewash.jpg",
     mrp: 399,
     price: 349,
     inStock: true,
@@ -1207,7 +1207,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Hyaluronic Acid Face Wash",
-            "url": "/products/chemistatplay-facewash.jpg",
+            "url": "/products/chemistatplay-hydrating-facewash.jpg",
             "tone": "#f0f6f2"
       }
 ],
@@ -1222,7 +1222,7 @@ export const products: Product[] = [
     details: "Promotes refined texture and unclogged pores.",
     ingredients: "Glycolic Acid, Lactic Acid, Ceramides.",
     size: "100 ml",
-    image: "/products/chemistatplay-facewash.jpg",
+    image: "/products/chemistatplay-aha-facewash.jpg",
     mrp: 399,
     price: 349,
     inStock: true,
@@ -1235,7 +1235,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "AHA Face Wash",
-            "url": "/products/chemistatplay-facewash.jpg",
+            "url": "/products/chemistatplay-aha-facewash.jpg",
             "tone": "#f0f6f2"
       }
 ],
@@ -1250,7 +1250,7 @@ export const products: Product[] = [
     details: "Protects against UVA, UVB, and blue light while locking in hydration.",
     ingredients: "Hybrid UV Filters, 5 Ceramides, Hyaluronic Acid.",
     size: "50 g",
-    image: "/products/dotkey-sunscreen-50.jpg",
+    image: "/products/dotkey-sunscreen-barrier.jpg",
     mrp: 495,
     price: 445,
     inStock: true,
@@ -1263,7 +1263,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Barrier Repair Sunscreen",
-            "url": "/products/dotkey-sunscreen-50.jpg",
+            "url": "/products/dotkey-sunscreen-barrier.jpg",
             "tone": "#edf6fa"
       }
 ],
@@ -1278,7 +1278,7 @@ export const products: Product[] = [
     details: "Lightweight fluid texture that absorbs instantly.",
     ingredients: "Photostable Filters, Vitamin C, Vitamin E, Blood Orange.",
     size: "50 g",
-    image: "/products/dotkey-sunscreen-50.jpg",
+    image: "/products/dotkey-sunscreen-vitc.jpg",
     mrp: 495,
     price: 445,
     inStock: true,
@@ -1291,7 +1291,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Super Bright Sunscreen",
-            "url": "/products/dotkey-sunscreen-50.jpg",
+            "url": "/products/dotkey-sunscreen-vitc.jpg",
             "tone": "#edf6fa"
       }
 ],
@@ -1306,7 +1306,7 @@ export const products: Product[] = [
     details: "Instantly refreshes and soothes without stickiness.",
     ingredients: "Watermelon Extract, Hyaluronic Acid, UV Filters.",
     size: "50 g",
-    image: "/products/dotkey-sunscreen-50.jpg",
+    image: "/products/dotkey-sunscreen-cooling.jpg",
     mrp: 495,
     price: 445,
     inStock: true,
@@ -1319,7 +1319,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Cooling Sunscreen",
-            "url": "/products/dotkey-sunscreen-50.jpg",
+            "url": "/products/dotkey-sunscreen-cooling.jpg",
             "tone": "#edf6fa"
       }
 ],
@@ -1334,7 +1334,7 @@ export const products: Product[] = [
     details: "Non-greasy powdery matte finish that controls midday shine.",
     ingredients: "Cica Extract, Zinc Oxide, Niacinamide, UV Filters.",
     size: "50 g",
-    image: "/products/dotkey-sunscreen-50.jpg",
+    image: "/products/dotkey-sunscreen-mattifying.jpg",
     mrp: 495,
     price: 445,
     inStock: true,
@@ -1347,7 +1347,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Mattifying Sunscreen",
-            "url": "/products/dotkey-sunscreen-50.jpg",
+            "url": "/products/dotkey-sunscreen-mattifying.jpg",
             "tone": "#edf6fa"
       }
 ],
@@ -1418,7 +1418,7 @@ export const products: Product[] = [
     details: "Eliminates frizz and tangles instantly.",
     ingredients: "Flaxseed Oil, Shea Butter, Argan Oil.",
     size: "200 ml",
-    image: "/products/plix-flaxseed-shampoo.jpg",
+    image: "/products/plix-flaxseed-conditioner.jpg",
     mrp: 450,
     price: 399,
     inStock: true,
@@ -1431,7 +1431,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Flaxseed Conditioner",
-            "url": "/products/plix-flaxseed-shampoo.jpg",
+            "url": "/products/plix-flaxseed-conditioner.jpg",
             "tone": "#f2f8f0"
       }
 ],
@@ -1446,7 +1446,7 @@ export const products: Product[] = [
     details: "Broad spectrum protection without white residue.",
     ingredients: "Guava Extract, Vitamin C, Hybrid UV Filters.",
     size: "50 g",
-    image: "/products/plix-pineapple-depigmentation-serum.jpg",
+    image: "/products/plix-guava-sunscreen.jpg",
     mrp: 499,
     price: 449,
     inStock: true,
@@ -1459,7 +1459,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Guava Glow Sunscreen",
-            "url": "/products/plix-pineapple-depigmentation-serum.jpg",
+            "url": "/products/plix-guava-sunscreen.jpg",
             "tone": "#fef9e8"
       }
 ],
@@ -1474,7 +1474,7 @@ export const products: Product[] = [
     details: "Non-comedogenic daily sun shield.",
     ingredients: "Pineapple Extract, Alpha Arbutin, UV Filters.",
     size: "50 g",
-    image: "/products/plix-pineapple-depigmentation-serum.jpg",
+    image: "/products/plix-pineapple-sunscreen.jpg",
     mrp: 499,
     price: 449,
     inStock: true,
@@ -1487,7 +1487,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Pineapple Sunscreen",
-            "url": "/products/plix-pineapple-depigmentation-serum.jpg",
+            "url": "/products/plix-pineapple-sunscreen.jpg",
             "tone": "#fef9e8"
       }
 ],

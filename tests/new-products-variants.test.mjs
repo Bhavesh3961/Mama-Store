@@ -72,23 +72,46 @@ test("Verify new standalone products and packshot assets on disk", async () => {
     "dotkey-oilfree-moisturizer.jpg",
     "bellavita-white-oud.jpg",
     "bellavita-date-woman.jpg",
-    "nykaa-wanderlust-body-wash.jpg",
+    "nykaa-wanderlust-cherry.jpg",
+    "nykaa-wanderlust-sea-salt.jpg",
+    "nykaa-wanderlust-macadamia.jpg",
+    "nykaa-wanderlust-green-apple.jpg",
     "plix-pineapple-body-wash.jpg",
     "lux-radiant-glow-body-wash.jpg",
     "chemistatplay-exfoliating-body-wash.jpg",
     "chemistatplay-brightening-body-wash.jpg",
     "bellavita-skai-shower-gel.jpg",
     "plix-pineapple-depigmentation-serum.jpg",
-    "plix-juicy-facewash.jpg",
+    "plix-guava-glow-serum.jpg",
+    "plix-pomegranate-serum.jpg",
+    "plix-jamun-serum.jpg",
+    "plix-pineapple-cleanser.jpg",
+    "plix-guava-cleanser.jpg",
+    "plix-pomegranate-cleanser.jpg",
+    "plix-jamun-cleanser.jpg",
     "wishcare-sunscreen-body-lotion.jpg",
     "dermaco-1-kojic-acid-facewash.jpg",
-    "nykaa-naturals-facewash.jpg",
+    "nykaa-fw-ricewater.jpg",
+    "nykaa-fw-saffron.jpg",
+    "nykaa-fw-berries.jpg",
+    "dotkey-facewash-barrier.jpg",
     "dotkey-facewash.jpg",
-    "plum-green-tea-facewash.jpg",
-    "chemistatplay-facewash.jpg",
-    "dotkey-sunscreen-50.jpg",
+    "dotkey-facewash-watermelon.jpg",
+    "dotkey-sunscreen-barrier.jpg",
+    "dotkey-sunscreen-vitc.jpg",
+    "dotkey-sunscreen-cooling.jpg",
+    "dotkey-sunscreen-mattifying.jpg",
+    "plum-greentea-facewash.jpg",
+    "plum-saffron-facewash.jpg",
+    "plum-niacinamide-facewash.jpg",
+    "chemistatplay-salicylic-facewash.jpg",
+    "chemistatplay-hydrating-facewash.jpg",
+    "chemistatplay-aha-facewash.jpg",
     "dotkey-micellar-facewash.jpg",
     "plix-flaxseed-shampoo.jpg",
+    "plix-flaxseed-conditioner.jpg",
+    "plix-guava-sunscreen.jpg",
+    "plix-pineapple-sunscreen.jpg",
     "nivea-men-deep-impact.jpg",
     "nivea-pearl-beauty.jpg",
     "pilgrim-korean-black-rice-mist.jpg",
@@ -103,5 +126,46 @@ test("Verify new standalone products and packshot assets on disk", async () => {
     );
     const stat = fs.statSync(fullPath);
     assert.ok(stat.size > 1000, `Image ${fullPath} must be non-empty (was ${stat.size} bytes)`);
+  }
+
+  // Ensure shampoo and conditioner have distinct images
+  assert.ok(
+    productsTs.includes(`id: "p-plix-flaxseed-shampoo"`) &&
+    productsTs.includes(`/products/plix-flaxseed-shampoo.jpg`),
+    "Shampoo must have its own image"
+  );
+  assert.ok(
+    productsTs.includes(`id: "p-plix-flaxseed-conditioner"`) &&
+    productsTs.includes(`/products/plix-flaxseed-conditioner.jpg`),
+    "Conditioner must have its own distinct conditioner image"
+  );
+});
+
+test("Verify Top Brands have genuine logos and active collections", async () => {
+  const brandsTs = fs.readFileSync("src/data/brands.ts", "utf8");
+
+  const activeBrands = [
+    { name: "Plix", logo: "plix.png" },
+    { name: "Dot & Key", logo: "dotkey.svg" },
+    { name: "Nykaa", logo: "nykaa.svg" },
+    { name: "Chemist at Play", logo: "chemistatplay.png" },
+    { name: "Mamaearth", logo: "mamaearth.png" },
+    { name: "Bella Vita Luxury", logo: "bellavita.png" },
+    { name: "Plum Goodness", logo: "plum.svg" },
+    { name: "WishCare", logo: "wishcare.png" },
+    { name: "Nivea", logo: "nivea.svg" },
+    { name: "Lakmé", logo: "lakme.png" },
+    { name: "mCaffeine", logo: "mcaffeine.png" },
+    { name: "The Derma Co", logo: "dermaco.png" },
+    { name: "Pilgrim", logo: "pilgrim.png" },
+    { name: "Lux", logo: "lux.png" }
+  ];
+
+  for (const b of activeBrands) {
+    const logoPath = path.join("public", "brands", b.logo);
+    assert.ok(fs.existsSync(logoPath), `Brand logo ${b.logo} must exist on disk`);
+    const stat = fs.statSync(logoPath);
+    assert.ok(stat.size > 500, `Brand logo ${b.logo} must be valid asset`);
+    assert.ok(brandsTs.includes(b.logo), `brands.ts must reference ${b.logo}`);
   }
 });
