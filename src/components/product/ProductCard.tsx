@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { Product, ProductVariant } from "@/data/products";
+import type { Product } from "@/data/products";
 import { brandOf, categoryOf, offersOf } from "@/data/catalog";
 import { discountPercent, isEnquiryPrice } from "@/data/products";
 import { formatInr } from "@/lib/format";
@@ -159,17 +159,15 @@ export function ProductMedia({
   );
 }
 
-export function PriceLabel({ product, selectedVariant }: { product: Product; selectedVariant?: ProductVariant }) {
+export function PriceLabel({ product }: { product: Product }) {
   if (isEnquiryPrice(product)) {
     return <span className="price">Contact for Price</span>;
   }
-  const price = selectedVariant?.price ?? product.price;
-  const mrp = selectedVariant?.mrp ?? product.mrp;
-  const hasDiscount = mrp != null && mrp > (price as number);
+  const hasDiscount = product.mrp != null && product.mrp > (product.price as number);
   return (
     <span className="price-lux">
-      {hasDiscount ? <s className="old-mrp">{formatInr(mrp as number)}</s> : null}
-      <span className="current-price">{formatInr(price as number)}</span>
+      {hasDiscount ? <s className="old-mrp">{formatInr(product.mrp as number)}</s> : null}
+      <span className="current-price">{formatInr(product.price as number)}</span>
     </span>
   );
 }
@@ -177,9 +175,6 @@ export function PriceLabel({ product, selectedVariant }: { product: Product; sel
 export function ProductCard({ product }: { product: Product }) {
   const { add } = useCart();
   const [added, setAdded] = useState(false);
-  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | undefined>(
-    product.variants?.find((v) => v.inStock) ?? product.variants?.[0]
-  );
   const brand = brandOf(product);
   const label = !product.inStock ? "Sold out" : undefined;
 
@@ -187,7 +182,7 @@ export function ProductCard({ product }: { product: Product }) {
     e.preventDefault();
     e.stopPropagation();
     if (!product.inStock) return;
-    add(product, 1, selectedVariant ? { id: selectedVariant.id, name: selectedVariant.name } : undefined);
+    add(product, 1);
     setAdded(true);
     setTimeout(() => setAdded(false), 1400);
   };
@@ -198,50 +193,13 @@ export function ProductCard({ product }: { product: Product }) {
         <ProductMedia
           product={product}
           label={label}
-          customImageUrl={selectedVariant?.image || product.image}
         />
         <div className="meta-lux">
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-            <p className="brand-eyebrow">{brand?.name || "Atelier Beauty"}</p>
-            <span className="stars-mini">★ {product.rating.toFixed(1)}</span>
-          </div>
+          <p className="brand-eyebrow">{brand?.name || "Atelier Beauty"}</p>
           <h3 className="product-title">{product.name}</h3>
-          <p className="product-desc-line">{product.description}</p>
-
-          {product.variants && product.variants.length > 1 ? (
-            <div
-              className="card-variant-chips"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-            >
-              {product.variants.slice(0, 3).map((v) => {
-                const isActive = (selectedVariant?.id || product.variants![0]?.id) === v.id;
-                return (
-                  <button
-                    key={v.id}
-                    type="button"
-                    className={`card-variant-chip ${isActive ? "active" : ""}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setSelectedVariant(v);
-                    }}
-                    title={`${v.name} - ${v.price ? formatInr(v.price) : ""}`}
-                  >
-                    {v.name.replace(/\s*\(.*\)/, "")}
-                  </button>
-                );
-              })}
-              {product.variants.length > 3 ? (
-                <span className="card-variant-chip more">+{product.variants.length - 3}</span>
-              ) : null}
-            </div>
-          ) : null}
 
           <div className="card-bottom-row">
-            <PriceLabel product={product} selectedVariant={selectedVariant} />
+            <PriceLabel product={product} />
             <button
               type="button"
               onClick={handleQuickAdd}

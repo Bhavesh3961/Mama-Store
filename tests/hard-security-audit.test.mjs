@@ -84,7 +84,7 @@ test("SECURITY: Order checkout ignores client forged prices and validates stock"
       city: "Pali",
       pincode: "306401",
       payment: "cod",
-      items: [{ productId: "p-maybelline-lipstick", quantity: 1 }],
+      items: [{ productId: "p-mamaearth-rosemary-oil", quantity: 1 }],
     }),
   });
   assert.equal(badPhoneRes.status, 400);
@@ -100,7 +100,7 @@ test("SECURITY: Order checkout ignores client forged prices and validates stock"
       city: "Pali",
       pincode: "306401",
       payment: "cod",
-      items: [{ productId: "p-maybelline-lipstick", quantity: 99999 }],
+      items: [{ productId: "p-mamaearth-rosemary-oil", quantity: 99999 }],
     }),
   });
   assert.equal(excessRes.status, 400);

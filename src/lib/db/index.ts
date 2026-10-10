@@ -118,6 +118,10 @@ for (const p of initialProducts) {
   }
 }
 
+// Prune any legacy products not in initialProducts
+const allowedIds = new Set(initialProducts.map((p) => p.id));
+db.products = db.products.filter((p) => allowedIds.has(p.id));
+
 if (process.env.NODE_ENV !== "production") {
   globalForDb.mamaDb = db;
 }
