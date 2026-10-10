@@ -29,10 +29,17 @@ export function ProductDetails({ product }: { product: Product }) {
   const related = relatedProducts(product);
   const productReviews = reviews.filter((r) => r.productId === product.id);
 
+  const currentPrice = variant?.price ?? product.price;
+  const currentMrp = variant?.mrp ?? product.mrp;
+  const hasDiscount = currentMrp != null && currentPrice != null && currentMrp > currentPrice;
+  const currentDiscountPercent = hasDiscount
+    ? Math.round(((currentMrp! - currentPrice!) / currentMrp!) * 100)
+    : discountPercent(product);
+
   function addToBag() {
     if (!canBuy) return;
     add(product, qty, variant ? { id: variant.id, name: variant.name } : undefined);
-    setNote("Added to bag");
+    setNote(`Added ${variant ? variant.name : product.name} to bag`);
   }
 
   function buyNow() {
@@ -52,7 +59,7 @@ export function ProductDetails({ product }: { product: Product }) {
             <ProductMedia
               product={product}
               tone={product.gallery[image]?.tone}
-              customImageUrl={product.gallery[image]?.url || product.image}
+              customImageUrl={variant?.image || product.gallery[image]?.url || product.image}
             />
           </div>
           <div className="thumbs" style={{ marginTop: 12, display: "flex", gap: 10 }}>
@@ -90,20 +97,20 @@ export function ProductDetails({ product }: { product: Product }) {
           <p className="eyebrow">{brand?.name}</p>
           <h1 style={{ fontSize: "2rem", margin: "8px 0" }}>{product.name}</h1>
           <p className="muted small">
-            {category?.name} · {product.size}
+            {category?.name} · {variant?.size || product.size}
           </p>
           <p style={{ marginTop: 12 }}>
             {isEnquiryPrice(product) ? (
               <span className="price">Contact for price</span>
             ) : (
               <>
-                {discountPercent(product) > 0 && product.mrp != null ? (
-                  <s className="muted">{formatInr(product.mrp)}</s>
+                {currentDiscountPercent > 0 && currentMrp != null ? (
+                  <s className="muted">{formatInr(currentMrp)}</s>
                 ) : null}{" "}
-                <span className="price">{formatInr(product.price as number)}</span>
-                {discountPercent(product) > 0 ? (
+                <span className="price">{formatInr(currentPrice as number)}</span>
+                {currentDiscountPercent > 0 ? (
                   <span className="badge" style={{ marginLeft: 8 }}>
-                    {discountPercent(product)}% off
+                    {currentDiscountPercent}% off
                   </span>
                 ) : null}
               </>
@@ -133,25 +140,71 @@ export function ProductDetails({ product }: { product: Product }) {
             </p>
           ) : null}
 
-          {product.variants ? (
-            <div style={{ marginTop: 18 }}>
-              <p className="eyebrow">Shade / variant</p>
-              <p className="small" style={{ margin: "6px 0 10px" }}>
-                {variant?.name}
-                {variant && !variant.inStock ? " · currently unavailable" : ""}
-              </p>
-              <div className="swatches">
-                {product.variants.map((v) => (
-                  <button
-                    key={v.id}
-                    type="button"
-                    className="swatch"
-                    style={{ background: v.swatch, opacity: v.inStock ? 1 : 0.35 }}
-                    aria-label={v.name}
-                    aria-current={v.id === variantId}
-                    onClick={() => setVariantId(v.id)}
-                  />
-                ))}
+          {product.variants && product.variants.length > 0 ? (
+            <div className="blinkit-pack-section" style={{ marginTop: 22 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
+                <div>
+                  <p className="eyebrow" style={{ color: "#1c1614", fontWeight: 700, margin: 0 }}>
+                    Select Unit / Pack
+                  </p>
+                  <p className="small muted" style={{ margin: "2px 0 0" }}>
+                    {variant?.name} {variant && !variant.inStock ? " · currently unavailable" : ""}
+                  </p>
+                </div>
+                <span className="blinkit-badge-subtle">
+                  {product.variants.length} Options
+                </span>
+              </div>
+              <div className="blinkit-pack-grid">
+                {product.variants.map((v) => {
+                  const isSelected = v.id === variantId;
+                  const vPrice = v.price ?? product.price;
+                  const vMrp = v.mrp ?? product.mrp;
+                  const vDiscount = vMrp && vPrice && vMrp > vPrice ? Math.round(((vMrp - vPrice) / vMrp) * 100) : 0;
+                  return (
+                    <button
+                      key={v.id}
+                      type="button"
+                      className={`blinkit-pack-card ${isSelected ? "selected" : ""} ${!v.inStock ? "disabled" : ""}`}
+                      onClick={() => {
+                        setVariantId(v.id);
+                        if (v.image) {
+                          const idx = product.gallery.findIndex((g) => g.url === v.image);
+                          if (idx !== -1) setImage(idx);
+                        }
+                      }}
+                      disabled={!v.inStock}
+                      aria-current={isSelected}
+                      aria-label={`${v.name} for ${vPrice ? formatInr(vPrice) : "price"}`}
+                    >
+                      <div className="blinkit-pack-top">
+                        {v.swatch ? (
+                          <span
+                            className="blinkit-pack-swatch"
+                            style={{ background: v.swatch }}
+                            aria-hidden="true"
+                          />
+                        ) : null}
+                        <span className="blinkit-pack-name">{v.name}</span>
+                        {isSelected ? <span className="blinkit-pack-check">✓</span> : null}
+                      </div>
+                      {vPrice != null ? (
+                        <div className="blinkit-pack-price-row">
+                          <span className="blinkit-pack-price">{formatInr(vPrice)}</span>
+                          {vMrp && vMrp > vPrice ? (
+                            <s className="blinkit-pack-mrp">{formatInr(vMrp)}</s>
+                          ) : null}
+                        </div>
+                      ) : null}
+                      {vDiscount > 0 ? (
+                        <div className="blinkit-pack-discount">{vDiscount}% OFF</div>
+                      ) : null}
+                      {!v.inStock ? (
+                        <span className="blinkit-pack-soldout">Unavailable</span>
+                      ) : null}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           ) : null}

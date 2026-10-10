@@ -103,6 +103,8 @@ export function CinematicHero() {
         rating: 4.9,
         reviewCount: 380,
         gallery: [],
+        offerIds: [],
+        relatedIds: [],
       },
       1
     );

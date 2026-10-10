@@ -148,9 +148,12 @@ export function InteractiveRoutineFinder() {
           inStock: true,
           isNew: false,
           isBestseller: true,
+          mrp: p.price,
           rating: 4.9,
           reviewCount: 120,
           gallery: [],
+          offerIds: [],
+          relatedIds: [],
         },
         1
       );

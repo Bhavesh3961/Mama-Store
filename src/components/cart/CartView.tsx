@@ -76,7 +76,11 @@ export function CartView() {
                     </Link>
                     {line.variantName ? <p className="small muted">{line.variantName}</p> : null}
                     <p className="small" style={{ fontWeight: 600, marginTop: 4 }}>
-                      {isEnquiryPrice(product) ? "Contact for price" : formatInr(product.price as number)}
+                      {isEnquiryPrice(product)
+                        ? "Contact for price"
+                        : formatInr(
+                            (product.variants?.find((vx) => vx.id === line.variantId)?.price ?? product.price) as number
+                          )}
                     </p>
                     <div className="qty" style={{ marginTop: 10 }}>
                       <button type="button" aria-label="Decrease" onClick={() => setQty(line.key, line.quantity - 1)}>

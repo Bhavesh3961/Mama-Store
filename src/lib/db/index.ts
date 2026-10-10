@@ -108,6 +108,10 @@ for (const p of initialProducts) {
     existing.name = p.name;
     existing.description = p.description;
     existing.details = p.details || "";
+    existing.size = p.size || "";
+    existing.category_id = p.categoryId;
+    existing.brand_id = p.brandId || "br-mama";
+    existing.variants_json = JSON.stringify(p.variants || []);
     existing.gallery_json = JSON.stringify(p.gallery || []);
     if (p.price != null) existing.price = p.price;
     if (p.mrp != null) existing.mrp = p.mrp;

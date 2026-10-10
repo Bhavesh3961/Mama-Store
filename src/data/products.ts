@@ -1,6 +1,10 @@
 export type ProductVariant = {
   id: string;
   name: string;
+  size?: string;
+  price?: number;
+  mrp?: number;
+  image?: string;
   swatch?: string;
   inStock: boolean;
 };
@@ -1201,8 +1205,1623 @@ export const products: Product[] = [
       { label: "Vitamin C Wash Bottle", url: "/products/milau-vitaminc-wash.webp", tone: "#fff6eb" },
     ],
   },
+  {
+    id: "p-mamaearth-rosemary-oil",
+    slug: "mamaearth-rosemary-hair-growth-oil",
+    name: "Mamaearth Rosemary Anti-Hair Fall & Hair Growth Oil",
+    brandId: "br-mamaearth",
+    categoryId: "cat-hair",
+    description: "Formulated with pure Rosemary & Methi Dana to stimulate scalp circulation, revitalize dormant follicles, and promote up to 2x faster hair growth.",
+    details: "Lightweight, non-greasy hair oil powered by pure rosemary extracts and methi seeds. Clinically tested to reduce hair fall and strengthen root anchor.",
+    ingredients: "Rosemary Oil, Methi Dana (Fenugreek), Bhringraj, Amla, Almond Oil, Curry Leaves Extract.",
+    size: "150 ml",
+    image: "/products/mamaearth-rosemary-oil.png",
+    mrp: 499,
+    price: 419,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 312,
+    relatedIds: ["p-plix-rosemary-oil","p-mamaearth-onion-oil","p-mamaearth-onion-shampoo"],
+    variants: [
+      {
+            "id": "v-mama-rosemary-150",
+            "name": "150 ml",
+            "size": "150 ml",
+            "price": 419,
+            "mrp": 499,
+            "inStock": true
+      },
+      {
+            "id": "v-mama-rosemary-250",
+            "name": "250 ml (Value Pack)",
+            "size": "250 ml",
+            "price": 649,
+            "mrp": 749,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Rosemary Oil Packshot",
+            "url": "/products/mamaearth-rosemary-oil.png",
+            "tone": "#f2f7f1"
+      }
+],
+  },
+  {
+    id: "p-plix-rosemary-oil",
+    slug: "plix-rosemary-hair-growth-oil",
+    name: "Plix Rosemary Advanced Anti-Hair Fall & Growth Oil",
+    brandId: "br-plix",
+    categoryId: "cat-hair",
+    description: "Plant-powered botanical infusion with Rosemary extract, Redensyl and Bhasma minerals to prevent shedding and deeply nourish roots.",
+    details: "Ultra-absorbing scalp elixir designed for both men and women fighting thinning hairline and brittle strands.",
+    ingredients: "Rosemary Extract, Redensyl, Castor Seed Oil, Jojoba Oil, Vitamin E.",
+    size: "100 ml",
+    image: "/products/plix-rosemary-oil.jpg",
+    mrp: 400,
+    price: 349,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.7,
+    reviewCount: 189,
+    relatedIds: ["p-mamaearth-rosemary-oil","p-plix-flaxseed-shampoo","p-pilgrim-korean-mist"],
+    variants: [
+      {
+            "id": "v-plix-rosemary-100",
+            "name": "100 ml",
+            "size": "100 ml",
+            "price": 349,
+            "mrp": 400,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-rosemary-200",
+            "name": "200 ml (Duo Saver)",
+            "size": "200 ml",
+            "price": 649,
+            "mrp": 750,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Plix Rosemary Oil",
+            "url": "/products/plix-rosemary-oil.jpg",
+            "tone": "#f0f8ef"
+      }
+],
+  },
+  {
+    id: "p-mamaearth-onion-shampoo",
+    slug: "mamaearth-onion-hair-fall-control-shampoo",
+    name: "Mamaearth Onion Hair Fall Control Shampoo with Plant Keratin",
+    brandId: "br-mamaearth",
+    categoryId: "cat-hair",
+    description: "Reduces hair fall up to 8x. Enriched with sulfur-rich red onion extract and plant keratin to make hair softer, smoother, and full of natural bounce.",
+    details: "Gentle sulfate-free daily shampoo safe for colored and chemically treated hair. Fortifies weakened cuticles and cleanses impurities without dry frizz.",
+    ingredients: "Red Onion Seed Oil Extract, Plant Keratin, Wheat Amino Acids, D-Panthenol.",
+    size: "250 ml",
+    image: "/products/mamaearth-onion-shampoo.png",
+    mrp: 349,
+    price: 299,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 524,
+    relatedIds: ["p-mamaearth-onion-oil","p-mamaearth-rosemary-oil","p-plix-flaxseed-shampoo"],
+    variants: [
+      {
+            "id": "v-mama-onion-shamp-250",
+            "name": "250 ml",
+            "size": "250 ml",
+            "price": 299,
+            "mrp": 349,
+            "inStock": true
+      },
+      {
+            "id": "v-mama-onion-shamp-400",
+            "name": "400 ml Pump",
+            "size": "400 ml",
+            "price": 479,
+            "mrp": 599,
+            "inStock": true
+      },
+      {
+            "id": "v-mama-onion-shamp-650",
+            "name": "650 ml Family Pack",
+            "size": "650 ml",
+            "price": 699,
+            "mrp": 899,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Onion Shampoo Packshot",
+            "url": "/products/mamaearth-onion-shampoo.png",
+            "tone": "#fdf3f4"
+      }
+],
+  },
+  {
+    id: "p-mamaearth-onion-oil",
+    slug: "mamaearth-onion-hair-oil",
+    name: "Mamaearth Onion Hair Oil with Redensyl for Hair Regrowth",
+    brandId: "br-mamaearth",
+    categoryId: "cat-hair",
+    description: "India's favorite onion hair oil enriched with Redensyl, Onion Seed Oil, and Almond Oil to nourish roots and boost scalp vitality.",
+    details: "Non-sticky, lightweight oil crafted to nourish strands from deep within and restore silky softness.",
+    ingredients: "Onion Seed Oil, Redensyl, Almond Oil, Castor Oil, Bhringraj, Amla.",
+    size: "100 ml",
+    image: "/products/mamaearth-onion-oil.png",
+    mrp: 199,
+    price: 179,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 462,
+    relatedIds: ["p-mamaearth-onion-shampoo","p-mamaearth-rosemary-oil"],
+    variants: [
+      {
+            "id": "v-mama-onion-oil-100",
+            "name": "100 ml",
+            "size": "100 ml",
+            "price": 179,
+            "mrp": 199,
+            "inStock": true
+      },
+      {
+            "id": "v-mama-onion-oil-150",
+            "name": "150 ml (with Comb Applicator)",
+            "size": "150 ml",
+            "price": 349,
+            "mrp": 399,
+            "inStock": true
+      },
+      {
+            "id": "v-mama-onion-oil-250",
+            "name": "250 ml (Value Jar)",
+            "size": "250 ml",
+            "price": 499,
+            "mrp": 599,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Onion Hair Oil Packshot",
+            "url": "/products/mamaearth-onion-oil.png",
+            "tone": "#fcf0f2"
+      }
+],
+  },
+  {
+    id: "p-lakme-peach-milk-gel",
+    slug: "lakme-peach-milk-gel-moisturiser",
+    name: "Lakmé Peach Milk Ultra Light Gel Moisturiser",
+    brandId: "br-lakme",
+    categoryId: "cat-skincare",
+    description: "Infused with juicy peaches & vitamin B3, this ultra-lightweight watery gel moisturiser melts immediately into skin for 24-hour weightless hydration.",
+    details: "Non-greasy, non-sticky gel texture ideal for hot and humid Indian weather. Delivers a soft, dewy peach glow.",
+    ingredients: "Peach Extracts, Vitamin B3, Hyaluronic Acid, Aqua Gel Base.",
+    size: "150 g",
+    image: "/products/lakme-peach-milk-gel.jpg",
+    mrp: 585,
+    price: 499,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 298,
+    relatedIds: ["p-dotkey-vitc-moisturizer","p-dotkey-oilfree-moisturizer"],
+    variants: [
+      {
+            "id": "v-lakme-peach-150",
+            "name": "150 g (Full Size)",
+            "size": "150 g",
+            "price": 499,
+            "mrp": 585,
+            "inStock": true
+      },
+      {
+            "id": "v-lakme-peach-65",
+            "name": "65 g (Travel Size)",
+            "size": "65 g",
+            "price": 249,
+            "mrp": 299,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Peach Milk Gel Tub",
+            "url": "/products/lakme-peach-milk-gel.jpg",
+            "tone": "#fef3ee"
+      }
+],
+  },
+  {
+    id: "p-mcaffeine-sweet-escape-lotion",
+    slug: "mcaffeine-sweet-escape-perfumed-body-lotion",
+    name: "mCaffeine Sweet Escape Perfumed Body Lotion",
+    brandId: "br-mcaffeine",
+    categoryId: "cat-bath",
+    description: "Indulge in an enchanting gourmand scent notes of warm vanilla, caramel, and coffee bean butter for 48H deep hydration and alluring trail.",
+    details: "Silky lotion enriched with pure caffeine to tone and firm skin while wrapping you in an irresistible sweet luxury fragrance all day.",
+    ingredients: "Pure Arabica Coffee, Shea Butter, Sweet Almond Oil, Gourmand Fragrance Elixir.",
+    size: "200 ml",
+    image: "/products/mcaffeine-sweet-escape-lotion.jpg",
+    mrp: 499,
+    price: 449,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 174,
+    relatedIds: ["p-wishcare-sunscreen-body-lotion","p-chemistatplay-body-wash"],
+    variants: [
+      {
+            "id": "v-mcaffeine-escape-200",
+            "name": "200 ml",
+            "size": "200 ml",
+            "price": 449,
+            "mrp": 499,
+            "inStock": true
+      },
+      {
+            "id": "v-mcaffeine-escape-400",
+            "name": "400 ml (Value Pump)",
+            "size": "400 ml",
+            "price": 699,
+            "mrp": 849,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Sweet Escape Body Lotion",
+            "url": "/products/mcaffeine-sweet-escape-lotion.jpg",
+            "tone": "#faf0ea"
+      }
+],
+  },
+  {
+    id: "p-dotkey-vitc-moisturizer",
+    slug: "dot-and-key-vitamin-c-plus-e-super-bright-moisturizer",
+    name: "Dot & Key Vitamin C + E Super Bright Moisturizer",
+    brandId: "br-dotkey",
+    categoryId: "cat-skincare",
+    description: "Kakadu Plum Vitamin C & Vitamin E sorbet cream that fades hyperpigmentation, energizes dull skin, and unleashes instant luminous radiance.",
+    details: "Lightweight cream-gel formulation with three active Vitamin C sources. Clinically proven to brighten skin tone within 2 weeks.",
+    ingredients: "Kakadu Plum, Ethyl Ascorbic Acid, Vitamin E, Sicilian Blood Orange, Hyaluronic Acid.",
+    size: "60 ml",
+    image: "/products/dotkey-vitc-moisturizer.jpg",
+    mrp: 495,
+    price: 445,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.9,
+    reviewCount: 412,
+    relatedIds: ["p-dotkey-oilfree-moisturizer","p-dotkey-sunscreen-50","p-dotkey-facewash"],
+    variants: [
+      {
+            "id": "v-dotkey-vitc-60",
+            "name": "60 ml",
+            "size": "60 ml",
+            "price": 445,
+            "mrp": 495,
+            "inStock": true
+      },
+      {
+            "id": "v-dotkey-vitc-100",
+            "name": "100 ml (Mega Saver)",
+            "size": "100 ml",
+            "price": 699,
+            "mrp": 795,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Vitamin C Moisturizer Tub",
+            "url": "/products/dotkey-vitc-moisturizer.jpg",
+            "tone": "#fef6eb"
+      }
+],
+  },
+  {
+    id: "p-dotkey-oilfree-moisturizer",
+    slug: "dot-and-key-oil-free-moisturizer",
+    name: "Dot & Key 72HR Hydrating Gel Oil-Free Moisturizer",
+    brandId: "br-dotkey",
+    categoryId: "cat-skincare",
+    description: "Probiotic and Japanese rice water gel that quenches thirsty, oily and acne-prone skin with 72-hour moisture while zero oil shine.",
+    details: "Ultra-refreshing, non-comedogenic water gel. Strengthens skin barrier and balances sebum production without clogging pores.",
+    ingredients: "Hyaluronic Acid, Japanese Rice Water, Kombucha Probiotics, Panthenol.",
+    size: "60 ml",
+    image: "/products/dotkey-oilfree-moisturizer.jpg",
+    mrp: 495,
+    price: 445,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 367,
+    relatedIds: ["p-dotkey-vitc-moisturizer","p-dotkey-sunscreen-50","p-lakme-peach-milk-gel"],
+    variants: [
+      {
+            "id": "v-dotkey-oilfree-60",
+            "name": "60 ml",
+            "size": "60 ml",
+            "price": 445,
+            "mrp": 495,
+            "inStock": true
+      },
+      {
+            "id": "v-dotkey-oilfree-100",
+            "name": "100 ml (Mega Saver)",
+            "size": "100 ml",
+            "price": 699,
+            "mrp": 795,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Oil Free Hydrating Gel Tub",
+            "url": "/products/dotkey-oilfree-moisturizer.jpg",
+            "tone": "#edf5fa"
+      }
+],
+  },
+  {
+    id: "p-bellavita-white-oud",
+    slug: "bellavita-white-oud-perfume",
+    name: "Bella Vita Luxury White Oud Eau De Parfum",
+    brandId: "br-bellavita",
+    categoryId: "cat-fragrance",
+    description: "An ethereal and pristine blend of subtle sweet agarwood, fresh aquatic notes, musk, and soft amber. A regal fragrance that turns heads.",
+    details: "Long-lasting French perfume oil concentration crafted for modern luxury. Sophisticated sillage lasting 10+ hours.",
+    ingredients: "Artemisia, Orange Blossom, Amber, White Agarwood, Musk, Cumin.",
+    size: "100 ml",
+    image: "/products/bellavita-white-oud.jpg",
+    mrp: 599,
+    price: 549,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 388,
+    relatedIds: ["p-bellavita-date-woman","p-bellavita-honey-oud","p-bellavita-skai-shower-gel"],
+    variants: [
+      {
+            "id": "v-bv-whiteoud-100",
+            "name": "100 ml (Full Bottle)",
+            "size": "100 ml",
+            "price": 549,
+            "mrp": 599,
+            "inStock": true
+      },
+      {
+            "id": "v-bv-whiteoud-20",
+            "name": "20 ml (Pocket Spray)",
+            "size": "20 ml",
+            "price": 199,
+            "mrp": 249,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "White Oud EDP 100ml",
+            "url": "/products/bellavita-white-oud.jpg",
+            "tone": "#f8f5f0"
+      }
+],
+  },
+  {
+    id: "p-bellavita-date-woman",
+    slug: "bellavita-date-woman-perfume",
+    name: "Bella Vita Luxury Date Woman Eau De Parfum",
+    brandId: "br-bellavita",
+    categoryId: "cat-fragrance",
+    description: "A passionate blend of pink pepper, red fruits, floral jasmine, and intoxicating vanilla. Romantic, confident, and unforgettable.",
+    details: "High-grade French formulation designed for evening soirées and romantic dinners. Enchanting feminine bouquet with rich sillage.",
+    ingredients: "Pink Pepper, Red Berries, Jasmine, Turkish Rose, Vanilla Bean, Cedarwood.",
+    size: "100 ml",
+    image: "/products/bellavita-date-woman.jpg",
+    mrp: 599,
+    price: 549,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.9,
+    reviewCount: 419,
+    relatedIds: ["p-bellavita-white-oud","p-bellavita-honey-oud","p-bellavita-skai-shower-gel"],
+    variants: [
+      {
+            "id": "v-bv-date-100",
+            "name": "100 ml (Full Bottle)",
+            "size": "100 ml",
+            "price": 549,
+            "mrp": 599,
+            "inStock": true
+      },
+      {
+            "id": "v-bv-date-20",
+            "name": "20 ml (Pocket Spray)",
+            "size": "20 ml",
+            "price": 199,
+            "mrp": 249,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Date Woman EDP 100ml",
+            "url": "/products/bellavita-date-woman.jpg",
+            "tone": "#fdf2f4"
+      }
+],
+  },
+  {
+    id: "p-nykaa-wanderlust-body-wash",
+    slug: "nykaa-wanderlust-body-wash-all-flavours",
+    name: "Nykaa Wanderlust Fragrant Body Wash",
+    brandId: "br-nykaa",
+    categoryId: "cat-bath",
+    description: "Transport your senses with Nykaa's Wanderlust luxury body washes. Enriched with Aloe Vera & Vitamin E for velvety soft, fragrance-drenched showers.",
+    details: "Blinkit & Zepto style flavour variations: Choose from Cherry Blossom, Mediterranean Sea Salt, Hawaiian Macadamia, or Sicilian Green Apple.",
+    ingredients: "Aloe Barbadensis Leaf Extract, Vitamin E, Botanical Glycerin, Fine Fragrance Notes.",
+    size: "300 ml",
+    image: "/products/nykaa-wanderlust-body-wash.jpg",
+    mrp: 399,
+    price: 349,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 340,
+    relatedIds: ["p-plix-pineapple-body-wash","p-chemistatplay-body-wash","p-lux-radiant-glow-body-wash"],
+    variants: [
+      {
+            "id": "v-wanderlust-cherry",
+            "name": "Japanese Cherry Blossom 300ml",
+            "size": "300 ml",
+            "price": 349,
+            "mrp": 399,
+            "inStock": true
+      },
+      {
+            "id": "v-wanderlust-sea-salt",
+            "name": "Mediterranean Sea Salt 300ml",
+            "size": "300 ml",
+            "price": 349,
+            "mrp": 399,
+            "inStock": true
+      },
+      {
+            "id": "v-wanderlust-macadamia",
+            "name": "Hawaiian Macadamia 300ml",
+            "size": "300 ml",
+            "price": 349,
+            "mrp": 399,
+            "inStock": true
+      },
+      {
+            "id": "v-wanderlust-green-apple",
+            "name": "Sicilian Green Apple 300ml",
+            "size": "300 ml",
+            "price": 349,
+            "mrp": 399,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Nykaa Wanderlust Bottle",
+            "url": "/products/nykaa-wanderlust-body-wash.jpg",
+            "tone": "#fdf1f4"
+      }
+],
+  },
+  {
+    id: "p-plix-pineapple-body-wash",
+    slug: "plix-pineapple-smooth-skin-juicy-body-wash",
+    name: "Plix Pineapple Smooth Skin Juicy Body Wash",
+    brandId: "br-plix",
+    categoryId: "cat-bath",
+    description: "Gentle fruit AHA body cleanser with Bromelain Pineapple extract & Betaine that buffs away bumpy strawberry skin and leaves silky smooth radiance.",
+    details: "Rich tropical foaming lather with real fruit aromas. Clears body acne and leaves skin supple and moisturized.",
+    ingredients: "Pineapple Fruit Extract, Bromelain, Lactic Acid, Betaine, Vitamin C.",
+    size: "250 ml",
+    image: "/products/plix-pineapple-body-wash.jpg",
+    mrp: 400,
+    price: 369,
+    inStock: true,
+    isNew: true,
+    isBestseller: false,
+    offerIds: [],
+    rating: 4.7,
+    reviewCount: 165,
+    relatedIds: ["p-nykaa-wanderlust-body-wash","p-chemistatplay-body-wash","p-lux-radiant-glow-body-wash"],
+    variants: [
+      {
+            "id": "v-plix-bw-pineapple-250",
+            "name": "250 ml",
+            "size": "250 ml",
+            "price": 369,
+            "mrp": 400,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-bw-pineapple-400",
+            "name": "400 ml (Value Pump)",
+            "size": "400 ml",
+            "price": 549,
+            "mrp": 650,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Plix Pineapple Body Wash",
+            "url": "/products/plix-pineapple-body-wash.jpg",
+            "tone": "#fef9e7"
+      }
+],
+  },
+  {
+    id: "p-lux-radiant-glow-body-wash",
+    slug: "lux-radiant-glow-body-wash",
+    name: "Lux Radiant Glow Fine Fragrance Body Wash",
+    brandId: "br-lux",
+    categoryId: "cat-bath",
+    description: "Formulated with precious French Rose extract and Vitamin C glow pearls for soft, radiant skin enveloped in an intoxicating rose blossom perfume.",
+    details: "Daily budget-luxury body wash that foams generously, leaving skin lightly scented and noticeably softer from the first shower.",
+    ingredients: "French Rose Extracts, Vitamin C Glow Essence, Honey Nectar, Glycerin.",
+    size: "100 ml",
+    image: "/products/lux-radiant-glow-body-wash.jpg",
+    mrp: 99,
+    price: 89,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 680,
+    relatedIds: ["p-nykaa-wanderlust-body-wash","p-plix-pineapple-body-wash"],
+    variants: [
+      {
+            "id": "v-lux-glow-100",
+            "name": "100 ml (Trial / Pocket Pack)",
+            "size": "100 ml",
+            "price": 89,
+            "mrp": 99,
+            "inStock": true
+      },
+      {
+            "id": "v-lux-glow-240",
+            "name": "240 ml (Full Size)",
+            "size": "240 ml",
+            "price": 199,
+            "mrp": 249,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Lux Radiant Glow Bottle",
+            "url": "/products/lux-radiant-glow-body-wash.jpg",
+            "tone": "#fdf1f2"
+      }
+],
+  },
+  {
+    id: "p-chemistatplay-body-wash",
+    slug: "chemist-at-play-exfoliating-and-brightening-body-wash",
+    name: "Chemist at Play Active Ceramide Body Wash",
+    brandId: "br-chemistatplay",
+    categoryId: "cat-bath",
+    description: "India's #1 dermatological ceramide body wash range. Available in Daily Exfoliating Lactic Acid (smoothes bumps) and Brightening Vitamin C (fades tan).",
+    details: "Infused with 3 essential ceramides to repair the skin barrier while active acids purify pores without stripping.",
+    ingredients: "Ceramide NP, Lactic Acid (Exfoliating) / 2% Niacinamide + Vitamin C (Brightening), Zemea Propanediol.",
+    size: "236 ml",
+    image: "/products/chemistatplay-exfoliating-body-wash.jpg",
+    mrp: 399,
+    price: 349,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.9,
+    reviewCount: 395,
+    relatedIds: ["p-nykaa-wanderlust-body-wash","p-plix-pineapple-body-wash","p-wishcare-sunscreen-body-lotion"],
+    variants: [
+      {
+            "id": "v-cap-exfoliating-236",
+            "name": "Daily Exfoliating (Lactic Acid) 236ml",
+            "size": "236 ml",
+            "price": 349,
+            "mrp": 399,
+            "image": "/products/chemistatplay-exfoliating-body-wash.jpg",
+            "inStock": true
+      },
+      {
+            "id": "v-cap-brightening-236",
+            "name": "Brightening (Vitamin C & Niacinamide) 236ml",
+            "size": "236 ml",
+            "price": 349,
+            "mrp": 399,
+            "image": "/products/chemistatplay-brightening-body-wash.jpg",
+            "inStock": true
+      },
+      {
+            "id": "v-cap-exfoliating-473",
+            "name": "Daily Exfoliating 473ml (Mega Pump)",
+            "size": "473 ml",
+            "price": 649,
+            "mrp": 749,
+            "image": "/products/chemistatplay-exfoliating-body-wash.jpg",
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Exfoliating Body Wash",
+            "url": "/products/chemistatplay-exfoliating-body-wash.jpg",
+            "tone": "#f2f8f5"
+      },
+      {
+            "label": "Brightening Body Wash",
+            "url": "/products/chemistatplay-brightening-body-wash.jpg",
+            "tone": "#fdf8ee"
+      }
+],
+  },
+  {
+    id: "p-bellavita-skai-shower-gel",
+    slug: "bellavita-skai-shower-gel-all-flavours",
+    name: "Bella Vita Luxury SKAI Aquatic Shower Gel (All Flavours)",
+    brandId: "br-bellavita",
+    categoryId: "cat-bath",
+    description: "Invigorating fine-fragrance shower gel formulated with Aloe Vera and exotic French perfume oils for an energizing, crisp awakening.",
+    details: "Choose your signature notes: Crisp SKAI Aquatic, Exotic White Oud, Woody CEO Man, or Night Citrus KLUB.",
+    ingredients: "Aloe Barbadensis Leaf Juice, Glycerin, Aquatic Fragrance Elixir, Vitamin E.",
+    size: "250 ml",
+    image: "/products/bellavita-skai-shower-gel.jpg",
+    mrp: 499,
+    price: 399,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 284,
+    relatedIds: ["p-bellavita-white-oud","p-bellavita-date-woman","p-chemistatplay-body-wash"],
+    variants: [
+      {
+            "id": "v-bv-sg-skai",
+            "name": "SKAI Aquatic 250ml",
+            "size": "250 ml",
+            "price": 399,
+            "mrp": 499,
+            "inStock": true
+      },
+      {
+            "id": "v-bv-sg-whiteoud",
+            "name": "White Oud Exotic 250ml",
+            "size": "250 ml",
+            "price": 399,
+            "mrp": 499,
+            "inStock": true
+      },
+      {
+            "id": "v-bv-sg-klub",
+            "name": "KLUB Night Citrus 250ml",
+            "size": "250 ml",
+            "price": 399,
+            "mrp": 499,
+            "inStock": true
+      },
+      {
+            "id": "v-bv-sg-ceo",
+            "name": "CEO Man Woody 250ml",
+            "size": "250 ml",
+            "price": 399,
+            "mrp": 499,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "SKAI Shower Gel Bottle",
+            "url": "/products/bellavita-skai-shower-gel.jpg",
+            "tone": "#edf5fa"
+      }
+],
+  },
+  {
+    id: "p-plix-active-fruit-serum",
+    slug: "plix-active-fruit-face-serum",
+    name: "Plix Active Fruit Face Serums (De-Pigmentation, Guava Glow & Youth Renewal)",
+    brandId: "br-plix",
+    categoryId: "cat-skincare",
+    description: "Concentrated plant-active face elixirs targeting pigmentation, dullness, acne, and fine lines. Formulated with potent fruit extracts and clinical actives.",
+    details: "Choose your active fruit formula: Pineapple De-Pigmentation with 2% Alpha Arbutin, Guava Glow Vitamin C, Pomegranate Youth Renewal Peptide, or Jamun Acne Control.",
+    ingredients: "Fruit Extract, Alpha Arbutin, Niacinamide, Hyaluronic Acid, Peptide Matrix.",
+    size: "30 ml",
+    image: "/products/plix-pineapple-depigmentation-serum.jpg",
+    mrp: 599,
+    price: 525,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.9,
+    reviewCount: 421,
+    relatedIds: ["p-plix-cleanser-facewash","p-dotkey-vitc-moisturizer","p-dermaco-1-kojic-acid-facewash"],
+    variants: [
+      {
+            "id": "v-plix-serum-pine-30",
+            "name": "Pineapple De-Pigmentation 30ml",
+            "size": "30 ml",
+            "price": 525,
+            "mrp": 599,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-serum-pine-50",
+            "name": "Pineapple De-Pigmentation 50ml",
+            "size": "50 ml",
+            "price": 575,
+            "mrp": 699,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-serum-guava-30",
+            "name": "Guava Glow Brightening 30ml",
+            "size": "30 ml",
+            "price": 475,
+            "mrp": 549,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-serum-guava-50",
+            "name": "Guava Glow Brightening 50ml",
+            "size": "50 ml",
+            "price": 550,
+            "mrp": 650,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-serum-pom-30",
+            "name": "Pomegranate Youth Renewal 30ml",
+            "size": "30 ml",
+            "price": 550,
+            "mrp": 650,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-serum-jamun-30",
+            "name": "Jamun Active Acne Control 30ml",
+            "size": "30 ml",
+            "price": 525,
+            "mrp": 599,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Plix Pineapple Serum Dropper",
+            "url": "/products/plix-pineapple-depigmentation-serum.jpg",
+            "tone": "#fef9e8"
+      }
+],
+  },
+  {
+    id: "p-plix-cleanser-facewash",
+    slug: "plix-cleanser-fruit-face-wash",
+    name: "Plix Juicy Cleanser Fruit Face Wash (All Variants)",
+    brandId: "br-plix",
+    categoryId: "cat-skincare",
+    description: "Juicy fruit-derived daily foaming gel wash that removes dirt, oil, and makeup while delivering fresh active hydration.",
+    details: "Available in Pineapple De-Pigmentation, Pomegranate Youth Renewal, Jamun Active Acne, and Guava Glow Radiance.",
+    ingredients: "Fruit Extract, Sodium Cocoyl Isethionate, Betaine, Vitamin C, Niacinamide.",
+    size: "100 ml",
+    image: "/products/plix-juicy-facewash.jpg",
+    mrp: 375,
+    price: 349,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 310,
+    relatedIds: ["p-plix-active-fruit-serum","p-dotkey-facewash","p-plum-facewash"],
+    variants: [
+      {
+            "id": "v-plix-cl-pine",
+            "name": "Pineapple De-Pigmentation Juicy 100ml",
+            "size": "100 ml",
+            "price": 349,
+            "mrp": 375,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-cl-pom",
+            "name": "Pomegranate Youth Renewal 100ml",
+            "size": "100 ml",
+            "price": 349,
+            "mrp": 375,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-cl-jamun",
+            "name": "Jamun Active Acne 100ml",
+            "size": "100 ml",
+            "price": 349,
+            "mrp": 375,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-cl-guava",
+            "name": "Guava Glow Radiance 100ml",
+            "size": "100 ml",
+            "price": 349,
+            "mrp": 375,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Plix Cleanser Face Wash",
+            "url": "/products/plix-juicy-facewash.jpg",
+            "tone": "#fef8ea"
+      }
+],
+  },
+  {
+    id: "p-wishcare-sunscreen-body-lotion",
+    slug: "wishcare-sunscreen-body-lotion",
+    name: "WishCare Invisible Sunscreen Body Lotion SPF 50 PA++++",
+    brandId: "br-wishcare",
+    categoryId: "cat-bath",
+    description: "Broad-spectrum UV body sunscreen lotion with zero white cast, non-sticky feel, and 5 ceramides to protect against sunburn and premature aging.",
+    details: "Water and sweat resistant formula infused with Niacinamide and Carrot Seed Extract for head-to-toe sun defense in sunny Rajasthan.",
+    ingredients: "Hybrid UV Filters, 5 Essential Ceramides, Niacinamide, Kakadu Plum Extract.",
+    size: "200 ml",
+    image: "/products/wishcare-sunscreen-body-lotion.jpg",
+    mrp: 499,
+    price: 449,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.9,
+    reviewCount: 375,
+    relatedIds: ["p-wishcare-vitc-sunscreen","p-mcaffeine-sweet-escape-lotion","p-dotkey-sunscreen-50"],
+    variants: [
+      {
+            "id": "v-wc-body-sun-200",
+            "name": "200 ml (Full Size)",
+            "size": "200 ml",
+            "price": 449,
+            "mrp": 499,
+            "inStock": true
+      },
+      {
+            "id": "v-wc-body-sun-100",
+            "name": "100 ml (Travel Pack)",
+            "size": "100 ml",
+            "price": 279,
+            "mrp": 299,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "WishCare Sunscreen Lotion",
+            "url": "/products/wishcare-sunscreen-body-lotion.jpg",
+            "tone": "#edf8f2"
+      }
+],
+  },
+  {
+    id: "p-dermaco-1-kojic-acid-facewash",
+    slug: "derma-co-1-percent-kojic-acid-daily-facewash",
+    name: "The Derma Co 1% Kojic Acid Daily Face Wash",
+    brandId: "br-dermaco",
+    categoryId: "cat-skincare",
+    description: "Dermatologist-designed cleanser with 1% Kojic Acid, Alpha Arbutin, and Niacinamide that reduces dark spots, fades sun tan, and evens skin tone.",
+    details: "Gentle non-drying daily cleanser that lifts dull surface skin without stripping moisture. Recommended for Indian sun exposure.",
+    ingredients: "1% Kojic Acid, Alpha Arbutin, Niacinamide, Glycerin.",
+    size: "100 ml",
+    image: "/products/dermaco-1-kojic-acid-facewash.jpg",
+    mrp: 299,
+    price: 269,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 468,
+    relatedIds: ["p-dotkey-facewash","p-chemistatplay-facewash","p-plix-cleanser-facewash"],
+    variants: [
+      {
+            "id": "v-dermaco-kojic-100",
+            "name": "100 ml",
+            "size": "100 ml",
+            "price": 269,
+            "mrp": 299,
+            "inStock": true
+      },
+      {
+            "id": "v-dermaco-kojic-250",
+            "name": "250 ml (Value Pack)",
+            "size": "250 ml",
+            "price": 549,
+            "mrp": 599,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "1% Kojic Acid Face Wash",
+            "url": "/products/dermaco-1-kojic-acid-facewash.jpg",
+            "tone": "#edf5f0"
+      }
+],
+  },
+  {
+    id: "p-nykaa-naturals-facewash",
+    slug: "nykaa-naturals-gentle-face-wash",
+    name: "Nykaa Naturals Gentle Face Wash (All Variants)",
+    brandId: "br-nykaa",
+    categoryId: "cat-skincare",
+    description: "Ayurvedic and botanical face wash formulated with targeted actives: Rice Water & Glycolic Acid, Saffron & Honey, and Superberries & Peptide.",
+    details: "Soap-free, gentle daily cleanser that purifies skin and restores natural luminous clarity without tightness.",
+    ingredients: "Natural Botanical Extracts, Glycolic Acid, Saffron Flower, Pure Honey, Peptides.",
+    size: "100 ml",
+    image: "/products/nykaa-naturals-facewash.jpg",
+    mrp: 249,
+    price: 199,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.7,
+    reviewCount: 290,
+    relatedIds: ["p-plum-facewash","p-dotkey-facewash","p-plix-cleanser-facewash"],
+    variants: [
+      {
+            "id": "v-nykaa-fw-ricewater",
+            "name": "Rice Water & Glycolic Acid 100ml",
+            "size": "100 ml",
+            "price": 199,
+            "mrp": 249,
+            "inStock": true
+      },
+      {
+            "id": "v-nykaa-fw-saffron",
+            "name": "Saffron & Honey Glowing 100ml",
+            "size": "100 ml",
+            "price": 199,
+            "mrp": 249,
+            "inStock": true
+      },
+      {
+            "id": "v-nykaa-fw-berries",
+            "name": "Superberries & Peptide Firming 100ml",
+            "size": "100 ml",
+            "price": 199,
+            "mrp": 249,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Nykaa Naturals Face Wash",
+            "url": "/products/nykaa-naturals-facewash.jpg",
+            "tone": "#fcf3f5"
+      }
+],
+  },
+  {
+    id: "p-dotkey-facewash",
+    slug: "dot-and-key-gentle-daily-face-wash",
+    name: "Dot & Key Gentle Daily Face Wash Collection",
+    brandId: "br-dotkey",
+    categoryId: "cat-skincare",
+    description: "Fruit and science-backed gel washes that deep-clean without disrupting the delicate moisture barrier. Available in Hydrating Barrier, Niacinamide Gel, and Cooling Gel.",
+    details: "Formulated without harsh sulfates, artificial fragrances, or parabens. Gentle enough for morning and evening routines.",
+    ingredients: "Ceramides, Niacinamide, Cica, Hyaluronic Acid, Watermelon Extract.",
+    size: "100 ml",
+    image: "/products/dotkey-facewash.jpg",
+    mrp: 295,
+    price: 249,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 350,
+    relatedIds: ["p-dotkey-micellar-facewash","p-dotkey-vitc-moisturizer","p-dermaco-1-kojic-acid-facewash"],
+    variants: [
+      {
+            "id": "v-dotkey-fw-hydrating",
+            "name": "Hydrating Gentle Barrier 100ml",
+            "size": "100 ml",
+            "price": 249,
+            "mrp": 295,
+            "inStock": true
+      },
+      {
+            "id": "v-dotkey-fw-niacinamide",
+            "name": "Niacinamide Cica Gel 100ml",
+            "size": "100 ml",
+            "price": 249,
+            "mrp": 295,
+            "inStock": true
+      },
+      {
+            "id": "v-dotkey-fw-cooling",
+            "name": "Cooling Gel Hydration 100ml",
+            "size": "100 ml",
+            "price": 249,
+            "mrp": 295,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Dot & Key Face Wash Tube",
+            "url": "/products/dotkey-facewash.jpg",
+            "tone": "#fcf1f4"
+      }
+],
+  },
+  {
+    id: "p-plum-facewash",
+    slug: "plum-goodness-botanical-face-wash",
+    name: "Plum Goodness Botanical Face Wash Range",
+    brandId: "br-plum",
+    categoryId: "cat-skincare",
+    description: "100% vegan cleansers formulated with Green Tea (pore cleansing), Saffron & Papaya (glow bright), and Niacinamide (simply bright).",
+    details: "Gentle soap-free foaming gel wash loaded with soft cellulose beads to melt away impurities without micro-tears.",
+    ingredients: "Green Tea Extracts, Glycolic Acid, Saffron, Papaya Enzyme, 2% Niacinamide.",
+    size: "100 ml",
+    image: "/products/plum-green-tea-facewash.jpg",
+    mrp: 345,
+    price: 299,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 420,
+    relatedIds: ["p-dotkey-facewash","p-chemistatplay-facewash","p-plix-cleanser-facewash"],
+    variants: [
+      {
+            "id": "v-plum-greentea",
+            "name": "Green Tea Pore Cleansing 100ml",
+            "size": "100 ml",
+            "price": 299,
+            "mrp": 345,
+            "inStock": true
+      },
+      {
+            "id": "v-plum-saffron",
+            "name": "Saffron & Papaya Glow Bright 100ml",
+            "size": "100 ml",
+            "price": 299,
+            "mrp": 345,
+            "inStock": true
+      },
+      {
+            "id": "v-plum-niacinamide",
+            "name": "Niacinamide Simply Bright 100ml",
+            "size": "100 ml",
+            "price": 299,
+            "mrp": 345,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Plum Green Tea Face Wash",
+            "url": "/products/plum-green-tea-facewash.jpg",
+            "tone": "#eef6f0"
+      }
+],
+  },
+  {
+    id: "p-chemistatplay-facewash",
+    slug: "chemist-at-play-active-ceramide-face-wash",
+    name: "Chemist at Play Active Ceramide Face Wash",
+    brandId: "br-chemistatplay",
+    categoryId: "cat-skincare",
+    description: "India's first active ceramide face wash. Choose Vitamin C Brightening Boost, Hyaluronic Acid Gentle Hydration, or 4% AHA Gentle Exfoliating.",
+    details: "Formulated with 3 essential skin-identical ceramides to keep skin soft, dewy, and resilient against pollution and sun damage.",
+    ingredients: "Ceramide NP, Vitamin C, Hyaluronic Acid, 4% AHA Glycolic/Lactic Blend.",
+    size: "100 ml",
+    image: "/products/chemistatplay-facewash.jpg",
+    mrp: 399,
+    price: 349,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.9,
+    reviewCount: 288,
+    relatedIds: ["p-chemistatplay-body-wash","p-dermaco-1-kojic-acid-facewash","p-dotkey-facewash"],
+    variants: [
+      {
+            "id": "v-cap-fw-vitc",
+            "name": "Vitamin C Brightening Boost 100ml",
+            "size": "100 ml",
+            "price": 349,
+            "mrp": 399,
+            "inStock": true
+      },
+      {
+            "id": "v-cap-fw-hyaluronic",
+            "name": "Hyaluronic Acid Gentle & Hydrating 100ml",
+            "size": "100 ml",
+            "price": 349,
+            "mrp": 399,
+            "inStock": true
+      },
+      {
+            "id": "v-cap-fw-aha",
+            "name": "4% AHA Gentle Exfoliating 100ml",
+            "size": "100 ml",
+            "price": 349,
+            "mrp": 399,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Chemist at Play Face Wash",
+            "url": "/products/chemistatplay-facewash.jpg",
+            "tone": "#f0f6f2"
+      }
+],
+  },
+  {
+    id: "p-dotkey-sunscreen-50",
+    slug: "dot-and-key-sunscreen-spf-50",
+    name: "Dot & Key Sunscreen SPF 50+ PA++++ Collection",
+    brandId: "br-dotkey",
+    categoryId: "cat-skincare",
+    description: "Zero white cast ultra-light UV sunscreens. Choose between Ceramide Barrier Repair, Vitamin C+E Super Bright, Watermelon Cooling, or Cica Mattifying.",
+    details: "Broad spectrum protection against UVA, UVB, and blue light damage. Leaves a gorgeous dewy or matte finish with zero stickiness.",
+    ingredients: "Hybrid UV Filters, Ceramides, Vitamin C, Watermelon Extract, Cica, Hyaluronic Acid.",
+    size: "50 g",
+    image: "/products/dotkey-sunscreen-50.jpg",
+    mrp: 495,
+    price: 445,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.9,
+    reviewCount: 512,
+    relatedIds: ["p-dotkey-vitc-moisturizer","p-wishcare-vitc-sunscreen","p-dotkey-micellar-facewash"],
+    variants: [
+      {
+            "id": "v-dk-sun-barrier",
+            "name": "Ceramide Barrier Repair SPF 50+ (50g)",
+            "size": "50 g",
+            "price": 445,
+            "mrp": 495,
+            "inStock": true
+      },
+      {
+            "id": "v-dk-sun-superbright",
+            "name": "Vitamin C+E Super Bright SPF 50+ (50g)",
+            "size": "50 g",
+            "price": 445,
+            "mrp": 495,
+            "inStock": true
+      },
+      {
+            "id": "v-dk-sun-cooling",
+            "name": "Watermelon Cooling Sunscreen SPF 50+ (50g)",
+            "size": "50 g",
+            "price": 445,
+            "mrp": 495,
+            "inStock": true
+      },
+      {
+            "id": "v-dk-sun-mattifying",
+            "name": "Cica Mattifying Sunscreen SPF 50+ (50g)",
+            "size": "50 g",
+            "price": 445,
+            "mrp": 495,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Dot & Key Sunscreen SPF 50+",
+            "url": "/products/dotkey-sunscreen-50.jpg",
+            "tone": "#edf6fa"
+      }
+],
+  },
+  {
+    id: "p-dotkey-micellar-facewash",
+    slug: "dot-and-key-micellar-face-wash-120ml",
+    name: "Dot & Key Barrier Repair Gentle Micellar Face Wash",
+    brandId: "br-dotkey",
+    categoryId: "cat-skincare",
+    description: "Micellar water infused foaming cleanser that dissolves makeup, sunscreen, and grime in one soothing wash while preserving skin lipids.",
+    details: "Gentle non-stripping formula with 5 Ceramides and Hyaluronic Acid. 120 ml pump tube.",
+    ingredients: "Micellar Technology, 5 Essential Ceramides, Hyaluronic Acid, Probiotics.",
+    size: "120 ml",
+    image: "/products/dotkey-micellar-facewash.jpg",
+    mrp: 329,
+    price: 289,
+    inStock: true,
+    isNew: true,
+    isBestseller: false,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 198,
+    relatedIds: ["p-dotkey-facewash","p-dotkey-sunscreen-50","p-dotkey-oilfree-moisturizer"],
+    variants: [
+      {
+            "id": "v-dk-micellar-120",
+            "name": "120 ml",
+            "size": "120 ml",
+            "price": 289,
+            "mrp": 329,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Micellar Face Wash 120ml",
+            "url": "/products/dotkey-micellar-facewash.jpg",
+            "tone": "#fdf3f4"
+      }
+],
+  },
+  {
+    id: "p-plix-flaxseed-shampoo",
+    slug: "plix-flaxseed-ultra-smooth-shampoo",
+    name: "Plix Flaxseed Ultra Smooth Hair Shampoo",
+    brandId: "br-plix",
+    categoryId: "cat-hair",
+    description: "Flaxseed oil and plant protein shampoo that tames rebellious frizz, strengthens hair fibers, and delivers silky salon smoothness.",
+    details: "Free of parabens, sulfates, and harsh silicones. Safe for colored and keratin-treated hair.",
+    ingredients: "Cold-Pressed Flaxseed Oil, Pea Protein, Keratin Actives, D-Panthenol.",
+    size: "300 ml",
+    image: "/products/plix-flaxseed-shampoo.jpg",
+    mrp: 450,
+    price: 399,
+    inStock: true,
+    isNew: true,
+    isBestseller: false,
+    offerIds: [],
+    rating: 4.7,
+    reviewCount: 145,
+    relatedIds: ["p-plix-flaxseed-conditioner","p-plix-rosemary-oil","p-mamaearth-onion-shampoo"],
+    variants: [
+      {
+            "id": "v-plix-flax-shamp-300",
+            "name": "300 ml",
+            "size": "300 ml",
+            "price": 399,
+            "mrp": 450,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-flax-shamp-500",
+            "name": "500 ml (Value Pump)",
+            "size": "500 ml",
+            "price": 599,
+            "mrp": 699,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Flaxseed Shampoo Bottle",
+            "url": "/products/plix-flaxseed-shampoo.jpg",
+            "tone": "#f2f8f0"
+      }
+],
+  },
+  {
+    id: "p-plix-flaxseed-conditioner",
+    slug: "plix-flaxseed-ultra-smooth-conditioner",
+    name: "Plix Flaxseed Ultra Smooth Hair Conditioner",
+    brandId: "br-plix",
+    categoryId: "cat-hair",
+    description: "Deep conditioning restorative cream with rich Omega 3 from flaxseed that locks in moisture and eliminates tangles instantly.",
+    details: "Leaves hair glossy, lightweight, and effortlessly manageable from first application.",
+    ingredients: "Flaxseed Oil, Shea Butter, Argan Oil, Provitamin B5.",
+    size: "200 ml",
+    image: "/products/plix-flaxseed-shampoo.jpg",
+    mrp: 450,
+    price: 399,
+    inStock: true,
+    isNew: true,
+    isBestseller: false,
+    offerIds: [],
+    rating: 4.7,
+    reviewCount: 132,
+    relatedIds: ["p-plix-flaxseed-shampoo","p-plix-rosemary-oil"],
+    variants: [
+      {
+            "id": "v-plix-flax-cond-200",
+            "name": "200 ml",
+            "size": "200 ml",
+            "price": 399,
+            "mrp": 450,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Flaxseed Conditioner",
+            "url": "/products/plix-flaxseed-shampoo.jpg",
+            "tone": "#f2f8f0"
+      }
+],
+  },
+  {
+    id: "p-plix-fruit-sunscreen",
+    slug: "plix-fruit-active-sunscreen-spf-50",
+    name: "Plix Fruit Active SPF 50+ Sunscreen (Guava Glow & Pineapple)",
+    brandId: "br-plix",
+    categoryId: "cat-skincare",
+    description: "Juicy fruit sunscreens powered by Vitamin C and Alpha Arbutin. Broad spectrum SPF 50+ PA+++ shielding against sun damage and pigmentation.",
+    details: "Choose Guava Glow Dewy Sunscreen for an illuminating glass skin finish, or Pineapple Advanced De-Pigmentation Sunscreen for dark spot correction.",
+    ingredients: "Hybrid UV Filters, Guava Extract, Pineapple Bromelain, Alpha Arbutin, Niacinamide.",
+    size: "50 g",
+    image: "/products/plix-pineapple-depigmentation-serum.jpg",
+    mrp: 499,
+    price: 449,
+    inStock: true,
+    isNew: true,
+    isBestseller: false,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 178,
+    relatedIds: ["p-plix-active-fruit-serum","p-dotkey-sunscreen-50","p-wishcare-vitc-sunscreen"],
+    variants: [
+      {
+            "id": "v-plix-sun-guava",
+            "name": "Guava Glow Dewy Sunscreen 50g",
+            "size": "50 g",
+            "price": 449,
+            "mrp": 499,
+            "inStock": true
+      },
+      {
+            "id": "v-plix-sun-pine",
+            "name": "Pineapple Advanced De-Pigmentation Sunscreen 50g",
+            "size": "50 g",
+            "price": 449,
+            "mrp": 499,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Plix Sunscreen Tube",
+            "url": "/products/plix-pineapple-depigmentation-serum.jpg",
+            "tone": "#fef9e8"
+      }
+],
+  },
+  {
+    id: "p-nivea-men-deep-impact",
+    slug: "nivea-men-deep-impact-deodorant",
+    name: "Nivea Men Deep Impact Fresh Deodorant Spray",
+    brandId: "br-nivea",
+    categoryId: "cat-bath",
+    description: "Black Carbon infused antibacterial deodorant spray that protects against odor and delivers an intense, woody masculine fragrance all day long.",
+    details: "0% alcohol formula dermatologically approved for skin comfort. Keeps underarms clean, dry, and fresh for up to 48 hours.",
+    ingredients: "Black Carbon, Premium Woody Parfum, Skin Conditioning Agents.",
+    size: "150 ml",
+    image: "/products/nivea-men-deep-impact.jpg",
+    mrp: 249,
+    price: 199,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 520,
+    relatedIds: ["p-nivea-pearl-beauty","p-bellavita-white-oud","p-bellavita-skai-shower-gel"],
+    variants: [
+      {
+            "id": "v-nivea-deep-150",
+            "name": "150 ml (Standard Can)",
+            "size": "150 ml",
+            "price": 199,
+            "mrp": 249,
+            "inStock": true
+      },
+      {
+            "id": "v-nivea-deep-200",
+            "name": "200 ml (Value Can)",
+            "size": "200 ml",
+            "price": 279,
+            "mrp": 349,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Deep Impact Deodorant Can",
+            "url": "/products/nivea-men-deep-impact.jpg",
+            "tone": "#ececec"
+      }
+],
+  },
+  {
+    id: "p-nivea-pearl-beauty",
+    slug: "nivea-pearl-and-beauty-deodorant",
+    name: "Nivea Pearl & Beauty Fine Fragrance Deodorant Spray",
+    brandId: "br-nivea",
+    categoryId: "cat-bath",
+    description: "Enriched with precious pearl extracts for smooth, beautiful and even-toned underarms while delivering 48 hours of reliable odor protection.",
+    details: "Mild floral fine fragrance with gentle Nivea care. 0% alcohol and dermatologically tested.",
+    ingredients: "Pearl Extracts, Avocado Oil, Floral Parfum, Skin Softeners.",
+    size: "150 ml",
+    image: "/products/nivea-pearl-beauty.jpg",
+    mrp: 249,
+    price: 199,
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 489,
+    relatedIds: ["p-nivea-men-deep-impact","p-mcaffeine-sweet-escape-lotion","p-bellavita-date-woman"],
+    variants: [
+      {
+            "id": "v-nivea-pearl-150",
+            "name": "150 ml (Standard Can)",
+            "size": "150 ml",
+            "price": 199,
+            "mrp": 249,
+            "inStock": true
+      },
+      {
+            "id": "v-nivea-pearl-200",
+            "name": "200 ml (Value Can)",
+            "size": "200 ml",
+            "price": 279,
+            "mrp": 349,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Pearl & Beauty Deodorant Can",
+            "url": "/products/nivea-pearl-beauty.jpg",
+            "tone": "#fbf2f4"
+      }
+],
+  },
+  {
+    id: "p-pilgrim-korean-mist",
+    slug: "pilgrim-korean-black-rice-and-rosemary-water-spray",
+    name: "Pilgrim Korean Black Rice & Rosemary Hair Water Spray",
+    brandId: "br-pilgrim",
+    categoryId: "cat-hair",
+    description: "Fermented Korean Black Rice water & Rosemary mist that strengthens brittle strands, boosts scalp circulation, and delivers brilliant glass-hair shine.",
+    details: "Convenient daily leave-in spray. Lightweight, non-oily water texture suitable for everyday use on wet or dry hair.",
+    ingredients: "Fermented Black Rice Water, Rosemary Extract, Biotin, Peptides, Aloe Vera.",
+    size: "100 ml",
+    image: "/products/pilgrim-korean-black-rice-mist.jpg",
+    mrp: 225,
+    price: 199,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.8,
+    reviewCount: 260,
+    relatedIds: ["p-mamaearth-rosemary-oil","p-plix-rosemary-oil","p-plix-flaxseed-shampoo"],
+    variants: [
+      {
+            "id": "v-pilgrim-mist-100",
+            "name": "100 ml",
+            "size": "100 ml",
+            "price": 199,
+            "mrp": 225,
+            "inStock": true
+      },
+      {
+            "id": "v-pilgrim-mist-200",
+            "name": "200 ml (Value Size)",
+            "size": "200 ml",
+            "price": 349,
+            "mrp": 395,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "Black Rice & Rosemary Mist Bottle",
+            "url": "/products/pilgrim-korean-black-rice-mist.jpg",
+            "tone": "#f5f0ec"
+      }
+],
+  },
+  {
+    id: "p-wishcare-vitc-sunscreen",
+    slug: "wishcare-vitamin-c-sunscreen-spf-50",
+    name: "WishCare Invisible Vitamin C Sunscreen SPF 50+ PA++++",
+    brandId: "br-wishcare",
+    categoryId: "cat-skincare",
+    description: "Lightweight, ultra-invisible gel sunscreen formulated with stable Vitamin C and Hyaluronic Acid. Leaves zero cast and imparts a luminous, sun-safe glow.",
+    details: "Non-greasy fluid texture that absorbs instantly without stinging the eyes or clogging pores. Ideal under makeup and daily protection.",
+    ingredients: "Ethyl Ascorbic Acid (Vitamin C), Hyaluronic Acid, Niacinamide, Photostable UV Filters.",
+    size: "50 g",
+    image: "/products/wishcare-vitc-sunscreen.png",
+    mrp: 499,
+    price: 449,
+    inStock: true,
+    isNew: true,
+    isBestseller: true,
+    offerIds: [],
+    rating: 4.9,
+    reviewCount: 394,
+    relatedIds: ["p-wishcare-sunscreen-body-lotion","p-dotkey-sunscreen-50","p-dotkey-vitc-moisturizer"],
+    variants: [
+      {
+            "id": "v-wc-vitc-sun-50",
+            "name": "50 g",
+            "size": "50 g",
+            "price": 449,
+            "mrp": 499,
+            "inStock": true
+      },
+      {
+            "id": "v-wc-vitc-sun-100",
+            "name": "100 g (Value Pack)",
+            "size": "100 g",
+            "price": 749,
+            "mrp": 849,
+            "inStock": true
+      }
+],
+    gallery: [
+      {
+            "label": "WishCare Vitamin C Sunscreen Tube",
+            "url": "/products/wishcare-vitc-sunscreen.png",
+            "tone": "#edf7f1"
+      }
+],
+  },
 ];
-
 
 export function getProductById(id: string) {
   return products.find((p) => p.id === id);

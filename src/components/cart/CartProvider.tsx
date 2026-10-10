@@ -67,9 +67,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const add = useCallback((product: Product, qty = 1, variant?: { id: string; name: string }) => {
     if (!product.inStock) return;
-    if (product.variants?.length && !variant) return;
-    if (variant && product.variants?.some((v) => v.id === variant.id && !v.inStock)) return;
-    const key = lineKey(product.id, variant?.id);
+    const fallbackVariant = product.variants?.find((v) => v.inStock) ?? product.variants?.[0];
+    const selectedVariant = variant ?? fallbackVariant;
+    if (selectedVariant && product.variants?.some((v) => v.id === selectedVariant.id && !v.inStock)) return;
+    const key = lineKey(product.id, selectedVariant?.id);
     setLines((prev) => {
       const existing = prev.find((l) => l.key === key);
       if (existing) {
@@ -80,8 +81,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         {
           key,
           productId: product.id,
-          variantId: variant?.id,
-          variantName: variant?.name,
+          variantId: selectedVariant?.id,
+          variantName: selectedVariant?.name,
           quantity: qty,
         },
       ];
@@ -113,7 +114,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const priced = resolved.filter(({ product }) => product && product.price != null);
   const subtotal = hasEnquiry
     ? null
-    : priced.reduce((sum, { line, product }) => sum + (product!.price as number) * line.quantity, 0);
+    : priced.reduce((sum, { line, product }) => {
+        const v = product!.variants?.find((vx) => vx.id === line.variantId);
+        const itemPrice = (v?.price != null ? v.price : product!.price) as number;
+        return sum + itemPrice * line.quantity;
+      }, 0);
 
   const deliveryFee =
     subtotal == null ? store.deliveryFee : subtotal >= store.freeDeliveryOver ? 0 : store.deliveryFee;
@@ -153,12 +158,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
         const built = lines.map((line) => {
           const product = getProductById(line.productId);
+          const v = product?.variants?.find((vx) => vx.id === line.variantId);
+          const unitPrice = (v?.price != null ? v.price : product?.price) ?? null;
           return {
             ...line,
             name: product
               ? `${product.name}${line.variantName ? ` · ${line.variantName}` : ""}`
               : "Product",
-            unitPrice: product?.price ?? null,
+            unitPrice,
           };
         });
 

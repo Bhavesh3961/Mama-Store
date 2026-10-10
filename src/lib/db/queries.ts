@@ -383,7 +383,18 @@ export function createOrderWithStockDeduction(input: CreateOrderInput): OrderWit
       throw new Error(`Insufficient stock for "${product.name}". Only ${product.stock} available.`);
     }
 
-    const itemTotal = product.price * qty;
+    let itemUnitPrice = product.price;
+    if (item.variantId && product.variants_json) {
+      try {
+        const variants = JSON.parse(product.variants_json);
+        const matched = variants.find((v: any) => v.id === item.variantId);
+        if (matched && matched.price != null) {
+          itemUnitPrice = matched.price;
+        }
+      } catch {}
+    }
+
+    const itemTotal = itemUnitPrice * qty;
     subtotal += itemTotal;
 
     const fullProductName = item.variantName ? `${product.name} · ${item.variantName}` : product.name;
@@ -396,7 +407,7 @@ export function createOrderWithStockDeduction(input: CreateOrderInput): OrderWit
       variant_id: item.variantId || null,
       variant_name: item.variantName || null,
       quantity: qty,
-      unit_price: product.price,
+      unit_price: itemUnitPrice,
       total_price: itemTotal,
     });
 

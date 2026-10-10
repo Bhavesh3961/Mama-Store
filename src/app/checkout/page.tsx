@@ -122,8 +122,10 @@ export default function CheckoutPage() {
         .map((line) => {
           const p = getProductById(line.productId);
           const name = p ? p.name : line.productId;
+          const v = p?.variants?.find((vx) => vx.id === line.variantId);
           const variant = line.variantName ? ` (${line.variantName})` : "";
-          const priceStr = p && p.price ? formatInr(p.price * line.quantity) : "Contact for price";
+          const unitPrice = v?.price ?? p?.price;
+          const priceStr = unitPrice != null ? formatInr(unitPrice * line.quantity) : "Contact for price";
           return `• ${name}${variant} × ${line.quantity} = ${priceStr}`;
         })
         .join("\n");
