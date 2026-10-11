@@ -105,6 +105,7 @@ test("Verify new standalone products and packshot assets on disk", async () => {
     "plum-saffron-facewash.jpg",
     "plum-niacinamide-facewash.jpg",
     "chemistatplay-salicylic-facewash.jpg",
+    "chemistatplay-vitc-facewash.jpg",
     "chemistatplay-hydrating-facewash.jpg",
     "chemistatplay-aha-facewash.jpg",
     "dotkey-micellar-facewash.jpg",
@@ -116,6 +117,8 @@ test("Verify new standalone products and packshot assets on disk", async () => {
     "nivea-pearl-beauty.jpg",
     "pilgrim-korean-black-rice-mist.jpg",
     "wishcare-vitc-sunscreen.png",
+    "plix-pineapple-depigmentation-serum-50.jpg",
+    "plix-guava-glow-serum-50.jpg",
   ];
 
   for (const img of expectedImages) {
@@ -138,6 +141,20 @@ test("Verify new standalone products and packshot assets on disk", async () => {
     productsTs.includes(`id: "p-plix-flaxseed-conditioner"`) &&
     productsTs.includes(`/products/plix-flaxseed-conditioner.jpg`),
     "Conditioner must have its own distinct conditioner image"
+  );
+
+  // Ensure 50ml variants have distinct images from 30ml
+  assert.ok(
+    productsTs.includes(`/products/plix-pineapple-depigmentation-serum-50.jpg`),
+    "Plix 50ml pineapple serum must have its own -50.jpg packshot"
+  );
+  assert.ok(
+    productsTs.includes(`/products/plix-guava-glow-serum-50.jpg`),
+    "Plix 50ml guava serum must have its own -50.jpg packshot"
+  );
+  assert.ok(
+    productsTs.includes(`/products/chemistatplay-vitc-facewash.jpg`),
+    "Chemist at Play Vit C must have its own vitc packshot"
   );
 });
 

@@ -606,7 +606,7 @@ export const products: Product[] = [
     details: "Daily glow elixir for stubborn pigmentation and uneven tone.",
     ingredients: "Pineapple Fruit Extract, 2% Alpha Arbutin, Niacinamide, Hyaluronic Acid.",
     size: "50 ml",
-    image: "/products/plix-pineapple-depigmentation-serum.jpg",
+    image: "/products/plix-pineapple-depigmentation-serum-50.jpg",
     mrp: 699,
     price: 575,
     inStock: true,
@@ -619,7 +619,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Pineapple Serum 50ml",
-            "url": "/products/plix-pineapple-depigmentation-serum.jpg",
+            "url": "/products/plix-pineapple-depigmentation-serum-50.jpg",
             "tone": "#fef9e8"
       }
 ],
@@ -662,7 +662,7 @@ export const products: Product[] = [
     details: "Restores dull, sun-tired skin to full dewy bounce.",
     ingredients: "Guava Extract, Vitamin C, Hyaluronic Acid.",
     size: "50 ml",
-    image: "/products/plix-guava-glow-serum.jpg",
+    image: "/products/plix-guava-glow-serum-50.jpg",
     mrp: 650,
     price: 550,
     inStock: true,
@@ -675,7 +675,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Guava Glow Serum 50ml",
-            "url": "/products/plix-guava-glow-serum.jpg",
+            "url": "/products/plix-guava-glow-serum-50.jpg",
             "tone": "#fef9e8"
       }
 ],
@@ -1166,7 +1166,7 @@ export const products: Product[] = [
     details: "Maintains skin barrier health while clarifying pores.",
     ingredients: "Ceramide NP, Ethyl Ascorbic Acid, Glycerin.",
     size: "100 ml",
-    image: "/products/chemistatplay-salicylic-facewash.jpg",
+    image: "/products/chemistatplay-vitc-facewash.jpg",
     mrp: 399,
     price: 349,
     inStock: true,
@@ -1179,7 +1179,7 @@ export const products: Product[] = [
     gallery: [
       {
             "label": "Vitamin C Face Wash",
-            "url": "/products/chemistatplay-salicylic-facewash.jpg",
+            "url": "/products/chemistatplay-vitc-facewash.jpg",
             "tone": "#f0f6f2"
       }
 ],
