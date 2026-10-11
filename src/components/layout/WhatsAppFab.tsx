@@ -4,7 +4,7 @@ import { whatsappHref } from "@/lib/format";
 export function WhatsAppFab() {
   return (
     <a
-      className="wa-fab"
+      className="whatsapp-fab wa-fab"
       href={whatsappHref(`Hello ${store.name}, I have a question about a product / order.`)}
       target="_blank"
       rel="noreferrer"

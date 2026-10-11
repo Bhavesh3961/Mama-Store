@@ -74,7 +74,7 @@ export function BottomNav() {
   ];
 
   return (
-    <nav className="bottom-nav luxury-mobile-dock" aria-label="Mobile Navigation">
+    <nav className="luxury-mobile-dock" aria-label="Mobile Navigation">
       <div className="mobile-dock-inner">
         {navItems.map((item) => {
           const isActive = item.match(pathname);

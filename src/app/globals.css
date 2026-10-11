@@ -53,6 +53,9 @@ html {
   background-color: var(--bg);
   color-scheme: light !important;
   forced-color-adjust: none !important;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -68,6 +71,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
 }
 
 /* STRICT ANTI-DARK-MODE LOCK:
@@ -565,6 +571,33 @@ p {
 .site-header-wrapper.scrolled {
   padding-top: 6px;
   padding-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+  .site-header-wrapper {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background: rgba(248, 246, 242, 0.82);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(27, 21, 18, 0.05);
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .site-header-wrapper.scrolled {
+    background: rgba(248, 246, 242, 0.96);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  .header-liquid-glass-pill {
+    padding: 4px 12px;
+    min-height: 52px;
+  }
+
+  .glass-logo-pill {
+    padding: 4px 10px;
+    gap: 8px;
+  }
 }
 
 .header-liquid-glass-pill {
@@ -1548,79 +1581,43 @@ p {
 /* ==========================================================================
    BOTTOM NAVIGATION & FAB (MOBILE CONCIERGE)
    ========================================================================== */
-.bottom-nav {
+.whatsapp-fab,
+.wa-fab {
   position: fixed;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(440px, calc(100% - 24px));
-  z-index: 85;
-  background: #FFFFFF;
-  border: var(--neo-border);
-  border-radius: 16px;
-  box-shadow: 4px 4px 0px var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px 16px;
-}
-
-@media (min-width: 960px) {
-  .bottom-nav {
-    display: none;
-  }
-}
-
-.bottom-nav a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.72rem;
-  font-weight: 850;
-  text-transform: uppercase;
-  color: var(--muted);
-  gap: 2px;
-  transition: color 0.15s ease;
-}
-
-.bottom-nav a.active {
-  color: var(--ink);
-  font-weight: 900;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.whatsapp-fab {
-  position: fixed;
-  bottom: 84px;
-  right: 20px;
-  z-index: 80;
-  width: 52px;
-  height: 52px;
+  bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  right: 16px;
+  z-index: 900;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #25d366;
   color: #ffffff;
-  border: var(--neo-border);
-  display: grid;
-  place-items: center;
-  box-shadow: 4px 4px 0px var(--ink);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4), 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
 }
 
-.whatsapp-fab:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px var(--ink);
+.whatsapp-fab:hover,
+.wa-fab:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
 }
 
-.whatsapp-fab:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px var(--ink);
+.whatsapp-fab:active,
+.wa-fab:active {
+  transform: scale(0.95);
 }
 
-@media (min-width: 960px) {
-  .whatsapp-fab {
+@media (min-width: 900px) {
+  .whatsapp-fab,
+  .wa-fab {
     bottom: 28px;
     right: 28px;
+    width: 52px;
+    height: 52px;
   }
 }
 
@@ -4822,6 +4819,13 @@ p {
   gap: 16px;
 }
 
+@media (max-width: 640px) {
+  .boutique-trust-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 .boutique-trust-card {
   display: flex;
   align-items: center;
@@ -5054,6 +5058,13 @@ p {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .luxury-brand-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
 
 .luxury-brand-card {
@@ -5564,11 +5575,44 @@ p {
   50% { opacity: 0.4; transform: scale(0.8); }
 }
 
+.ticker-badge-text-short {
+  display: none;
+}
+
 .ticker-marquee-track {
   overflow: hidden;
   white-space: nowrap;
   flex: 1;
   position: relative;
+  mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 12px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 12px), transparent 100%);
+}
+
+@media (max-width: 640px) {
+  .trending-ticker-bar {
+    padding: 5px 0;
+    font-size: 0.70rem;
+  }
+
+  .trending-ticker-shell {
+    gap: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .ticker-badge-text-full {
+    display: none;
+  }
+
+  .ticker-badge-text-short {
+    display: inline;
+  }
+
+  .ticker-live-badge {
+    padding: 2px 7px;
+    font-size: 0.60rem;
+    letter-spacing: 0.08em;
+  }
 }
 
 .ticker-content-loop {
@@ -6519,6 +6563,15 @@ p {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+  .editorial-cat-mini-card {
+    height: 190px !important;
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+  .mini-card-title {
+    font-size: 1.15rem !important;
+    margin: 0 0 4px !important;
+  }
 }
 
 .editorial-cat-mini-card {
@@ -6594,17 +6647,19 @@ p {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   body {
-    padding-bottom: 78px;
+    padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px));
   }
 
   .luxury-mobile-dock {
     display: block;
     position: fixed;
-    bottom: 12px;
-    left: 14px;
-    right: 14px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 24px);
+    max-width: 440px;
     z-index: 9999;
     pointer-events: none;
   }
@@ -6614,25 +6669,29 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(225, 220, 210, 0.75);
     border-radius: 999px;
-    padding: 8px 12px;
-    box-shadow: 0 12px 36px rgba(20, 25, 22, 0.14), 0 2px 8px rgba(0, 0, 0, 0.04);
+    padding: 6px 8px;
+    box-shadow: 0 10px 32px rgba(20, 25, 22, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
   }
 
   .mobile-dock-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     color: #7a736a;
-    padding: 4px 10px;
+    padding: 4px 6px;
     border-radius: 999px;
     transition: all 0.2s ease;
     position: relative;
+    flex: 1;
+    min-width: 0;
+    max-width: 80px;
   }
 
   .mobile-dock-item.active {
@@ -6650,7 +6709,10 @@ p {
     font-size: 0.64rem;
     font-weight: 700;
     margin-top: 2px;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .mobile-dock-item.active .dock-text-label {
@@ -6660,9 +6722,9 @@ p {
 
   .dock-active-glow {
     position: absolute;
-    bottom: -2px;
+    bottom: -1px;
     width: 14px;
-    height: 3px;
+    height: 2.5px;
     border-radius: 999px;
     background: #c5a880;
   }
@@ -6678,6 +6740,22 @@ p {
     padding: 1px 5px;
     border-radius: 999px;
     border: 1px solid #FFFFFF;
+  }
+
+  @media (max-width: 360px) {
+    .luxury-mobile-dock {
+      width: calc(100% - 16px);
+      bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    }
+    .mobile-dock-inner {
+      padding: 5px 4px;
+    }
+    .mobile-dock-item {
+      padding: 3px 2px;
+    }
+    .dock-text-label {
+      font-size: 0.58rem;
+    }
   }
 
   /* Responsive 2-column mobile products grid */

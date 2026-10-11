@@ -17,7 +17,8 @@ export function TrendingPaliTicker() {
       <div className="shell trending-ticker-shell">
         <div className="ticker-live-badge">
           <span className="ticker-pulse-orb" />
-          <span>PALI LIVE ATELIER</span>
+          <span className="ticker-badge-text-full">PALI LIVE ATELIER</span>
+          <span className="ticker-badge-text-short">LIVE</span>
         </div>
 
         <div className="ticker-marquee-track">
