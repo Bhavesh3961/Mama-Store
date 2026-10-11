@@ -1,5 +1,6 @@
 import { Fraunces, Outfit } from "next/font/google";
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { store } from "@/data/store";
 import { CartProvider } from "@/components/cart/CartProvider";
 import { CustomerStoreLayout } from "@/components/layout/CustomerStoreLayout";
@@ -74,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <JsonLd />
           <CustomerStoreLayout>{children}</CustomerStoreLayout>
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );
