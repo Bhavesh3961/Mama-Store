@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { topBrands } from "@/data/brands";
+import { brands } from "@/data/brands";
 import { whatsappHref } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "Top Brands · 100% Authentic Cosmetics · Mama Store Pali",
-  description: "Explore world-renowned cosmetic brands: Plix, Dot & Key, Nykaa, Chemist at Play, Mamaearth, Bella Vita, Plum, Nivea, Lakmé and more at Mama Store Pali.",
+  title: "All Brands · 100% Authentic Cosmetics · Mama Store Pali",
+  description: "Explore all authentic cosmetic houses and beauty brands: Plix, Dot & Key, Nykaa, Chemist at Play, Mamaearth, Bella Vita, Plum, Nivea, Lakmé, Minimalist, L'Oréal and more at Mama Store Pali.",
 };
 
 export default function BrandsPage() {
@@ -18,16 +18,16 @@ export default function BrandsPage() {
             ✦ 100% DIRECT ATELIER STOCK
           </span>
           <h1 style={{ fontSize: "clamp(2rem, 4.5vw, 3rem)", marginTop: 10, letterSpacing: "-0.03em" }}>
-            Top Beauty Brands
+            All Brands
           </h1>
-          <p className="muted" style={{ maxWidth: 600, marginTop: 8, fontSize: "1.05rem", lineHeight: 1.6 }}>
-            Tap any brand to explore its complete collection with authentic salon and clinical skincare stock.
+          <p className="muted" style={{ maxWidth: 620, marginTop: 8, fontSize: "1.05rem", lineHeight: 1.6 }}>
+            Explore all {brands.length} authentic beauty houses and cosmetic ateliers. Tap any brand to shop its complete collection.
           </p>
         </div>
 
         {/* Clean Luxury Brand Grid: Logo & Brand Name Only */}
         <div className="luxury-brands-grid">
-          {topBrands.map((b) => (
+          {brands.map((b) => (
             <Link
               key={b.id}
               href={`/brands/${b.slug}`}

@@ -38,3 +38,23 @@ test("Mobile responsiveness: 2-column mobile grid on small screens", () => {
   assert.ok(css.includes("luxury-brands-grid"), "globals.css must style luxury-brands-grid");
   assert.ok(css.includes("grid-template-columns: repeat(2, 1fr) !important;"), "globals.css must have 2-column mobile grid");
 });
+
+test("All Brands: page displays all brands and is titled All Brands", () => {
+  const brandsPage = fs.readFileSync("src/app/brands/page.tsx", "utf8");
+  const siteHeader = fs.readFileSync("src/components/layout/SiteHeader.tsx", "utf8");
+
+  assert.ok(brandsPage.includes("brands.map"), "brands page must map over all brands");
+  assert.ok(brandsPage.includes("All Brands"), "brands page must be titled All Brands");
+  assert.ok(siteHeader.includes('label: "All Brands"'), "header nav must say All Brands");
+});
+
+test("Shop page: brand and sidebar filters removed, direct full-width catalog", () => {
+  const shopPage = fs.readFileSync("src/app/shop/page.tsx", "utf8");
+  const shopFilters = fs.readFileSync("src/components/shop/ShopFilters.tsx", "utf8");
+
+  assert.ok(!shopPage.includes("<DesktopFilters"), "shop page must not render DesktopFilters");
+  assert.ok(!shopFilters.includes("quick-brand-pill"), "shop toolbar must not render quick brand filter pills");
+  assert.ok(!shopFilters.includes("btn-mobile-filter-trigger"), "shop toolbar must not render filter modal trigger");
+  assert.ok(shopPage.includes("ProductGrid"), "shop page must directly render ProductGrid");
+});
+

@@ -33,7 +33,7 @@ export function SiteHeader() {
   const navLinks = [
     { href: "/shop", label: "All Products" },
     { href: "/categories", label: "Categories" },
-    { href: "/brands", label: "Top Brands" },
+    { href: "/brands", label: "All Brands" },
   ];
 
   return (
