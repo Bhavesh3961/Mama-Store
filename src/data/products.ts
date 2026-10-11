@@ -375,12 +375,12 @@ export const products: Product[] = [
   {
     id: "p-nykaa-wanderlust-macadamia",
     slug: "nykaa-wanderlust-hawaiian-macadamia-body-wash",
-    name: "Nykaa Wanderlust Hawaiian Macadamia Body Wash",
+    name: "Nykaa Wanderlust Hawaiian Sea Breeze Body Wash",
     brandId: "br-nykaa",
     categoryId: "cat-bath",
-    description: "Nourishing nutty body wash packed with cold-pressed Hawaiian macadamia extract.",
-    details: "Deeply moisturizing creamy lather for dry skin.",
-    ingredients: "Macadamia Oil, Aloe Vera, Botanical Glycerin.",
+    description: "Refreshing coastal shower gel with crisp aqua notes and nourishing coconut for hydrated skin.",
+    details: "Soap-free, gentle lather that leaves skin refreshed, hydrated, and pleasantly scented.",
+    ingredients: "Fresh Aqua Notes, Coconut Extract, Aloe Vera, Vitamin E.",
     size: "300 ml",
     image: "/products/nykaa-wanderlust-macadamia.jpg",
     mrp: 399,
@@ -394,7 +394,7 @@ export const products: Product[] = [
     relatedIds: ["p-nykaa-wanderlust-cherry"],
     gallery: [
       {
-            "label": "Nykaa Wanderlust Macadamia",
+            "label": "Nykaa Wanderlust Hawaiian Sea Breeze",
             "url": "/products/nykaa-wanderlust-macadamia.jpg",
             "tone": "#f8f3ed"
       }
@@ -403,12 +403,12 @@ export const products: Product[] = [
   {
     id: "p-nykaa-wanderlust-green-apple",
     slug: "nykaa-wanderlust-sicilian-green-apple-body-wash",
-    name: "Nykaa Wanderlust Sicilian Green Apple Body Wash",
+    name: "Nykaa Wanderlust Sicilian Sweet Pea Body Wash",
     brandId: "br-nykaa",
     categoryId: "cat-bath",
-    description: "Zesty, crisp green apple scented body cleanser that revives tired skin.",
-    details: "Bright and invigorating daily lather.",
-    ingredients: "Green Apple Extract, Aloe Vera, Vitamin E.",
+    description: "Sweet floral body wash infused with delicate Sicilian sweet pea blossoms and soothing Aloe Vera.",
+    details: "Gentle daily foaming cleanser that keeps skin silky soft and lightly fragrant.",
+    ingredients: "Sweet Pea Flower Extract, Aloe Vera, Vitamin E, Botanical Glycerin.",
     size: "300 ml",
     image: "/products/nykaa-wanderlust-green-apple.jpg",
     mrp: 399,
@@ -422,7 +422,7 @@ export const products: Product[] = [
     relatedIds: ["p-nykaa-wanderlust-cherry"],
     gallery: [
       {
-            "label": "Nykaa Wanderlust Green Apple",
+            "label": "Nykaa Wanderlust Sicilian Sweet Pea",
             "url": "/products/nykaa-wanderlust-green-apple.jpg",
             "tone": "#f2f9f1"
       }
@@ -1971,13 +1971,13 @@ export const products: Product[] = [
   {
     id: "p-nivea-men-deep-impact",
     slug: "nivea-men-deep-impact-deodorant",
-    name: "Nivea Men Deep Impact Deodorant",
+    name: "Nivea Men Deep Impact Roll-On Deodorant",
     brandId: "br-nivea",
     categoryId: "cat-bath",
-    description: "Black Carbon infused antibacterial deodorant spray that protects against odor and delivers an intense woody scent.",
-    details: "0% alcohol formula dermatologically approved for skin comfort.",
+    description: "Black Carbon infused antibacterial 72h deodorant roll-on that protects against odor and delivers an intense woody scent.",
+    details: "0% alcohol formula dermatologically approved for skin comfort and 72-hour freshness.",
     ingredients: "Black Carbon, Premium Woody Parfum, Skin Conditioning Agents.",
-    size: "150 ml",
+    size: "50 ml",
     image: "/products/nivea-men-deep-impact.jpg",
     mrp: 249,
     price: 199,
@@ -1990,7 +1990,7 @@ export const products: Product[] = [
     relatedIds: ["p-nivea-pearl-beauty","p-bellavita-white-oud"],
     gallery: [
       {
-            "label": "Deep Impact Deodorant",
+            "label": "Deep Impact Roll-On Deodorant",
             "url": "/products/nivea-men-deep-impact.jpg",
             "tone": "#ececec"
       }
@@ -1999,13 +1999,13 @@ export const products: Product[] = [
   {
     id: "p-nivea-pearl-beauty",
     slug: "nivea-pearl-and-beauty-deodorant",
-    name: "Nivea Pearl & Beauty Deodorant",
+    name: "Nivea Pearl & Beauty Radiance Roll-On Deodorant",
     brandId: "br-nivea",
     categoryId: "cat-bath",
-    description: "Enriched with precious pearl extracts for smooth underarms while delivering 48 hours of reliable odor protection.",
-    details: "Mild floral fine fragrance with gentle Nivea care. 0% alcohol.",
-    ingredients: "Pearl Extracts, Avocado Oil, Floral Parfum.",
-    size: "150 ml",
+    description: "Enriched with precious pearl extracts for smooth underarms while delivering reliable 72-hour odor protection.",
+    details: "Mild floral fine fragrance with gentle Nivea care. 0% alcohol formula.",
+    ingredients: "White Pearl Extracts, Avocado Oil, Floral Parfum.",
+    size: "50 ml",
     image: "/products/nivea-pearl-beauty.jpg",
     mrp: 249,
     price: 199,
@@ -2018,7 +2018,7 @@ export const products: Product[] = [
     relatedIds: ["p-nivea-men-deep-impact","p-mcaffeine-sweet-escape-lotion"],
     gallery: [
       {
-            "label": "Pearl & Beauty Deodorant",
+            "label": "Pearl & Beauty Radiance Roll-On",
             "url": "/products/nivea-pearl-beauty.jpg",
             "tone": "#fbf2f4"
       }
