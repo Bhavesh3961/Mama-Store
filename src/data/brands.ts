@@ -192,14 +192,14 @@ export const brands: Brand[] = [
   },
   {
     id: "br-milau",
-    name: "Milau Professional",
-    slug: "milau-professional",
+    name: "Milau",
+    slug: "milau",
     blurb: "Salon-grade exfoliating scrub washes, Korean rice water elixirs, and 24K gold skin brightening formulas.",
     origin: "Mumbai, India",
     badge: "Salon Professional",
-    logoUrl: "/brands/milau.svg",
+    logoUrl: "/brands/milau.png",
     logoBg: "linear-gradient(135deg, #fbf5eb 0%, #f0e1c8 100%)",
-    isTop: false,
+    isTop: true,
   },
   {
     id: "br-mac",

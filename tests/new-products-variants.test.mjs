@@ -119,6 +119,23 @@ test("Verify new standalone products and packshot assets on disk", async () => {
     "wishcare-vitc-sunscreen.png",
     "plix-pineapple-depigmentation-serum-50.jpg",
     "plix-guava-glow-serum-50.jpg",
+    "bellavita-ceo-man-shower-gel.jpg",
+    "bellavita-white-oud-shower-gel.jpg",
+    "bellavita-date-woman-shower-gel.jpg",
+    "bellavita-klub-man-shower-gel.jpg",
+    "bellavita-glam-woman-shower-gel.jpg",
+    "bellavita-senorita-shower-gel.jpg",
+    "lux-magical-orchid-body-wash.jpg",
+    "lux-lavender-vitc-body-wash.jpg",
+    "lux-aloe-freesia-body-wash.jpg",
+    "nykaa-wanderlust-lavender.jpg",
+    "nykaa-wanderlust-almond-milk.jpg",
+    "milau-24k-gold-body-wash.jpg",
+    "milau-blueberry-body-wash.jpg",
+    "milau-aloe-vera-body-wash.jpg",
+    "milau-korean-glass-skin-body-wash.jpg",
+    "milau-coconut-vanilla-shower-gel.jpg",
+    "milau-lavender-rose-shower-gel.jpg",
   ];
 
   for (const img of expectedImages) {
@@ -156,6 +173,57 @@ test("Verify new standalone products and packshot assets on disk", async () => {
     productsTs.includes(`/products/chemistatplay-vitc-facewash.jpg`),
     "Chemist at Play Vit C must have its own vitc packshot"
   );
+
+  // Ensure all Bella Vita shower gels are present as individual products
+  const expectedBellaVitaShowerGels = [
+    "bellavita-skai-shower-gel",
+    "bellavita-ceo-man-shower-gel",
+    "bellavita-white-oud-shower-gel",
+    "bellavita-date-woman-shower-gel",
+    "bellavita-klub-man-shower-gel",
+    "bellavita-glam-woman-shower-gel",
+    "bellavita-senorita-shower-gel",
+  ];
+  for (const slug of expectedBellaVitaShowerGels) {
+    assert.ok(productsTs.includes(`slug: "${slug}"`), `Bella Vita variant ${slug} must be in catalog`);
+  }
+
+  // Ensure all Lux body washes are present as individual products
+  const expectedLuxBodyWashes = [
+    "lux-radiant-body-wash",
+    "lux-magical-orchid-body-wash",
+    "lux-lavender-vitamin-c-illuminating-body-wash",
+    "lux-fresh-aloe-vera-and-freesia-scent-body-wash",
+  ];
+  for (const slug of expectedLuxBodyWashes) {
+    assert.ok(productsTs.includes(`slug: "${slug}"`), `Lux variant ${slug} must be in catalog`);
+  }
+
+  // Ensure all Nykaa Wanderlust shower gels are present
+  const expectedWanderlustGels = [
+    "nykaa-wanderlust-japanese-cherry-blossom-body-wash",
+    "nykaa-wanderlust-mediterranean-sea-salt-body-wash",
+    "nykaa-wanderlust-hawaiian-macadamia-body-wash",
+    "nykaa-wanderlust-sicilian-green-apple-body-wash",
+    "nykaa-wanderlust-french-lavender-shower-gel",
+    "nykaa-wanderlust-californian-almond-milk-shower-gel",
+  ];
+  for (const slug of expectedWanderlustGels) {
+    assert.ok(productsTs.includes(`slug: "${slug}"`), `Wanderlust variant ${slug} must be in catalog`);
+  }
+
+  // Ensure all Milau body washes are present
+  const expectedMilauWashes = [
+    "milau-24k-gold-face-and-body-wash-with-scrub",
+    "milau-blueberry-face-and-body-wash-with-scrub",
+    "milau-aloe-vera-face-and-body-wash-with-scrub",
+    "milau-korean-glass-skin-face-and-body-wash",
+    "milau-morning-boost-coconut-vanilla-shower-gel",
+    "milau-morning-bloom-lavender-rose-shower-gel",
+  ];
+  for (const slug of expectedMilauWashes) {
+    assert.ok(productsTs.includes(`slug: "${slug}"`), `Milau variant ${slug} must be in catalog`);
+  }
 });
 
 test("Verify Top Brands have genuine logos and active collections", async () => {
@@ -175,7 +243,8 @@ test("Verify Top Brands have genuine logos and active collections", async () => 
     { name: "mCaffeine", logo: "mcaffeine.png" },
     { name: "The Derma Co", logo: "dermaco.png" },
     { name: "Pilgrim", logo: "pilgrim.png" },
-    { name: "Lux", logo: "lux.png" }
+    { name: "Lux", logo: "lux.png" },
+    { name: "Milau", logo: "milau.png" },
   ];
 
   for (const b of activeBrands) {
