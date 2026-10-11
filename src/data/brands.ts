@@ -2,16 +2,20 @@ export type Brand = {
   id: string;
   name: string;
   slug: string;
-  blurb: string;
-  origin: string;
+  blurb?: string;
+  origin?: string;
   badge?: string;
   logoUrl: string;
   logoBg?: string;
   isTop?: boolean;
+  primaryColor?: string;
+  accentColor?: string;
+  themeBg?: string;
+  tagline?: string;
 };
 
 export const brands: Brand[] = [
-  // 14 Top Brands Sold at Mama Store Pali
+  // 15 Top Brands Sold at Mama Store Pali
   {
     id: "br-plix",
     name: "Plix The Plant Fix",
@@ -22,6 +26,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/plix.png",
     logoBg: "linear-gradient(135deg, #f1f7f0 0%, #ddebdb 100%)",
     isTop: true,
+    primaryColor: "#0e4d2a",
+    accentColor: "#25a244",
+    themeBg: "#f2f8f4",
+    tagline: "Plant-Powered Active Skincare & Haircare",
   },
   {
     id: "br-dotkey",
@@ -33,6 +41,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/dotkey.svg",
     logoBg: "linear-gradient(135deg, #fcf2f4 0%, #fae1e6 100%)",
     isTop: true,
+    primaryColor: "#e05368",
+    accentColor: "#ff758f",
+    themeBg: "#fff5f7",
+    tagline: "Fruit Actives & Dermatological Hydration",
   },
   {
     id: "br-nykaa",
@@ -44,6 +56,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/nykaa.svg",
     logoBg: "linear-gradient(135deg, #fdf2f4 0%, #fbe4e8 100%)",
     isTop: true,
+    primaryColor: "#fc2779",
+    accentColor: "#ff5996",
+    themeBg: "#fff0f5",
+    tagline: "Wanderlust Artisanal Fragrance & Bodycare",
   },
   {
     id: "br-chemistatplay",
@@ -55,6 +71,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/chemistatplay.png",
     logoBg: "linear-gradient(135deg, #edf6f2 0%, #daece3 100%)",
     isTop: true,
+    primaryColor: "#0d694d",
+    accentColor: "#1da379",
+    themeBg: "#edf7f3",
+    tagline: "Essential Ceramides & Active Body Treatments",
   },
   {
     id: "br-mamaearth",
@@ -66,6 +86,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/mamaearth.png",
     logoBg: "linear-gradient(135deg, #edf5ef 0%, #d8eadc 100%)",
     isTop: true,
+    primaryColor: "#1b7a3a",
+    accentColor: "#34a853",
+    themeBg: "#f2f9f4",
+    tagline: "100% Toxin-Free Botanical Hair & Skincare",
   },
   {
     id: "br-bellavita",
@@ -77,6 +101,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/bellavita.png",
     logoBg: "linear-gradient(135deg, #f7efe6 0%, #ebdcc9 100%)",
     isTop: true,
+    primaryColor: "#996d19",
+    accentColor: "#c29b38",
+    themeBg: "#fcf8f0",
+    tagline: "Artisanal Luxury Perfumery & Shower Gels",
   },
   {
     id: "br-plum",
@@ -88,6 +116,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/plum.svg",
     logoBg: "linear-gradient(135deg, #f5edf8 0%, #e8d7ed 100%)",
     isTop: true,
+    primaryColor: "#6f2282",
+    accentColor: "#9d4edd",
+    themeBg: "#faf4fb",
+    tagline: "100% Vegan & Cruelty-Free Clean Beauty",
   },
   {
     id: "br-wishcare",
@@ -99,6 +131,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/wishcare.png",
     logoBg: "linear-gradient(135deg, #eef7f2 0%, #d8ede0 100%)",
     isTop: true,
+    primaryColor: "#0a7c71",
+    accentColor: "#17b890",
+    themeBg: "#f0f9f8",
+    tagline: "Science-Backed Sun Protection & Brightening Care",
   },
   {
     id: "br-nivea",
@@ -110,6 +146,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/nivea.svg",
     logoBg: "linear-gradient(135deg, #edf3fa 0%, #d8e5f5 100%)",
     isTop: true,
+    primaryColor: "#00327f",
+    accentColor: "#1a5dc8",
+    themeBg: "#f0f4fa",
+    tagline: "German Dermatological Care & 72H Odor Defense",
   },
   {
     id: "br-lakme",
@@ -121,6 +161,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/lakme.png",
     logoBg: "linear-gradient(135deg, #f8ece8 0%, #edd3cb 100%)",
     isTop: true,
+    primaryColor: "#b81446",
+    accentColor: "#e63946",
+    themeBg: "#fdf2f4",
+    tagline: "Iconic Indian Beauty & Salon Moisturizers",
   },
   {
     id: "br-mcaffeine",
@@ -132,6 +176,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/mcaffeine.png",
     logoBg: "linear-gradient(135deg, #f9f2ed 0%, #eee0d5 100%)",
     isTop: true,
+    primaryColor: "#43281c",
+    accentColor: "#7f4f24",
+    themeBg: "#faf5f0",
+    tagline: "Pure Arabica Coffee Luxury Body Care",
   },
   {
     id: "br-dermaco",
@@ -143,6 +191,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/dermaco.png",
     logoBg: "linear-gradient(135deg, #f0f6f3 0%, #dcebe2 100%)",
     isTop: true,
+    primaryColor: "#006d77",
+    accentColor: "#0096c7",
+    themeBg: "#f0f8fa",
+    tagline: "Dermatologist-Formulated Active Skincare",
   },
   {
     id: "br-pilgrim",
@@ -154,6 +206,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/pilgrim.png",
     logoBg: "linear-gradient(135deg, #f8f3ed 0%, #ece0d2 100%)",
     isTop: true,
+    primaryColor: "#0b7a75",
+    accentColor: "#1f9d94",
+    themeBg: "#f0f9f8",
+    tagline: "Korean Jeju Secrets & Scalp Care Rituals",
   },
   {
     id: "br-lux",
@@ -165,6 +221,25 @@ export const brands: Brand[] = [
     logoUrl: "/brands/lux.png",
     logoBg: "linear-gradient(135deg, #fbf0f2 0%, #f4dbe0 100%)",
     isTop: true,
+    primaryColor: "#b38226",
+    accentColor: "#d4a342",
+    themeBg: "#fdf9f1",
+    tagline: "Fine French Perfumed Body Washes",
+  },
+  {
+    id: "br-milau",
+    name: "Milau",
+    slug: "milau",
+    blurb: "Salon-grade exfoliating scrub washes, Korean rice water elixirs, and 24K gold skin brightening formulas.",
+    origin: "Mumbai, India",
+    badge: "Salon Professional",
+    logoUrl: "/brands/milau.png",
+    logoBg: "linear-gradient(135deg, #fbf5eb 0%, #f0e1c8 100%)",
+    isTop: true,
+    primaryColor: "#c28b38",
+    accentColor: "#dfa750",
+    themeBg: "#fcf7ef",
+    tagline: "Salon-Grade Exfoliating Scrub Washes & Gold Elixirs",
   },
 
   // Additional Brands (Available for Catalog Lookup)
@@ -178,6 +253,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/loreal.svg",
     logoBg: "linear-gradient(135deg, #f7f1e8 0%, #ede3d2 100%)",
     isTop: false,
+    primaryColor: "#b8860b",
+    accentColor: "#d4af37",
+    themeBg: "#faf6ee",
+    tagline: "Parisian Salon Restorative Hair Science",
   },
   {
     id: "br-minimalist",
@@ -189,17 +268,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/minimalist.svg",
     logoBg: "linear-gradient(135deg, #f0f4f1 0%, #e1e9e3 100%)",
     isTop: false,
-  },
-  {
-    id: "br-milau",
-    name: "Milau",
-    slug: "milau",
-    blurb: "Salon-grade exfoliating scrub washes, Korean rice water elixirs, and 24K gold skin brightening formulas.",
-    origin: "Mumbai, India",
-    badge: "Salon Professional",
-    logoUrl: "/brands/milau.png",
-    logoBg: "linear-gradient(135deg, #fbf5eb 0%, #f0e1c8 100%)",
-    isTop: true,
+    primaryColor: "#1f2421",
+    accentColor: "#495057",
+    themeBg: "#f8f9fa",
+    tagline: "Clinical Actives & Transparent Skincare",
   },
   {
     id: "br-mac",
@@ -211,6 +283,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/mac.svg",
     logoBg: "linear-gradient(135deg, #f4eee9 0%, #e5dad2 100%)",
     isTop: false,
+    primaryColor: "#111111",
+    accentColor: "#333333",
+    themeBg: "#f7f7f7",
+    tagline: "Backstage Professional Makeup Artistry",
   },
   {
     id: "br-maybelline",
@@ -222,6 +298,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/maybelline.svg",
     logoBg: "linear-gradient(135deg, #f6ede9 0%, #ebd7d0 100%)",
     isTop: false,
+    primaryColor: "#d90429",
+    accentColor: "#ef233c",
+    themeBg: "#fff5f5",
+    tagline: "High-Impact Global Makeup Formulations",
   },
   {
     id: "br-forest",
@@ -233,6 +313,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/forest.svg",
     logoBg: "linear-gradient(135deg, #f5ede1 0%, #e6d5bf 100%)",
     isTop: false,
+    primaryColor: "#7f5539",
+    accentColor: "#9c6644",
+    themeBg: "#faf6f0",
+    tagline: "Luxurious Authentic Royal Ayurveda",
   },
   {
     id: "br-ordinary",
@@ -244,6 +328,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/ordinary.svg",
     logoBg: "linear-gradient(135deg, #f0f3f6 0%, #e1e7ec 100%)",
     isTop: false,
+    primaryColor: "#212529",
+    accentColor: "#495057",
+    themeBg: "#f8f9fa",
+    tagline: "Clinical Formulations with Integrity",
   },
   {
     id: "br-huda",
@@ -255,6 +343,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/huda.svg",
     logoBg: "linear-gradient(135deg, #f7ede8 0%, #ebd4ca 100%)",
     isTop: false,
+    primaryColor: "#b5179e",
+    accentColor: "#7209b7",
+    themeBg: "#faf0f8",
+    tagline: "Ultra-Pigmented Luxury Glamour",
   },
   {
     id: "br-clinique",
@@ -266,6 +358,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/clinique.svg",
     logoBg: "linear-gradient(135deg, #eef4f8 0%, #dce7f0 100%)",
     isTop: false,
+    primaryColor: "#005073",
+    accentColor: "#107dac",
+    themeBg: "#f2f8fa",
+    tagline: "100% Fragrance-Free Allergy Tested Skincare",
   },
   {
     id: "br-drrashel",
@@ -277,6 +373,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/drrashel.svg",
     logoBg: "linear-gradient(135deg, #fbf3e6 0%, #f2debe 100%)",
     isTop: false,
+    primaryColor: "#8338ec",
+    accentColor: "#9d4edd",
+    themeBg: "#fbf5ff",
+    tagline: "Korean Glass Skin & Active Ceramide Essences",
   },
   {
     id: "br-urbanyog",
@@ -288,6 +388,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/urbanyog.svg",
     logoBg: "linear-gradient(135deg, #eef2f8 0%, #dde4f1 100%)",
     isTop: false,
+    primaryColor: "#3a86ff",
+    accentColor: "#0077b6",
+    themeBg: "#f0f6ff",
+    tagline: "Innovative Personal Care & Styling Tech",
   },
   {
     id: "br-fascialgun",
@@ -299,6 +403,10 @@ export const brands: Brand[] = [
     logoUrl: "/brands/fascial.svg",
     logoBg: "linear-gradient(135deg, #f5f0f8 0%, #e6dbe9 100%)",
     isTop: false,
+    primaryColor: "#495057",
+    accentColor: "#6c757d",
+    themeBg: "#f8f9fa",
+    tagline: "Professional Muscle Recovery & Body Wellness",
   },
 ];
 

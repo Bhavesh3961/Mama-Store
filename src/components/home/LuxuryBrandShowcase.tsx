@@ -23,22 +23,24 @@ export function LuxuryBrandShowcase() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: idx * 0.05 }}
+            transition={{ duration: 0.35, delay: idx * 0.04 }}
           >
-            <Link href={`/shop?brand=${b.slug}`} className="luxury-brand-card">
-              {/* Brand Logo Watermark Background */}
+            <Link
+              href={`/brands/${b.slug}`}
+              className="luxury-brand-card luxury-brand-card-clean"
+              aria-label={`Explore ${b.name} products`}
+              style={
+                {
+                  "--brand-hover-color": b.primaryColor || "#141916",
+                  "--brand-card-bg": b.themeBg || "#faf7f2",
+                } as React.CSSProperties
+              }
+            >
+              {/* Brand Logo Stage */}
               <div
-                className="brand-watermark-bg"
-                style={{ backgroundImage: `url(${b.logoUrl})` }}
-                aria-hidden="true"
-              />
-
-              <div className="brand-card-top">
-                <span className="brand-badge-pill">{b.badge || "Verified Maison"}</span>
-                <span className="brand-origin">{b.origin}</span>
-              </div>
-
-              <div className="brand-logo-stage" style={{ background: b.logoBg || "rgba(255, 255, 255, 0.85)" }}>
+                className="brand-logo-stage"
+                style={{ background: b.logoBg || "rgba(255, 255, 255, 0.95)" }}
+              >
                 <img
                   src={b.logoUrl}
                   alt={`${b.name} logo`}
@@ -47,17 +49,12 @@ export function LuxuryBrandShowcase() {
                 />
               </div>
 
-              <div className="brand-card-center">
+              {/* Brand Name Only (Extra Text Removed) */}
+              <div className="brand-card-footer">
                 <h3 className="brand-name-title">{b.name}</h3>
-                <p className="brand-blurb-text">{b.blurb}</p>
-              </div>
-
-              <div className="brand-card-bottom">
-                <span className="brand-explore-link">
-                  <span>Explore Atelier</span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                    <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                <span className="brand-card-explore-hint">
+                  <span>View Products</span>
+                  <span className="brand-arrow">→</span>
                 </span>
               </div>
             </Link>

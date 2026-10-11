@@ -1,10 +1,12 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { filterProducts, type ProductFilters, type SortKey } from "@/data/catalog";
 import { getAllProductsForCatalog } from "@/lib/db/queries";
 import { DesktopFilters, ShopToolbar, ShopCategoryStrip } from "@/components/shop/ShopFilters";
 import { ProductGrid } from "@/components/product/ProductCard";
 import { SearchForm } from "@/components/search/SearchForm";
+import { getBrand } from "@/data/brands";
 
 type Props = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -31,6 +33,24 @@ export default async function ShopPage({ searchParams }: Props) {
     priceMax: first(sp.max) ? Number(first(sp.max)) : undefined,
     sort: (first(sp.sort) as SortKey) || "featured",
   };
+
+  // If visiting directly for a brand with no other filters, route to dedicated branded boutique
+  if (
+    filters.brand &&
+    !filters.query &&
+    !filters.category &&
+    !filters.offer &&
+    !filters.priceMin &&
+    !filters.priceMax &&
+    filters.availability === "all" &&
+    filters.sort === "featured"
+  ) {
+    const matchedBrand = getBrand(filters.brand);
+    if (matchedBrand) {
+      redirect(`/brands/${matchedBrand.slug}`);
+    }
+  }
+
   const dbProducts = getAllProductsForCatalog();
   const list = filterProducts(filters, dbProducts);
 

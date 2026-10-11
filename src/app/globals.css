@@ -5297,14 +5297,295 @@ p {
    ========================================================================== */
 .luxury-brands-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 20px;
 }
 
 @media (max-width: 640px) {
   .luxury-brands-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+}
+
+/* Minimalist Clean Brand Card (Logo & Name Only) */
+.luxury-brand-card-clean {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 22px 16px !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.luxury-brand-card-clean:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.09) !important;
+  border-color: var(--brand-hover-color, rgba(197, 168, 128, 0.5)) !important;
+}
+
+.luxury-brand-card-clean .brand-logo-stage {
+  width: 100% !important;
+  height: 76px !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 18px !important;
+  margin-bottom: 14px !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02) !important;
+  transition: transform 0.28s ease !important;
+}
+
+.luxury-brand-card-clean:hover .brand-logo-stage {
+  transform: scale(1.03) !important;
+}
+
+.luxury-brand-card-clean .brand-logo-vector {
+  max-height: 44px !important;
+  width: auto !important;
+  max-width: 86% !important;
+  object-fit: contain !important;
+}
+
+.luxury-brand-card-clean .brand-card-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+}
+
+.luxury-brand-card-clean .brand-card-name {
+  font-family: var(--font-serif, "Playfair Display", Georgia, serif) !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #141916 !important;
+  margin: 0 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.25 !important;
+}
+
+.luxury-brand-card-clean .brand-card-explore-hint {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #8b8377 !important;
+  transition: color 0.2s ease, gap 0.2s ease !important;
+}
+
+.luxury-brand-card-clean:hover .brand-card-explore-hint {
+  color: var(--brand-hover-color, #141916) !important;
+  gap: 7px !important;
+}
+
+@media (max-width: 640px) {
+  .luxury-brand-card-clean {
+    padding: 14px 10px !important;
+    border-radius: 16px !important;
+  }
+  .luxury-brand-card-clean .brand-logo-stage {
+    height: 56px !important;
+    padding: 8px 12px !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+  }
+  .luxury-brand-card-clean .brand-logo-vector {
+    max-height: 32px !important;
+  }
+  .luxury-brand-card-clean .brand-card-name {
+    font-size: 0.95rem !important;
+  }
+  .luxury-brand-card-clean .brand-card-explore-hint {
+    font-size: 0.65rem !important;
+  }
+}
+
+/* ==========================================================================
+   BRAND BOUTIQUE PAGE (MATCHES BRAND PRIMARY COLOR & LOGO AESTHETICS)
+   ========================================================================== */
+.page-brand-boutique {
+  position: relative !important;
+  padding-top: 24px !important;
+  padding-bottom: 60px !important;
+  background-color: var(--brand-bg, #faf7f2) !important;
+  min-height: 100vh !important;
+}
+
+.brand-boutique-nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 24px !important;
+  gap: 12px !important;
+}
+
+.brand-back-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 8px 18px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: #141916 !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.25s ease !important;
+}
+
+.brand-back-pill:hover {
+  background: #ffffff !important;
+  border-color: var(--brand-primary, #141916) !important;
+  color: var(--brand-primary, #141916) !important;
+  transform: translateX(-2px) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+}
+
+.brand-item-counter-pill {
+  font-size: 0.74rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  border: 1px solid !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.brand-boutique-hero {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 24px 16px 28px !important;
+  margin-bottom: 20px !important;
+  position: relative !important;
+}
+
+.brand-boutique-logo-card {
+  width: 140px !important;
+  height: 80px !important;
+  border-radius: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 14px 22px !important;
+  border: 1px solid !important;
+  margin-bottom: 18px !important;
+  background: #ffffff !important;
+  transition: transform 0.3s ease !important;
+}
+
+.brand-boutique-logo-card:hover {
+  transform: scale(1.03) !important;
+}
+
+.brand-boutique-logo-img {
+  max-height: 48px !important;
+  width: auto !important;
+  max-width: 88% !important;
+  object-fit: contain !important;
+}
+
+.brand-boutique-headings {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  max-width: 640px !important;
+}
+
+.brand-boutique-badge-wrap {
+  margin-bottom: 10px !important;
+}
+
+.brand-boutique-badge {
+  font-size: 0.7rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  padding: 4px 14px !important;
+  border-radius: 999px !important;
+  border: 1px solid !important;
+  display: inline-block !important;
+}
+
+.brand-boutique-title {
+  font-family: var(--font-serif, "Playfair Display", Georgia, serif) !important;
+  font-size: clamp(2rem, 4.5vw, 3rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  margin: 0 0 8px !important;
+  line-height: 1.15 !important;
+}
+
+.brand-boutique-tagline {
+  font-size: 1rem !important;
+  color: #5c564d !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+.brand-boutique-concierge-strip {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 20px 24px !important;
+  border-radius: 20px !important;
+  border: 1px solid !important;
+  margin-top: 48px !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+@media (max-width: 640px) {
+  .brand-boutique-hero {
+    padding: 12px 8px 18px !important;
+    margin-bottom: 16px !important;
+  }
+  .brand-boutique-logo-card {
+    width: 104px !important;
+    height: 60px !important;
+    border-radius: 14px !important;
+    padding: 10px 14px !important;
+    margin-bottom: 12px !important;
+  }
+  .brand-boutique-logo-img {
+    max-height: 34px !important;
+  }
+  .brand-boutique-title {
+    font-size: 1.65rem !important;
+  }
+  .brand-boutique-tagline {
+    font-size: 0.88rem !important;
+  }
+  .brand-boutique-concierge-strip {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 16px !important;
+    gap: 12px !important;
   }
 }
 
