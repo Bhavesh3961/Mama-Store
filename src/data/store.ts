@@ -13,9 +13,9 @@ export const store = {
   ],
   mapsUrl: "https://maps.app.goo.gl/2Zt3n78XvC6pTH5j8?g_st=aw",
   hours: "Open daily. Confirm timing on WhatsApp before visiting.",
-  delivery: "Delivery within Pali city. Charges and slot are confirmed at checkout.",
-  deliveryFee: 40,
-  freeDeliveryOver: 799,
+  delivery: "Free express delivery across Pali city on all orders.",
+  deliveryFee: 0,
+  freeDeliveryOver: 0,
   /**
    * Store WhatsApp in international format without +.
    * Leave empty until the real number is provided — buttons still open WhatsApp with a prefilled message.

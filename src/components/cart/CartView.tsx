@@ -108,9 +108,7 @@ export function CartView() {
             </div>
             <div className="row" style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
               <span className="muted">Delivery in {store.city}</span>
-              <span style={{ fontWeight: 600 }}>
-                {subtotal != null && subtotal >= store.freeDeliveryOver ? "Free" : formatInr(deliveryFee)}
-              </span>
+              <span style={{ fontWeight: 600, color: "#166534" }}>Free</span>
             </div>
             <div className="row" style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid var(--line)", paddingTop: 12, marginTop: 8 }}>
               <strong style={{ fontSize: "1.2rem" }}>Estimated Total</strong>

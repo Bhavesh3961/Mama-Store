@@ -431,8 +431,8 @@ export function createOrderWithStockDeduction(input: CreateOrderInput): OrderWit
   }
   invalidateCatalogCache();
 
-  const deliveryFee = subtotal >= store.freeDeliveryOver ? 0 : store.deliveryFee;
-  const total = subtotal + deliveryFee;
+  const deliveryFee = 0;
+  const total = subtotal;
 
   const newOrder: DbOrderRow = {
     id: orderId,

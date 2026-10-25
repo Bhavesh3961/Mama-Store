@@ -145,7 +145,6 @@ export default function CheckoutPage() {
         orderLines,
         ``,
         `💳 *PAYMENT:* ${payload.payment === "cod" ? "Pay on Delivery (Cash / UPI)" : "UPI Transfer"}`,
-        `🚚 *DELIVERY:* ${qualifiesForFreeDelivery ? "FREE (Orders above ₹" + freeDeliveryThreshold + ")" : formatInr(deliveryFee)}`,
         `💰 *TOTAL AMOUNT:* ${total != null ? formatInr(total) : "To be confirmed"}`,
         payload.notes ? `\n📝 *CUSTOMER NOTE:* ${payload.notes}` : null,
         `━━━━━━━━━━━━━━━━━━`,
@@ -256,11 +255,7 @@ export default function CheckoutPage() {
                 <div className="bill-row">
                   <span>Pali Express Delivery</span>
                   <span>
-                    {qualifiesForFreeDelivery ? (
-                      <span className="free-badge">FREE</span>
-                    ) : (
-                      formatInr(deliveryFee)
-                    )}
+                    <span className="free-badge">FREE</span>
                   </span>
                 </div>
                 <div className="bill-row total-highlight">
@@ -584,25 +579,13 @@ export default function CheckoutPage() {
                 </Link>
               </div>
 
-              {/* Free Delivery Meter */}
+              {/* Free Delivery Banner */}
               <div className="free-shipping-card">
                 <div className="free-shipping-header">
-                  {qualifiesForFreeDelivery ? (
-                    <span className="shipping-text unlocked">
-                      🎉 <strong>Free Pali Delivery Unlocked!</strong>
-                    </span>
-                  ) : (
-                    <span className="shipping-text">
-                      Add <strong>{formatInr(amountToFreeDelivery)}</strong> more for <strong>FREE Delivery</strong>
-                    </span>
-                  )}
-                  <span className="shipping-target">Threshold: ₹{freeDeliveryThreshold}</span>
-                </div>
-                <div className="shipping-meter-track">
-                  <div
-                    className={`shipping-meter-fill ${qualifiesForFreeDelivery ? "full" : ""}`}
-                    style={{ width: `${deliveryProgressPercent}%` }}
-                  />
+                  <span className="shipping-text unlocked">
+                    🎉 <strong>Free Express Delivery Across Pali!</strong>
+                  </span>
+                  <span className="shipping-target">100% Free Shipping</span>
                 </div>
               </div>
 
@@ -650,11 +633,7 @@ export default function CheckoutPage() {
                     <span className="bill-sub-hint"> (Local 2–4 hr express)</span>
                   </span>
                   <span className="bill-val">
-                    {qualifiesForFreeDelivery ? (
-                      <span className="free-badge">FREE</span>
-                    ) : (
-                      formatInr(deliveryFee)
-                    )}
+                    <span className="free-badge">FREE</span>
                   </span>
                 </div>
                 <div className="bill-divider" />

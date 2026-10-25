@@ -120,9 +120,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         return sum + itemPrice * line.quantity;
       }, 0);
 
-  const deliveryFee =
-    subtotal == null ? store.deliveryFee : subtotal >= store.freeDeliveryOver ? 0 : store.deliveryFee;
-  const total = subtotal == null ? null : subtotal + deliveryFee;
+  const deliveryFee = 0;
+  const total = subtotal;
 
   const placeOrder = useCallback(
     async (payload: CheckoutPayload): Promise<PlacedOrder | { error: string }> => {
