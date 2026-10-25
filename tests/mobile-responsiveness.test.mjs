@@ -37,3 +37,17 @@ test("ticker badge is responsive on mobile screens", async () => {
   assert.match(ticker, /ticker-badge-text-full/);
   assert.match(ticker, /ticker-badge-text-short/);
 });
+
+test("checkout is fully responsive for all mobile devices without overflow", async () => {
+  const css = await readFile(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.checkout-page-root\s*\{[^}]*overflow-x:\s*hidden/);
+  assert.match(css, /\.checkout-card\s*\{[^}]*box-sizing:\s*border-box/);
+  assert.match(css, /\.checkout-phone-input\s*\{[^}]*min-width:\s*0/);
+  assert.match(css, /@media\s*\(max-width:\s*640px\)\s*\{[\s\S]*\.checkout-card\s*\{[\s\S]*padding:\s*16px 14px/);
+  assert.match(css, /@media\s*\(max-width:\s*480px\)\s*\{[\s\S]*\.checkout-step-link \.step-label/);
+  assert.match(css, /@media\s*\(max-width:\s*380px\)\s*\{[\s\S]*\.checkout-shell-max/);
+
+  const header = await readFile(new URL("../src/components/layout/SiteHeader.tsx", import.meta.url), "utf8");
+  assert.match(header, /href="tel:\+918949549324"/);
+});
+

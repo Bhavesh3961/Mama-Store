@@ -93,9 +93,9 @@ export function SiteHeader() {
         <div className="glass-action-pills">
           <a
             className="glass-icon-btn"
-            href="tel:02932220000"
-            aria-label="Call Pali Shop"
-            title="Call Shop: 02932-220000"
+            href="tel:+918949549324"
+            aria-label="Call Pali Shop: +91 89495 49324"
+            title="Call Shop: +91 89495 49324"
           >
             <PhoneIcon />
           </a>

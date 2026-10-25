@@ -151,8 +151,16 @@ export function getDbProducts(options?: {
   });
 }
 
+let cachedCatalogProducts: CatalogProduct[] | null = null;
+
+export function invalidateCatalogCache(): void {
+  cachedCatalogProducts = null;
+}
+
 export function getAllProductsForCatalog(): CatalogProduct[] {
-  return getDbProducts({ includeUnpublished: false, includeArchived: false }).map(mapDbProductToCatalog);
+  if (cachedCatalogProducts) return cachedCatalogProducts;
+  cachedCatalogProducts = getDbProducts({ includeUnpublished: false, includeArchived: false }).map(mapDbProductToCatalog);
+  return cachedCatalogProducts;
 }
 
 export function getDbProductById(id: string): DbProductRow | null {
@@ -229,6 +237,7 @@ export function createProduct(data: {
   };
 
   db.products.push(newProd);
+  invalidateCatalogCache();
   return getDbProductById(id)!;
 }
 
@@ -285,6 +294,7 @@ export function updateProduct(
   };
 
   db.products[index] = updated;
+  invalidateCatalogCache();
   return getDbProductById(id)!;
 }
 
@@ -298,6 +308,7 @@ export function updateProductStock(id: string, stock: number): DbProductRow {
   db.products[index].stock = safeStock;
   db.products[index].in_stock = in_stock;
   db.products[index].updated_at = new Date().toISOString();
+  invalidateCatalogCache();
 
   return getDbProductById(id)!;
 }
@@ -308,6 +319,7 @@ export function toggleProductPublished(id: string): DbProductRow {
 
   db.products[index].published = db.products[index].published ? 0 : 1;
   db.products[index].updated_at = new Date().toISOString();
+  invalidateCatalogCache();
   
   return getDbProductById(id)!;
 }
@@ -317,6 +329,7 @@ export function deleteProduct(id: string): void {
   if (p) {
     p.archived = 1;
     p.updated_at = new Date().toISOString();
+    invalidateCatalogCache();
   }
 }
 
@@ -416,6 +429,7 @@ export function createOrderWithStockDeduction(input: CreateOrderInput): OrderWit
     db.products[productIndex].in_stock = db.products[productIndex].stock > 0 ? 1 : 0;
     db.products[productIndex].updated_at = now;
   }
+  invalidateCatalogCache();
 
   const deliveryFee = subtotal >= store.freeDeliveryOver ? 0 : store.deliveryFee;
   const total = subtotal + deliveryFee;

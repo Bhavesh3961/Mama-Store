@@ -7,6 +7,9 @@ import { brandOf } from "@/data/catalog";
 import { ProductGrid } from "@/components/product/ProductCard";
 import { whatsappHref } from "@/lib/format";
 
+import { DynamicBrandFavicon } from "@/components/brand/DynamicBrandFavicon";
+import { BrandBackButton } from "@/components/brand/BrandBackButton";
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -23,6 +26,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${brand.name} Collection · 100% Authentic · Mama Store Pali`,
     description: `Shop genuine, 100% authentic ${brand.name} products directly sourced from authorized brand distributors at Mama Store Pali.`,
+    icons: {
+      icon: [{ url: brand.logoUrl }],
+      shortcut: [{ url: brand.logoUrl }],
+      apple: [{ url: brand.logoUrl }],
+    },
   };
 }
 
@@ -57,6 +65,9 @@ export default async function BrandBoutiquePage({ params }: Props) {
         } as React.CSSProperties
       }
     >
+      {/* Dynamic Brand Logo in Browser Tab / Favicon */}
+      <DynamicBrandFavicon logoUrl={brand.logoUrl} brandName={brand.name} />
+
       {/* Dynamic Top Atmospheric Ambient Glow */}
       <div
         className="brand-ambient-glow"
@@ -76,12 +87,7 @@ export default async function BrandBoutiquePage({ params }: Props) {
       <div className="shell" style={{ position: "relative", zIndex: 1 }}>
         {/* Navigation / Wayfinder Bar */}
         <div className="brand-boutique-nav">
-          <Link href="/brands" className="brand-back-pill" aria-label="Back to all brands">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span>All Brands</span>
-          </Link>
+          <BrandBackButton label="All Brands" fallbackHref="/brands" />
 
           <span
             className="brand-item-counter-pill"

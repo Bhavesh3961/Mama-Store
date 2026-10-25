@@ -5,6 +5,7 @@ import { CartProvider } from "@/components/cart/CartProvider";
 import { CustomerStoreLayout } from "@/components/layout/CustomerStoreLayout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AntiDarkModeGuardian } from "@/components/common/AntiDarkModeGuardian";
+import { ScrollRestoration } from "@/components/common/ScrollRestoration";
 import "./globals.css";
 
 const display = Fraunces({
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={`${display.variable} ${body.variable}`}>
+        <ScrollRestoration />
         <AntiDarkModeGuardian />
         <CartProvider>
           <JsonLd />

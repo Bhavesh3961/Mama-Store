@@ -96,7 +96,7 @@ export default function HomePage() {
       </section>
 
       {/* 11. BOUTIQUE FINALE & VIP WHATSAPP ACTION */}
-      <footer className="editorial-finale-section">
+      <section className="editorial-finale-section" aria-label="Boutique Call to Action">
         <div className="shell editorial-finale-container">
           <span className="finale-tag">✦ PALI COSMETIC BOUTIQUE</span>
           <h2 className="finale-title">Elevate your daily ritual today.</h2>
@@ -118,7 +118,7 @@ export default function HomePage() {
             </a>
           </div>
         </div>
-      </footer>
+      </section>
     </div>
   );
 }

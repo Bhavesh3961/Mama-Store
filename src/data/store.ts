@@ -21,6 +21,8 @@ export const store = {
    * Leave empty until the real number is provided — buttons still open WhatsApp with a prefilled message.
    */
   whatsappNumber: "917689956116",
+  phone: "+91 89495 49324",
+  phoneTel: "+918949549324",
   catalogueNotice:
     "100% authentic cosmetics, verified salon brands, and city delivery in Pali.",
 } as const;

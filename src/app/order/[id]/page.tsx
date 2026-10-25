@@ -96,8 +96,9 @@ export default function OrderPage() {
       <div className="shell">
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px" }}>
           <div>
-            <p className="eyebrow">Verified Store Order</p>
-            <h1 style={{ fontSize: "2rem" }}>Order {orderId}</h1>
+            <h1 style={{ fontSize: "clamp(1.25rem, 5vw, 1.85rem)", wordBreak: "break-all" }}>
+              Order #{typeof orderId === "string" ? orderId.slice(0, 10).toUpperCase() : orderId}
+            </h1>
           </div>
           <span
             className="badge-luxury"
